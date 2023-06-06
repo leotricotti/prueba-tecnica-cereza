@@ -17,7 +17,6 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
 
   return (
     <section>
-      <h2>Crear Nueva Factura</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="client-name">Nombre del Cliente:</label>
         <input

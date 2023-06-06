@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Spinner from "./components/spinner/Spinner";
 import Header from "./components/header/Header";
 import InvoiceList from "./components/invoiceList/InvoiceList";
-import Button from "./components/button/Button";
 import InvoiceForm from "./components/invoiceForm/InvoiceForm";
 import invoicesData from "./assets/data/invoices.json";
 
@@ -38,15 +37,14 @@ function App() {
     <Spinner />
   ) : (
     <main>
-      <Header title={"Facturación"} />
-      <InvoiceList invoices={invoices} />
-      <Button onClick={handleShowForm}>Agregar factura</Button>
       {showForm && (
         <InvoiceForm
           onSaveInvoice={handleSaveInvoice}
           setShowForm={setShowForm}
         />
       )}
+      <Header title={"Facturación"} onClick={handleShowForm} />
+      <InvoiceList invoices={invoices} />
     </main>
   );
 }
