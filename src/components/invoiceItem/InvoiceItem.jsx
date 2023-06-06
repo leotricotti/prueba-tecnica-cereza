@@ -44,10 +44,13 @@ function InvoiceItem({ invoices }) {
           </table>
           <div className={styles.options}>
             <button>
-              <FontAwesomeIcon icon={faFolderOpen} />
+              <FontAwesomeIcon
+                icon={faFolderOpen}
+                className={styles.optionsIcon}
+              />
             </button>
             <button>
-              <FontAwesomeIcon icon={faPrint} />
+              <FontAwesomeIcon icon={faPrint} className={styles.optionsIcon} />
             </button>
           </div>
         </div>
