@@ -17,14 +17,15 @@ function SearchBar({ onSearch }) {
 
   return (
     <form onSubmit={handleFormSubmit} className={styles.searchBar}>
-      <button type="submit">
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
+      <button type="submit" className={styles.button}>
+        <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon} />
       </button>
       <input
         type="text"
         placeholder="Buscar factura..."
         value={searchTerm}
         onChange={handleInputChange}
+        className={styles.input}
       />
     </form>
   );

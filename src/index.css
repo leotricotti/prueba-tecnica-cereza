@@ -18,6 +18,7 @@ Variables
   --color-secondary-bg: #003358;
   --color-primary-text: #0d0c22;
   --color-secondary-text: #fff;
+  --color-secondary-light: rgb(255, 255, 255, 0.3);
 }
 
 /*
@@ -35,6 +36,7 @@ Global Styles
 }
 
 body {
+  font-size: 1rem;
   font-family: var(--font-family);
   color: var(--color-primary-text);
   background-color: var(--color-primary-bg);
