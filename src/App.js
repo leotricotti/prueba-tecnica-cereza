@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header title={"Facturación App"} />
       <InvoiceList invoices={invoices} />
       <Button onClick={handleShowForm} />
       {showForm && (
