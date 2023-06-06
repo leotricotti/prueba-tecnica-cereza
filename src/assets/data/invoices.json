@@ -3,10 +3,7 @@
     {
       "number": "0001",
       "customer": "Juan Pérez",
-      "date": "2023-05-01",
-      "subtotal": 100,
-      "tax": 21,
-      "total": 121,
+      "date": "01/05/2023",
       "details": [
         {
           "product": "iPhone 9",
@@ -16,15 +13,15 @@
           "product": "MacBook Pro",
           "price": 1749
         }
-      ]
+      ],
+      "subtotal": 2298,
+      "taxes": 482.58,
+      "total": 2780.58
     },
     {
       "number": "0002",
       "customer": "María López",
-      "date": "2023-05-02",
-      "subtotal": 200,
-      "tax": 42,
-      "total": 242,
+      "date": "02/05/2023",
       "details": [
         {
           "product": "Samsung Universe 9",
@@ -34,15 +31,15 @@
           "product": "Samsung Galaxy Book",
           "price": 1499
         }
-      ]
+      ],
+      "subtotal": 2748,
+      "taxes": 577.08,
+      "total": 3325.08
     },
     {
       "number": "0003",
       "customer": "Roberto García",
-      "date": "2023-05-03",
-      "subtotal": 150,
-      "tax": 31.5,
-      "total": 181.5,
+      "date": "03/05/2023",
       "details": [
         {
           "product": "OPPOF19",
@@ -52,15 +49,15 @@
           "product": "Huawei P30",
           "price": 499
         }
-      ]
+      ],
+      "subtotal": 779,
+      "taxes": 163.59,
+      "total": 942.59
     },
     {
       "number": "0004",
       "customer": "Ana Martínez",
-      "date": "2023-05-04",
-      "subtotal": 180,
-      "tax": 37.8,
-      "total": 217.8,
+      "date": "04/05/2023",
       "details": [
         {
           "product": "iPhone X",
@@ -70,15 +67,15 @@
           "product": "Microsoft Surface Laptop 4",
           "price": 1499
         }
-      ]
+      ],
+      "subtotal": 2398,
+      "taxes": 503.58,
+      "total": 2901.58
     },
     {
       "number": "0005",
       "customer": "David Fernández",
-      "date": "2023-05-05",
-      "subtotal": 250,
-      "tax": 52.5,
-      "total": 302.5,
+      "date": "05/05/2023",
       "details": [
         {
           "product": "Infinix INBOOK",
@@ -88,15 +85,15 @@
           "product": "HP Pavilion 15-DK1056WM",
           "price": 1099
         }
-      ]
+      ],
+      "subtotal": 2198,
+      "taxes": 461.58,
+      "total": 2659.58
     },
     {
       "number": "0006",
       "customer": "Laura Gómez",
-      "date": "2023-05-06",
-      "subtotal": 90,
-      "tax": 18.9,
-      "total": 108.9,
+      "date": "06/05/2023",
       "details": [
         {
           "product": "perfume Oil",
@@ -106,15 +103,15 @@
           "product": "Brown Perfume",
           "price": 40
         }
-      ]
+      ],
+      "subtotal": 53,
+      "taxes": 11.13,
+      "total": 64.13
     },
     {
       "number": "0007",
       "customer": "Miguel Rodríguez",
-      "date": "2023-05-07",
-      "subtotal": 70,
-      "tax": 14.7,
-      "total": 84.7,
+      "date": "07/05/2023",
       "details": [
         {
           "product": "Fog Scent Xpressio Perfume",
@@ -124,15 +121,15 @@
           "product": "Non-Alcoholic Concentrated Perfume Oil",
           "price": 120
         }
-      ]
+      ],
+      "subtotal": 133,
+      "taxes": 27.93,
+      "total": 160.93
     },
     {
       "number": "0008",
       "customer": "Olivia Torres",
-      "date": "2023-05-08",
-      "subtotal": 120,
-      "tax": 25.2,
-      "total": 145.2,
+      "date": "08/05/2023",
       "details": [
         {
           "product": "perfume Oil",
@@ -142,15 +139,15 @@
           "product": "Brown Perfume",
           "price": 40
         }
-      ]
+      ],
+      "subtotal": 53,
+      "taxes": 11.13,
+      "total": 64.13
     },
     {
       "number": "0009",
       "customer": "Lucas Herrera",
-      "date": "2023-05-09",
-      "subtotal": 130,
-      "tax": 27.3,
-      "total": 157.3,
+      "date": "09/05/2023",
       "details": [
         {
           "product": "Huawei P40",
@@ -160,15 +157,15 @@
           "product": "Xiaomi Mi 11",
           "price": 799
         }
-      ]
+      ],
+      "subtotal": 1498,
+      "taxes": 314.58,
+      "total": 1812.58
     },
     {
       "number": "0010",
       "customer": "Valentina Castro",
-      "date": "2023-05-10",
-      "subtotal": 80,
-      "tax": 16.8,
-      "total": 96.8,
+      "date": "10/05/2023",
       "details": [
         {
           "product": "Samsung Galaxy A32",
@@ -178,7 +175,10 @@
           "product": "Motorola Moto G10",
           "price": 199
         }
-      ]
+      ],
+      "subtotal": 498,
+      "taxes": 104.58,
+      "total": 602.58
     }
   ]
 }

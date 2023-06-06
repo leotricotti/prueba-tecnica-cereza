@@ -1,12 +1,21 @@
+import { useState, useEffect } from "react";
 import Header from "./components/header/Header";
 import InvoiceList from "./components/invoiceList/InvoiceList";
 import Button from "./components/button/Button";
 import InvoiceForm from "./components/invoiceForm/InvoiceForm";
-import { useState } from "react";
+import invoicesData from "./assets/data/invoices.json";
 
 function App() {
   const [invoices, setInvoices] = useState([]);
   const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("invoices", JSON.stringify(invoicesData));
+    const storedInvoices = JSON.parse(localStorage.getItem("invoices"));
+    if (storedInvoices) {
+      setInvoices(storedInvoices);
+    }
+  }, []);
 
   const handleShowForm = () => {
     setShowForm(true);
@@ -18,17 +27,17 @@ function App() {
   };
 
   return (
-    <div>
+    <main>
       <Header title={"Facturación"} />
       <InvoiceList invoices={invoices} />
-      <Button onClick={handleShowForm} />
+      <Button onClick={handleShowForm}>Agregar factura</Button>
       {showForm && (
         <InvoiceForm
           onSaveInvoice={handleSaveInvoice}
           setShowForm={setShowForm}
         />
       )}
-    </div>
+    </main>
   );
 }
 
