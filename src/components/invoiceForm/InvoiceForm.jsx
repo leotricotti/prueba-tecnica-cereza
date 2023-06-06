@@ -2,12 +2,20 @@ import { useEffect, useState } from "react";
 import styles from "./invoiceForm.module.css";
 
 function InvoiceForm({ onSaveInvoice, setShowForm }) {
-  const [clientName, setClientName] = useState("");
-  const [invoiceDate, setInvoiceDate] = useState("");
-  const [invoiceNumber, setInvoiceNumber] = useState(10);
+  const [invoiceData, setInvoiceData] = useState({
+    clientName: "",
+    clientAddress: "",
+    invoiceDate: "",
+    invoiceNumber: 10,
+  });
+
+  const { clientName, invoiceDate, invoiceNumber } = invoiceData;
 
   useEffect(() => {
-    setInvoiceNumber((prev) => prev + 1);
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      invoiceNumber: prevData.invoiceNumber + 1,
+    }));
   }, []);
 
   const handleSubmit = (e) => {
@@ -20,6 +28,20 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
     onSaveInvoice(newInvoice);
   };
 
+  const handleClientNameChange = (e) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      clientName: e.target.value,
+    }));
+  };
+
+  const handleInvoiceDateChange = (e) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      invoiceDate: e.target.value,
+    }));
+  };
+
   return (
     <section className={styles.invoiceContainer}>
       <div className={styles.innerInvoice}>
@@ -28,7 +50,7 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
             type="text"
             id="client-name"
             value={clientName}
-            onChange={(e) => setClientName(e.target.value)}
+            onChange={handleClientNameChange}
             required
             className={styles.clientName}
           />
@@ -36,7 +58,7 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
             type="date"
             id="invoice-date"
             value={invoiceDate}
-            onChange={(e) => setInvoiceDate(e.target.value)}
+            onChange={handleInvoiceDateChange}
             required
             className={styles.invoiceDate}
           />
