@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./invoiceForm.module.css";
 
 function InvoiceForm({ onSaveInvoice, setShowForm }) {
   const [clientName, setClientName] = useState("");
   const [invoiceDate, setInvoiceDate] = useState("");
-  const [invoiceTotal, setInvoiceTotal] = useState("");
+  const [invoiceNumber, setInvoiceNumber] = useState(10);
+
+  useEffect(() => {
+    setInvoiceNumber((prev) => prev + 1);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newInvoice = {
       clientName,
       invoiceDate,
-      invoiceTotal,
+      invoiceNumber,
     };
     onSaveInvoice(newInvoice);
   };
@@ -20,33 +24,25 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
     <section className={styles.invoiceContainer}>
       <div className={styles.innerInvoice}>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="client-name">Nombre del Cliente:</label>
           <input
             type="text"
             id="client-name"
             value={clientName}
             onChange={(e) => setClientName(e.target.value)}
             required
+            className={styles.clientName}
           />
-
-          <label htmlFor="invoice-date">Fecha:</label>
           <input
             type="date"
             id="invoice-date"
             value={invoiceDate}
             onChange={(e) => setInvoiceDate(e.target.value)}
             required
+            className={styles.invoiceDate}
           />
-
-          <label htmlFor="invoice-total">Total:</label>
-          <input
-            type="number"
-            id="invoice-total"
-            value={invoiceTotal}
-            onChange={(e) => setInvoiceTotal(e.target.value)}
-            required
-          />
-
+          <span className={styles.invoiceNumber}>
+            Factura N° {invoiceNumber}
+          </span>
           <button type="submit">Guardar</button>
           <button type="button" onClick={() => setShowForm(false)}>
             Cancelar
