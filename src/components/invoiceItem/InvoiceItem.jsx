@@ -1,9 +1,10 @@
 import styles from "./invoiceItem.module.css";
 
 function InvoiceItem({ invoices }) {
-  return invoices.map((invoice) => (
-    <div key={invoice.numeroFactura}>
-      <h3>Factura #{invoice.numeroFactura}</h3>
+  console.log(invoices);
+  return invoices.invoices.map((invoice) => (
+    <div key={invoice.number}>
+      <h3>Factura N° {invoice.number}</h3>
       <table>
         <tbody>
           <tr>

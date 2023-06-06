@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Spinner from "./components/spinner/Spinner";
 import Header from "./components/header/Header";
 import InvoiceList from "./components/invoiceList/InvoiceList";
 import Button from "./components/button/Button";
@@ -8,6 +9,13 @@ import invoicesData from "./assets/data/invoices.json";
 function App() {
   const [invoices, setInvoices] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [isloading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("invoices", JSON.stringify(invoicesData));
@@ -26,7 +34,9 @@ function App() {
     setShowForm(false);
   };
 
-  return (
+  return isloading ? (
+    <Spinner />
+  ) : (
     <main>
       <Header title={"Facturación"} />
       <InvoiceList invoices={invoices} />
