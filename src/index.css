@@ -1,0 +1,65 @@
+/*
+=============
+Fonts
+=============
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+/*
+=============
+Variables
+=============
+*/
+
+:root {
+  --font-family: "Roboto", sans-serif;
+  --color-primary-bg: #eee;
+  --color-secondary-bg: #003358;
+  --color-primary-text: #0d0c22;
+  --color-secondary-text: #fff;
+}
+
+/*
+=============
+Global Styles
+=============
+*/
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-bg);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family);
+}
