@@ -31,6 +31,20 @@
   padding: 0.1rem;
 }
 
+.clientAddress {
+  font-size: 0.625rem;
+  position: absolute;
+  top: 12.5rem;
+  left: 4.4rem;
+  border: transparent;
+}
+
+.clientAddress:focus {
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 1px;
+  padding: 0.1rem;
+}
+
 .invoiceDate {
   font-size: 0.625rem;
   position: absolute;

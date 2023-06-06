@@ -6,10 +6,10 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
     clientName: "",
     clientAddress: "",
     invoiceDate: "",
-    invoiceNumber: 10,
+    invoiceNumber: "00",
   });
 
-  const { clientName, invoiceDate, invoiceNumber } = invoiceData;
+  const { clientName, clientAddress, invoiceDate, invoiceNumber } = invoiceData;
 
   useEffect(() => {
     setInvoiceData((prevData) => ({
@@ -35,6 +35,13 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
     }));
   };
 
+  const handleClientAddressChange = (e) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      clientAddress: e.target.value,
+    }));
+  };
+
   const handleInvoiceDateChange = (e) => {
     setInvoiceData((prevData) => ({
       ...prevData,
@@ -53,6 +60,14 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
             onChange={handleClientNameChange}
             required
             className={styles.clientName}
+          />
+          <input
+            type="text"
+            id="client-address"
+            value={clientAddress}
+            onChange={handleClientAddressChange}
+            required
+            className={styles.clientAddress}
           />
           <input
             type="date"
