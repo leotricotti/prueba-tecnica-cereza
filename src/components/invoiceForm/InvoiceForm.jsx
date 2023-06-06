@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./invoiceForm.module.css";
 
 function InvoiceForm({ onSaveInvoice, setShowForm }) {
   const [clientName, setClientName] = useState("");
@@ -16,40 +17,42 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="client-name">Nombre del Cliente:</label>
-        <input
-          type="text"
-          id="client-name"
-          value={clientName}
-          onChange={(e) => setClientName(e.target.value)}
-          required
-        />
+    <section className={styles.invoiceContainer}>
+      <div className={styles.innerInvoice}>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="client-name">Nombre del Cliente:</label>
+          <input
+            type="text"
+            id="client-name"
+            value={clientName}
+            onChange={(e) => setClientName(e.target.value)}
+            required
+          />
 
-        <label htmlFor="invoice-date">Fecha:</label>
-        <input
-          type="date"
-          id="invoice-date"
-          value={invoiceDate}
-          onChange={(e) => setInvoiceDate(e.target.value)}
-          required
-        />
+          <label htmlFor="invoice-date">Fecha:</label>
+          <input
+            type="date"
+            id="invoice-date"
+            value={invoiceDate}
+            onChange={(e) => setInvoiceDate(e.target.value)}
+            required
+          />
 
-        <label htmlFor="invoice-total">Total:</label>
-        <input
-          type="number"
-          id="invoice-total"
-          value={invoiceTotal}
-          onChange={(e) => setInvoiceTotal(e.target.value)}
-          required
-        />
+          <label htmlFor="invoice-total">Total:</label>
+          <input
+            type="number"
+            id="invoice-total"
+            value={invoiceTotal}
+            onChange={(e) => setInvoiceTotal(e.target.value)}
+            required
+          />
 
-        <button type="submit">Guardar</button>
-        <button type="button" onClick={() => setShowForm(false)}>
-          Cancelar
-        </button>
-      </form>
+          <button type="submit">Guardar</button>
+          <button type="button" onClick={() => setShowForm(false)}>
+            Cancelar
+          </button>
+        </form>
+      </div>
     </section>
   );
 }
