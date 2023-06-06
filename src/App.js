@@ -22,7 +22,12 @@ function App() {
       <Header />
       <InvoiceList invoices={invoices} />
       <Button onClick={handleShowForm} />
-      {showForm && <InvoiceForm onSaveInvoice={handleSaveInvoice} />}
+      {showForm && (
+        <InvoiceForm
+          onSaveInvoice={handleSaveInvoice}
+          setShowForm={setShowForm}
+        />
+      )}
     </div>
   );
 }

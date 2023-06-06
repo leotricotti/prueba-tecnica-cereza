@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function InvoiceForm({ onSaveInvoice }) {
+function InvoiceForm({ onSaveInvoice, setShowForm }) {
   const [clientName, setClientName] = useState("");
   const [invoiceDate, setInvoiceDate] = useState("");
   const [invoiceTotal, setInvoiceTotal] = useState("");
