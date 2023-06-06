@@ -1,3 +1,4 @@
+import InvoiceItem from "../invoiceItem/InvoiceList";
 import styles from "./InvoiceList.module.css";
 
 function InvoiceList({ title, invoices }) {
