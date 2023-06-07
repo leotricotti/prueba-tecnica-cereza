@@ -1,0 +1,49 @@
+.clientName {
+  font-size: 0.625rem;
+  position: absolute;
+  top: 12.1561rem;
+  left: 4.5rem;
+  border: transparent;
+}
+
+.clientName:focus {
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 1px;
+  padding: 0.1rem;
+}
+
+.clientAddress {
+  font-size: 0.625rem;
+  position: absolute;
+  top: 13.71rem;
+  left: 5.1rem;
+  border: transparent;
+}
+
+.clientAddress:focus {
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 1px;
+  padding: 0.1rem;
+}
+
+.invoiceDate {
+  font-size: 0.625rem;
+  position: absolute;
+  top: 8.5rem;
+  left: 12.8rem;
+  background-color: transparent;
+  border: transparent;
+}
+
+.invoiceDate:focus {
+  outline: none;
+}
+
+.invoiceNumber {
+  font-size: 0.625rem;
+  position: absolute;
+  top: 10.73rem;
+  left: 13.3rem;
+  background-color: transparent;
+  border: transparent;
+}

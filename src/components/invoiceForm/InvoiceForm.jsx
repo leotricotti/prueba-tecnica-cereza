@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import FormHead from "../formHead/FormHead";
 import styles from "./invoiceForm.module.css";
 
 function InvoiceForm({ onSaveInvoice, setShowForm }) {
@@ -76,81 +77,57 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
   return (
     <section className={styles.invoiceContainer}>
       <div className={styles.innerInvoice}>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            id="client-name"
-            value={clientName}
-            onChange={handleClientNameChange}
-            required
-            className={styles.clientName}
-          />
-          <input
-            type="text"
-            id="client-address"
-            value={clientAddress}
-            onChange={handleClientAddressChange}
-            required
-            className={styles.clientAddress}
-          />
-          <input
-            type="date"
-            id="invoice-date"
-            value={invoiceDate}
-            onChange={handleInvoiceDateChange}
-            required
-            className={styles.invoiceDate}
-          />
-          <span className={styles.invoiceNumber}>
-            Factura N° {invoiceNumber}
-          </span>
+        <FormHead
+          handleClientAddressChange={handleClientAddressChange}
+          handleClientNameChange={handleClientNameChange}
+          handleInvoiceDateChange={handleInvoiceDateChange}
+          handleSubmit={handleSubmit}
+          clientName={clientName}
+          clientAddress={clientAddress}
+          invoiceDate={invoiceDate}
+          invoiceNumber={invoiceNumber}
+        />
+        {invoiceDetail.map((row, index) => (
+          <div key={index} className={styles.invoiceRow}>
+            <input
+              type="number"
+              value={row.quantity}
+              onChange={(e) =>
+                handleRowChange(index, "quantity", e.target.value)
+              }
+              required
+              className={styles.quantity}
+            />
+            <input
+              type="text"
+              value={row.description}
+              onChange={(e) =>
+                handleRowChange(index, "description", e.target.value)
+              }
+              required
+              className={styles.description}
+            />
+            <input
+              type="number"
+              value={row.price}
+              onChange={(e) => handleRowChange(index, "price", e.target.value)}
+              required
+              className={styles.price}
+            />
+            <input
+              type="number"
+              value={row.total}
+              onChange={(e) => handleRowChange(index, "total", e.target.value)}
+              required
+              className={styles.total}
+            />
+          </div>
+        ))}
 
-          {invoiceDetail.map((row, index) => (
-            <div key={index} className={styles.invoiceRow}>
-              <input
-                type="number"
-                value={row.quantity}
-                onChange={(e) =>
-                  handleRowChange(index, "quantity", e.target.value)
-                }
-                required
-                className={styles.quantity}
-              />
-              <input
-                type="text"
-                value={row.description}
-                onChange={(e) =>
-                  handleRowChange(index, "description", e.target.value)
-                }
-                required
-                className={styles.description}
-              />
-              <input
-                type="number"
-                value={row.price}
-                onChange={(e) =>
-                  handleRowChange(index, "price", e.target.value)
-                }
-                required
-                className={styles.price}
-              />
-              <input
-                type="number"
-                value={row.total}
-                onChange={(e) =>
-                  handleRowChange(index, "total", e.target.value)
-                }
-                required
-                className={styles.total}
-              />
-            </div>
-          ))}
-
-          <button type="submit">Guardar</button>
-          <button type="button" onClick={() => setShowForm(false)}>
-            Cancelar
-          </button>
-        </form>
+        <button type="submit">Guardar</button>
+        <button type="button" onClick={() => setShowForm(false)}>
+          Cancelar
+        </button>
       </div>
     </section>
   );
