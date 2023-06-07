@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FormHead from "../formHead/FormHead";
+import FormBody from "../formBody/FormBody";
 import styles from "./invoiceForm.module.css";
 
 function InvoiceForm({ onSaveInvoice, setShowForm }) {
@@ -87,42 +88,10 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
           invoiceDate={invoiceDate}
           invoiceNumber={invoiceNumber}
         />
-        {invoiceDetail.map((row, index) => (
-          <div key={index} className={styles.invoiceRow}>
-            <input
-              type="number"
-              value={row.quantity}
-              onChange={(e) =>
-                handleRowChange(index, "quantity", e.target.value)
-              }
-              required
-              className={styles.quantity}
-            />
-            <input
-              type="text"
-              value={row.description}
-              onChange={(e) =>
-                handleRowChange(index, "description", e.target.value)
-              }
-              required
-              className={styles.description}
-            />
-            <input
-              type="number"
-              value={row.price}
-              onChange={(e) => handleRowChange(index, "price", e.target.value)}
-              required
-              className={styles.price}
-            />
-            <input
-              type="number"
-              value={row.total}
-              onChange={(e) => handleRowChange(index, "total", e.target.value)}
-              required
-              className={styles.total}
-            />
-          </div>
-        ))}
+        <FormBody
+          invoiceDetail={invoiceDetail}
+          handleRowChange={handleRowChange}
+        />
 
         <button type="submit">Guardar</button>
         <button type="button" onClick={() => setShowForm(false)}>
