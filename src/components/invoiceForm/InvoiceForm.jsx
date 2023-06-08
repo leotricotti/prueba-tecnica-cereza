@@ -94,8 +94,12 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
           handleRowChange={handleRowChange}
         />
 
-        <Button text="Guardar" />
-        <Button text="Cancelar" onClick={() => setShowForm(false)} />
+        <Button text="Guardar" styles={styles.button} />
+        <Button
+          text="Cancelar"
+          onClick={() => setShowForm(false)}
+          styles={`${styles.button} ${styles.cancel}`}
+        />
       </div>
     </section>
   );

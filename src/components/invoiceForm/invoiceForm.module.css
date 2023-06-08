@@ -15,3 +15,24 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.button {
+  color: var(--color-secondary-text);
+  font-size: 0.675rem;
+  font-weight: 500;
+  background-color: transparent;
+  border: 1px solid var(--color-secondary-text);
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  position: absolute;
+  top: 1.6rem;
+  left: 20%;
+}
+
+.cancel {
+  left: 65%;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
