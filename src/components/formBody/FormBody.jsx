@@ -19,6 +19,21 @@ function FormBody({ invoiceDetail, handleRowChange }) {
         handleRowChange={handleRowChange}
         index={"3"}
       />
+      <FormRow
+        invoiceDetail={invoiceDetail}
+        handleRowChange={handleRowChange}
+        index={"4"}
+      />
+      <FormRow
+        invoiceDetail={invoiceDetail}
+        handleRowChange={handleRowChange}
+        index={"5"}
+      />
+      <FormRow
+        invoiceDetail={invoiceDetail}
+        handleRowChange={handleRowChange}
+        index={"6"}
+      />
     </section>
   );
 }
