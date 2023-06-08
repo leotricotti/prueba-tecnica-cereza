@@ -79,13 +79,13 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
 
   return (
     <section className={styles.invoiceContainer}>
-      <Button text="Guardar" styles={styles.button} />
-      <Button
-        text="Cancelar"
-        onClick={() => setShowForm(false)}
-        styles={`${styles.button} ${styles.cancel}`}
-      />
       <div className={styles.innerInvoice}>
+        <Button text="Guardar" styles={styles.button} />
+        <Button
+          text="Cancelar"
+          onClick={() => setShowForm(false)}
+          styles={`${styles.button} ${styles.cancel}`}
+        />
         <FormHeader
           handleClientAddressChange={handleClientAddressChange}
           handleClientNameChange={handleClientNameChange}
