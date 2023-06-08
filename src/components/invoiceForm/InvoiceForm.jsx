@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import FormHead from "../formHead/FormHead";
+import FormHeader from "../formHeader/FormHeader";
 import FormBody from "../formBody/FormBody";
 import Button from "../button/Button";
 import styles from "./invoiceForm.module.css";
@@ -79,7 +79,7 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
   return (
     <section className={styles.invoiceContainer}>
       <div className={styles.innerInvoice}>
-        <FormHead
+        <FormHeader
           handleClientAddressChange={handleClientAddressChange}
           handleClientNameChange={handleClientNameChange}
           handleInvoiceDateChange={handleInvoiceDateChange}

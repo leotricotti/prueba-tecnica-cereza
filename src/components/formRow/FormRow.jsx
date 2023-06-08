@@ -1,7 +1,7 @@
 import styles from "./formRow.module.css";
 
 function FormRow({ invoiceDetail, handleRowChange, index }) {
-  const row = invoiceDetail[index]; // Obtener el elemento correspondiente al índice
+  const row = invoiceDetail[index];
 
   return (
     <div className={styles.invoiceRow}>

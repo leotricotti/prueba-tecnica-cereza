@@ -1,4 +1,4 @@
-import styles from "./formHead.module.css";
+import styles from "./formHeader.module.css";
 
 function FormHead({
   clientName,
