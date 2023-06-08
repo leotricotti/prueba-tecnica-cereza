@@ -1,6 +1,6 @@
-import styles from "./formBody.module.css";
+import styles from "./formRow.module.css";
 
-function FormBody({ invoiceDetail, handleRowChange }) {
+function FormRow({ invoiceDetail, handleRowChange }) {
   return (
     <form>
       {invoiceDetail.map((row, index) => (
@@ -41,4 +41,4 @@ function FormBody({ invoiceDetail, handleRowChange }) {
   );
 }
 
-export default FormBody;
+export default FormRow;
