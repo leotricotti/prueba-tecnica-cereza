@@ -3,6 +3,7 @@
   height: 100vh;
   background-color: var(--color-bg-overlay);
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -12,4 +13,5 @@
   background-image: url("../../assets/image/factura.jpg");
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
 }

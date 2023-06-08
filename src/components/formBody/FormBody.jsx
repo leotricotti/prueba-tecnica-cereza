@@ -3,7 +3,7 @@ import styles from "./formBody.module.css";
 
 function FormBody({ invoiceDetail, handleRowChange }) {
   return (
-    <section className={styles.formBody}>
+    <section className={styles.formBodyContainer}>
       <FormRow
         invoiceDetail={invoiceDetail}
         handleRowChange={handleRowChange}
