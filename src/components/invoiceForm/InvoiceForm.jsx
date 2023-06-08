@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FormHead from "../formHead/FormHead";
 import FormBody from "../formBody/FormBody";
+import Button from "../button/Button";
 import styles from "./invoiceForm.module.css";
 
 function InvoiceForm({ onSaveInvoice, setShowForm }) {
@@ -93,10 +94,8 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
           handleRowChange={handleRowChange}
         />
 
-        <button type="submit">Guardar</button>
-        <button type="button" onClick={() => setShowForm(false)}>
-          Cancelar
-        </button>
+        <Button text="Guardar" />
+        <Button text="Cancelar" onClick={() => setShowForm(false)} />
       </div>
     </section>
   );

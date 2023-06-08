@@ -6,7 +6,7 @@ function Header({ onClick }) {
   return (
     <header className={styles.headerContainer}>
       <SearchBar />
-      <Button text="Crear factura" onClick={onClick} />
+      <Button text="Crear factura" onClick={onClick} styles={styles.button} />
     </header>
   );
 }
