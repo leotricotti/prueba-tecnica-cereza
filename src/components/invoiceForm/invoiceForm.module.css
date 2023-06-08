@@ -4,7 +4,6 @@
   background-color: var(--color-bg-overlay);
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .innerInvoice {
@@ -13,5 +12,4 @@
   background-image: url("../../assets/image/factura.jpg");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
 }

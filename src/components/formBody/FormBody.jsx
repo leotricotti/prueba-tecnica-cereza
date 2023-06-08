@@ -4,14 +4,21 @@ import styles from "./formBody.module.css";
 function FormBody({ invoiceDetail, handleRowChange }) {
   return (
     <section className={styles.formBody}>
-      {invoiceDetail.map((index) => (
-        <FormRow
-          key={index}
-          invoiceDetail={invoiceDetail}
-          handleRowChange={handleRowChange}
-          index={index}
-        />
-      ))}
+      <FormRow
+        invoiceDetail={invoiceDetail}
+        handleRowChange={handleRowChange}
+        index={"1"}
+      />
+      <FormRow
+        invoiceDetail={invoiceDetail}
+        handleRowChange={handleRowChange}
+        index={"2"}
+      />
+      <FormRow
+        invoiceDetail={invoiceDetail}
+        handleRowChange={handleRowChange}
+        index={"3"}
+      />
     </section>
   );
 }
