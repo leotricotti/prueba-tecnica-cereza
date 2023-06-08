@@ -21,6 +21,7 @@ Variables
   --color-primary-text: #0d0c22;
   --color-secondary-text: #fff;
   --color-secondary-light: rgb(255, 255, 255, 0.3);
+  --color-input-bg: rgba(0, 0, 0, 0.1);
 }
 
 /*
@@ -66,4 +67,15 @@ h4,
 h5,
 h6 {
   font-family: var(--font-family);
+}
+
+input {
+  background-color: var(--color-input-bg);
+  border: transparent;
+}
+
+input:focus {
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 1px;
+  padding: 0.1rem;
 }
