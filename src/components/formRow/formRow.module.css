@@ -4,12 +4,6 @@
   font-size: 0.625rem;
 }
 
-.quantity:nth-child(1) {
-  position: absolute;
-  top: 17.5rem;
-  left: 2.1rem;
-}
-
 .price {
   width: 2rem;
   height: 1rem;
