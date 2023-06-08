@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import FormHeader from "../formHeader/FormHeader";
 import FormBody from "../formBody/FormBody";
 import Button from "../button/Button";
+import FormFooter from "../formFooter/FormFooter";
 import styles from "./invoiceForm.module.css";
 
 function InvoiceForm({ onSaveInvoice, setShowForm }) {
@@ -78,6 +79,12 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
 
   return (
     <section className={styles.invoiceContainer}>
+      <Button text="Guardar" styles={styles.button} />
+      <Button
+        text="Cancelar"
+        onClick={() => setShowForm(false)}
+        styles={`${styles.button} ${styles.cancel}`}
+      />
       <div className={styles.innerInvoice}>
         <FormHeader
           handleClientAddressChange={handleClientAddressChange}
@@ -93,13 +100,7 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
           invoiceDetail={invoiceDetail}
           handleRowChange={handleRowChange}
         />
-
-        <Button text="Guardar" styles={styles.button} />
-        <Button
-          text="Cancelar"
-          onClick={() => setShowForm(false)}
-          styles={`${styles.button} ${styles.cancel}`}
-        />
+        <FormFooter invoiceDetail={invoiceDetail} />
       </div>
     </section>
   );

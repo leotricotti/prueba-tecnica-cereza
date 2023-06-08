@@ -1,0 +1,15 @@
+.invoiceFooter {
+  font-size: 0.625rem;
+  position: absolute;
+  bottom: 10.9rem;
+  right: 3rem;
+}
+
+.totalItems {
+  width: auto;
+  height: auto;
+}
+
+.taxes {
+  margin: 0.21rem 0;
+}

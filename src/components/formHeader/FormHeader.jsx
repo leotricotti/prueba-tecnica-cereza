@@ -1,6 +1,6 @@
 import styles from "./formHeader.module.css";
 
-function FormHead({
+function FormHeader({
   clientName,
   clientAddress,
   invoiceDate,
@@ -41,4 +41,4 @@ function FormHead({
   );
 }
 
-export default FormHead;
+export default FormHeader;
