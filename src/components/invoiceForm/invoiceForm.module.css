@@ -8,12 +8,13 @@
 }
 
 .innerInvoice {
-  width: 95%;
-  height: 95vh;
+  width: 22.25rem;
+  height: 43rem;
   background-image: url("../../assets/image/factura.jpg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
 }
 
 .button {

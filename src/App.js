@@ -11,6 +11,14 @@ function App() {
   const [isloading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (showForm) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  });
+
+  useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
