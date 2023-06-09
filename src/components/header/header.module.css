@@ -11,3 +11,7 @@
   z-index: 5;
   margin: auto;
 }
+
+.displayNone {
+  display: none;
+}

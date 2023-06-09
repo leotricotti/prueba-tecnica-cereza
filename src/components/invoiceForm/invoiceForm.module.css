@@ -3,8 +3,20 @@
   height: 100vh;
   background-color: var(--color-bg-overlay);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  position: relative;
+  z-index: 999;
+  padding: 0 0 3rem;
+  overflow-y: scroll;
+}
+
+.buttonsContainer {
+  width: 100%;
+  max-width: 15rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
 }
 
 .innerInvoice {
@@ -15,6 +27,8 @@
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+  top: 10rem;
+  z-index: 999;
 }
 
 .button {
@@ -25,9 +39,6 @@
   border: 1px solid var(--color-secondary-text);
   border-radius: 0.4rem;
   padding: 0.4rem 0.6rem;
-  position: absolute;
-  top: 2.3rem;
-  left: 20%;
 }
 
 .cancel {

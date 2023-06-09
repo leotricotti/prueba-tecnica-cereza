@@ -4,19 +4,20 @@ import Header from "./components/header/Header";
 import InvoiceList from "./components/invoiceList/InvoiceList";
 import InvoiceForm from "./components/invoiceForm/InvoiceForm";
 import invoicesData from "./assets/data/invoices.json";
+import styles from "./app.module.css";
 
 function App() {
   const [invoices, setInvoices] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isloading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    if (showForm) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  });
+  // useEffect(() => {
+  //   if (showForm) {
+  //     document.body.style.overflow = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "auto";
+  //   }
+  // });
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,14 +45,18 @@ function App() {
   return isloading ? (
     <Spinner />
   ) : (
-    <main>
+    <main className={`${styles.appWrapper} ${showForm ? styles.overflow : ""}`}>
       {showForm && (
         <InvoiceForm
           onSaveInvoice={handleSaveInvoice}
           setShowForm={setShowForm}
         />
       )}
-      <Header title={"Facturación"} onClick={handleShowForm} />
+      <Header
+        title={"Facturación"}
+        onClick={handleShowForm}
+        showForm={showForm}
+      />
       <InvoiceList invoices={invoices} />
     </main>
   );

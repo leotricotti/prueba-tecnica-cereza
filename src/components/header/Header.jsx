@@ -3,10 +3,14 @@ import styles from "./header.module.css";
 
 import React from "react";
 
-function Header() {
+function Header({ showForm, onClick }) {
   return (
-    <header className={styles.headerContainer}>
-      <Navbar />
+    <header
+      className={`${styles.headerContainer} ${
+        showForm ? styles.displayNone : ""
+      }`}
+    >
+      <Navbar onClick={onClick} />
     </header>
   );
 }
