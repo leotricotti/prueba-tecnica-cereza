@@ -1,12 +1,12 @@
-import SearchBar from "../searchBar/SearchBar";
-import Button from "../button/Button";
+import Navbar from "../navbar/Navbar";
 import styles from "./header.module.css";
 
-function Header({ onClick }) {
+import React from "react";
+
+function Header() {
   return (
     <header className={styles.headerContainer}>
-      <SearchBar />
-      <Button text="Crear factura" onClick={onClick} styles={styles.button} />
+      <Navbar />
     </header>
   );
 }
