@@ -8,7 +8,6 @@ function FormBody({ invoiceDetail, handleRowChange }) {
         invoiceDetail={invoiceDetail}
         handleRowChange={handleRowChange}
         index={"1"}
-        row={"1"}
       />
       <FormRow
         invoiceDetail={invoiceDetail}

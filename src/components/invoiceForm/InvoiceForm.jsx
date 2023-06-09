@@ -11,12 +11,14 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
     clientAddress: "",
     invoiceDate: "",
     invoiceNumber: "00",
-    invoiceDetail: Array(7).fill({
-      quantity: "",
-      description: "",
-      price: "",
-      total: "",
-    }),
+    invoiceDetail: Array(7)
+      .fill()
+      .map(() => ({
+        quantity: "",
+        description: "",
+        price: "",
+        total: "",
+      })),
   });
 
   const {
