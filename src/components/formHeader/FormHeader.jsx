@@ -11,7 +11,7 @@ function FormHeader({
   handleInvoiceDateChange,
 }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.formHeaderContainer}>
       <input
         type="text"
         id="client-name"
