@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DataContext } from "../../context/dataContext";
 import styles from "./formRow.module.css";
 
@@ -8,17 +8,32 @@ function FormRow({ invoiceDetail, handleRowChange, index }) {
 
   console.log(data);
 
+  const [inputValue, setInputValue] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
+  const [matchingOptions, setMatchingOptions] = useState([]);
+
   const handleDescriptionChange = (event) => {
     const inputValue = event.target.value;
-    const matchingData = data.find((item) => item.title === inputValue);
-    const description = matchingData ? matchingData.description : "";
-    handleRowChange(index, "description", description);
+    setInputValue(inputValue);
+
+    const matchingOptions = data.products.filter((item) =>
+      item.title.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    setMatchingOptions(matchingOptions);
+    setShowMenu(true);
+  };
+
+  const handleOptionClick = (option) => {
+    setInputValue(option.title);
+    handleRowChange(index, "description", option.title);
+    handleRowChange(index, "price", option.price?.toFixed(2) || ""); // Mostrar precio con dos decimales o una cadena vacía si es null
+    setShowMenu(false);
   };
 
   return (
     <div className={styles.invoiceRow}>
       <input
-        type="number"
+        type="text"
         value={row.quantity}
         onChange={(e) => handleRowChange(index, "quantity", e.target.value)}
         required
@@ -26,25 +41,30 @@ function FormRow({ invoiceDetail, handleRowChange, index }) {
       />
       <input
         type="text"
-        value={row.description}
+        value={inputValue}
         onChange={handleDescriptionChange}
         required
         className={styles.description}
+        inputMode="numeric"
+        pattern="[0-9]"
       />
-      <input
-        type="number"
-        value={row.price}
-        onChange={(e) => handleRowChange(index, "price", e.target.value)}
-        required
-        className={styles.price}
-      />
-      <input
-        type="number"
-        value={row.price * row.quantity}
-        onChange={(e) => handleRowChange(index, "total", e.target.value)}
-        required
-        className={styles.total}
-      />
+      {showMenu && (
+        <ul className={styles.menu}>
+          {matchingOptions.map((option, idx) => (
+            <li
+              key={idx}
+              onClick={() => handleOptionClick(option)}
+              className={styles.item}
+            >
+              {option.title}
+            </li>
+          ))}
+        </ul>
+      )}
+      <span className={styles.price}>{row.price}</span>
+      <span className={styles.total}>
+        {row.price && row.quantity ? (row.price * row.quantity).toFixed(2) : ""}
+      </span>
     </div>
   );
 }

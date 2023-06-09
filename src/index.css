@@ -70,8 +70,11 @@ h6 {
 }
 
 input {
+  background-color: transparent;
+  border: none;
   background-color: var(--color-input-bg);
-  border: transparent;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.1rem;
 }
 
 input:focus {

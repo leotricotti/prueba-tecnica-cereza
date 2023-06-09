@@ -25,16 +25,48 @@
 
 .price {
   width: 2.5rem;
+  height: 0.95rem;
   font-size: 0.625rem;
   position: absolute;
   right: 4.8rem;
   text-align: right;
+  background-color: var(--color-input-bg);
+  padding: 0.1rem 0.1rem;
+  border-radius: 0.1rem;
 }
 
 .total {
   width: 2.5rem;
+  height: 0.95rem;
   font-size: 0.625rem;
   position: absolute;
   right: 1.2rem;
   text-align: right;
+  background-color: var(--color-input-bg);
+  padding: 0.1rem 0.1rem;
+  border-radius: 0.1rem;
+}
+
+.menu {
+  width: 80%;
+  height: 100vh;
+  padding: 0.5rem;
+  background-color: var(--color-bg-white);
+  box-shadow: 0px 10px 13px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 0.3rem;
+  position: absolute;
+  top: 1rem;
+  left: 4rem;
+  z-index: 1;
+}
+
+.item {
+  font-size: 0.625rem;
+  color: var(--color-primary-text);
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.item:hover {
+  opacity: 1;
 }
