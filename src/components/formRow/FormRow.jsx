@@ -1,9 +1,19 @@
+import { useContext } from "react";
+import { DataContext } from "../../context/dataContext";
 import styles from "./formRow.module.css";
 
 function FormRow({ invoiceDetail, handleRowChange, index }) {
+  const data = useContext(DataContext);
   const row = invoiceDetail[index];
 
-  console.log(row);
+  console.log(data);
+
+  const handleDescriptionChange = (event) => {
+    const inputValue = event.target.value;
+    const matchingData = data.find((item) => item.title === inputValue);
+    const description = matchingData ? matchingData.description : "";
+    handleRowChange(index, "description", description);
+  };
 
   return (
     <div className={styles.invoiceRow}>
@@ -17,7 +27,7 @@ function FormRow({ invoiceDetail, handleRowChange, index }) {
       <input
         type="text"
         value={row.description}
-        onChange={(e) => handleRowChange(index, "description", e.target.value)}
+        onChange={handleDescriptionChange}
         required
         className={styles.description}
       />
@@ -30,7 +40,7 @@ function FormRow({ invoiceDetail, handleRowChange, index }) {
       />
       <input
         type="number"
-        value={row.total}
+        value={row.price * row.quantity}
         onChange={(e) => handleRowChange(index, "total", e.target.value)}
         required
         className={styles.total}

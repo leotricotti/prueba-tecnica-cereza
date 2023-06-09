@@ -7,7 +7,6 @@ import {
 import styles from "./invoiceItem.module.css";
 
 function InvoiceItem({ invoices }) {
-  console.log(invoices);
   return (
     <div className={styles.invoiceContainer}>
       {invoices.invoices.map((invoice) => (

@@ -2,7 +2,6 @@ import InvoiceItem from "../invoiceItem/InvoiceItem";
 import styles from "./invoiceList.module.css";
 
 function InvoiceList({ title, invoices }) {
-  console.log(invoices);
   return (
     <section className={styles.invoiceList}>
       <h2 className={styles.title}>{title}</h2>
