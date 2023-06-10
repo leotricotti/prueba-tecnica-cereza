@@ -7,6 +7,7 @@ import {
 import styles from "./invoiceItem.module.css";
 
 function InvoiceItem({ invoices, setShowInvoice, setInvoiceId }) {
+  const sortedInvoices = invoices.invoices.sort((a, b) => b.number - a.number);
   const openFolder = (id) => {
     setShowInvoice(true);
     setInvoiceId(id);
@@ -14,7 +15,7 @@ function InvoiceItem({ invoices, setShowInvoice, setInvoiceId }) {
 
   return (
     <div className={styles.invoiceContainer}>
-      {invoices.invoices.map((invoice) => (
+      {sortedInvoices.map((invoice) => (
         <div key={invoice.number} className={styles.invoiceInner}>
           <div className={styles.iconContainer}>
             <FontAwesomeIcon icon={faFileLines} className={styles.icon} />
