@@ -1,10 +1,20 @@
 import Button from "../button/Button";
 import styles from "./storedInvoice.module.css";
 
-function StoredInvoice({ invoiceData, setShowInvoice, invoiceId }) {
+function StoredInvoice({
+  invoiceData,
+  setShowInvoice,
+  invoiceId,
+  setIsLoading,
+}) {
   const invoice = invoiceData.invoices.find(
     (invoice) => invoice.number === invoiceId
   );
+
+  const handleCloseInvoice = () => {
+    setShowInvoice(false);
+    setIsLoading(true);
+  };
 
   if (!invoice) {
     return null;
@@ -14,8 +24,8 @@ function StoredInvoice({ invoiceData, setShowInvoice, invoiceId }) {
     <section className={styles.invoiceContainer}>
       <div className={styles.buttonsContainer}>
         <Button
-          text="Cancelar"
-          onClick={() => setShowInvoice(false)}
+          text="Cerrar"
+          onClick={handleCloseInvoice}
           styles={`${styles.button} ${styles.cancel}`}
         />
       </div>

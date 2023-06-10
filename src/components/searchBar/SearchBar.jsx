@@ -3,31 +3,49 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "./searchBar.module.css";
 
-function SearchBar({ onSearch }) {
-  const [searchTerm, setSearchTerm] = useState("");
+function SearchBar({ data }) {
+  const [inputValue, setInputValue] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
+  const [matchingOptions, setMatchingOptions] = useState([]);
+
+  console.log(data);
 
   const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+    const inputValue = event.target.value;
+    setInputValue(inputValue);
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    onSearch(searchTerm);
+    const matchingOptions = data.invoices.filter((item) =>
+      item.customer.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    setMatchingOptions(matchingOptions);
+    setShowMenu(true);
   };
-
   return (
-    <form onSubmit={handleFormSubmit} className={styles.searchBar}>
+    <div className={styles.searchBar}>
       <button type="submit" className={styles.button}>
         <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon} />
       </button>
       <input
         type="text"
         placeholder="Buscar factura..."
-        value={searchTerm}
+        value={inputValue}
         onChange={handleInputChange}
         className={styles.input}
       />
-    </form>
+      {showMenu && (
+        <ul className={styles.menu}>
+          {matchingOptions.map((option, idx) => (
+            <li
+              key={idx}
+              // onClick={() => handleOptionClick(option)}
+              className={styles.item}
+            >
+              {option.customer}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 

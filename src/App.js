@@ -50,6 +50,7 @@ function App() {
         title={"Facturación"}
         onClick={handleShowForm}
         showForm={showForm}
+        data={invoices}
       />
       <InvoiceList
         invoices={invoices}
@@ -69,6 +70,7 @@ function App() {
           setShowInvoice={setShowInvoice}
           invoiceId={invoiceId}
           invoiceData={invoices}
+          setIsLoading={setIsLoading}
         />
       )}
     </main>

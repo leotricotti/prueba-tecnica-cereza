@@ -26,7 +26,7 @@ function FormRow({ invoiceDetail, handleRowChange, index }) {
   const handleOptionClick = (option) => {
     setInputValue(option.title);
     handleRowChange(index, "description", option.title);
-    handleRowChange(index, "price", option.price?.toFixed(2) || ""); // Mostrar precio con dos decimales o una cadena vacía si es null
+    handleRowChange(index, "price", option.price?.toFixed(2) || "");
     setShowMenu(false);
   };
 
