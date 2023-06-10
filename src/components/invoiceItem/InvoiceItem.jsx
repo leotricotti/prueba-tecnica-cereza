@@ -6,9 +6,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./invoiceItem.module.css";
 
-function InvoiceItem({ invoices, setShowInvoice }) {
+function InvoiceItem({ invoices, setShowInvoice, setInvoiceId }) {
   const openFolder = (id) => {
     setShowInvoice(true);
+    setInvoiceId(id);
   };
 
   return (

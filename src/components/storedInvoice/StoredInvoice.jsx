@@ -1,4 +1,3 @@
-import React from "react";
 import invoicesData from "../../assets/data/invoicesData.json";
 import Button from "../button/Button";
 import styles from "./storedInvoice.module.css";
