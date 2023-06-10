@@ -7,8 +7,6 @@ function FormBody({
   product,
   quantity,
   handleRowChange,
-  handleItemPriceChange,
-  handleTotalItemChange,
 }) {
   return (
     <section className={styles.formBodyContainer}>
@@ -18,8 +16,6 @@ function FormBody({
         product={product}
         quantity={quantity}
         handleRowChange={handleRowChange}
-        handleItemPriceChange={handleItemPriceChange}
-        handleTotalItemChange={handleTotalItemChange}
         index={"1"}
       />
       <FormRow
@@ -28,8 +24,6 @@ function FormBody({
         product={product}
         quantity={quantity}
         handleRowChange={handleRowChange}
-        handleItemPriceChange={handleItemPriceChange}
-        handleTotalItemChange={handleTotalItemChange}
         index={"2"}
       />
       <FormRow
@@ -38,8 +32,6 @@ function FormBody({
         product={product}
         quantity={quantity}
         handleRowChange={handleRowChange}
-        handleItemPriceChange={handleItemPriceChange}
-        handleTotalItemChange={handleTotalItemChange}
         index={"3"}
       />
       <FormRow
@@ -48,8 +40,6 @@ function FormBody({
         product={product}
         quantity={quantity}
         handleRowChange={handleRowChange}
-        handleItemPriceChange={handleItemPriceChange}
-        handleTotalItemChange={handleTotalItemChange}
         index={"4"}
       />
       <FormRow
@@ -58,8 +48,6 @@ function FormBody({
         product={product}
         quantity={quantity}
         handleRowChange={handleRowChange}
-        handleItemPriceChange={handleItemPriceChange}
-        handleTotalItemChange={handleTotalItemChange}
         index={"5"}
       />
       <FormRow
@@ -68,8 +56,6 @@ function FormBody({
         product={product}
         quantity={quantity}
         handleRowChange={handleRowChange}
-        handleItemPriceChange={handleItemPriceChange}
-        handleTotalItemChange={handleTotalItemChange}
         index={"6"}
       />
     </section>

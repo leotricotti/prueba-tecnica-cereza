@@ -56,6 +56,8 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
   useEffect(() => {
     handelNumberChange();
     handleDateChange();
+    handleItemPriceChange();
+    handleTotalItemChange();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -175,12 +177,11 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
           number={number}
         />
         <FormBody
-          handleRowChange={handleRowChange}
-          handleItemPriceChange={handleItemPriceChange}
-          handleTotalItemChange={handleTotalItemChange}
           itemPrice={itemPrice}
           quantity={quantity}
           totalItem={totalItem}
+          product={product}
+          handleRowChange={handleRowChange}
         />
         <FormFooter
           handleSubtotalChange={handleSubtotalChange}

@@ -8,8 +8,6 @@ function FormRow({
   quantity,
   totalItem,
   handleRowChange,
-  handleItemPriceChange,
-  handleTotalItemChange,
 }) {
   return (
     <div className={styles.invoiceRow}>
