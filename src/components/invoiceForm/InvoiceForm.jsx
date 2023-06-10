@@ -8,10 +8,10 @@ import styles from "./invoiceForm.module.css";
 function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
   const invoiceNumber = parseInt(invoices.number);
   const [invoiceData, setInvoiceData] = useState({
-    number: invoiceNumber,
+    number: "",
     customer: "",
     address: "",
-    date: new Date().toLocaleString(),
+    date: "",
     details: Array(7)
       .fill()
       .map(() => ({
@@ -56,30 +56,31 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
     onSaveInvoice(newInvoice);
   };
 
-  const handelInvoiceNumberChange = (e) => {
+  const handelNumberChange = (e) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      number: prevData.number + 1,
+      number: invoiceNumber + 1,
     }));
   };
-  const handleClientNameChange = (e) => {
+
+  const handleNameChange = (e) => {
     setInvoiceData((prevData) => ({
       ...prevData,
       customer: e.target.value,
     }));
   };
 
-  const handleClientAddressChange = (e) => {
+  const handleAddressChange = (e) => {
     setInvoiceData((prevData) => ({
       ...prevData,
       address: e.target.value,
     }));
   };
 
-  const handleInvoiceDateChange = (e) => {
+  const handleDateChange = (e) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      date: e.target.value,
+      date: new Date().toLocaleString(),
     }));
   };
 
@@ -101,6 +102,34 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
     setInvoiceData((prevData) => ({
       ...prevData,
       quantity: e.target.value,
+    }));
+  };
+
+  const handleTotalItemChange = (price, quantity) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      totalItem: price * quantity,
+    }));
+  };
+
+  const handleSubtotalChange = (totalItem) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      subtotal: totalItem + totalItem,
+    }));
+  };
+
+  const handleTaxesChange = (subtotal) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      taxes: subtotal * 0.21,
+    }));
+  };
+
+  const handleTotalChange = (subtotal, taxes) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      total: subtotal + taxes,
     }));
   };
 
@@ -127,22 +156,34 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
       </div>
       <div className={styles.innerInvoice}>
         <FormHeader
-          handleInvoiceNumberChange={handelInvoiceNumberChange}
-          handleClientAddressChange={handleClientAddressChange}
-          handleInvoiceDateChange={handleInvoiceDateChange}
-          handleClientNameChange={handleClientNameChange}
+          handleNumberChange={handelNumberChange}
+          handleAddressChange={handleAddressChange}
+          handleDateChange={handleDateChange}
+          handleNameChange={handleNameChange}
           handleSubmit={handleSubmit}
-          // customer={customer}
-          // address={address}
-          // date={date}
-          // invoiceNumber={number}
+          customer={customer}
+          address={address}
+          date={date}
+          invoiceNumber={number}
         />
         <FormBody
           handleProductChange={handleProductChange}
           handleItemPriceChange={handleItemPriceChange}
           handleQuantityChange={handleQuantityChange}
+          handleTotalItemChange={handleTotalItemChange}
+          product={product}
+          itemPrice={itemPrice}
+          quantity={quantity}
+          totalItem={totalItem}
         />
-        <FormFooter subtotal={subtotal} taxes={taxes} total={total} />
+        <FormFooter
+          handleSubtotalChange={handleSubtotalChange}
+          handleTaxesChange={handleTaxesChange}
+          handleTotalChange={handleTotalChange}
+          subtotal={subtotal}
+          taxes={taxes}
+          total={total}
+        />
       </div>
     </section>
   );
