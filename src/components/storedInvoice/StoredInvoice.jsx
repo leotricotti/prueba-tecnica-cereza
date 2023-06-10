@@ -1,9 +1,8 @@
-import invoicesData from "../../assets/data/invoicesData.json";
 import Button from "../button/Button";
 import styles from "./storedInvoice.module.css";
 
-function StoredInvoice({ setShowInvoice, invoiceId }) {
-  const invoice = invoicesData.invoices.find(
+function StoredInvoice({ invoiceData, setShowInvoice, invoiceId }) {
+  const invoice = invoiceData.invoices.find(
     (invoice) => invoice.number === invoiceId
   );
 

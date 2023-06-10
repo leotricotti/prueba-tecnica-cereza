@@ -4,7 +4,7 @@ import Header from "./components/header/Header";
 import StoredInvoice from "./components/storedInvoice/StoredInvoice";
 import InvoiceList from "./components/invoiceList/InvoiceList";
 import InvoiceForm from "./components/invoiceForm/InvoiceForm";
-import invoicesData from "./assets/data/invoicesData.json";
+import invoiceData from "./assets/data/invoiceData.json";
 import styles from "./app.module.css";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("invoices", JSON.stringify(invoicesData));
+    localStorage.setItem("invoices", JSON.stringify(invoiceData));
     const storedInvoices = JSON.parse(localStorage.getItem("invoices"));
     if (storedInvoices) {
       setInvoices(storedInvoices);
@@ -62,7 +62,11 @@ function App() {
         />
       )}
       {showInvoice && (
-        <StoredInvoice setShowInvoice={setShowInvoice} invoiceId={invoiceId} />
+        <StoredInvoice
+          setShowInvoice={setShowInvoice}
+          invoiceId={invoiceId}
+          invoiceData={invoices}
+        />
       )}
     </main>
   );
