@@ -7,6 +7,11 @@ function StoredInvoice({
   invoiceId,
   setIsLoading,
 }) {
+  console.log(setIsLoading);
+
+  if (!invoiceData || !invoiceId) {
+    return null;
+  }
   const invoice = invoiceData.invoices.find(
     (invoice) => invoice.number === invoiceId
   );

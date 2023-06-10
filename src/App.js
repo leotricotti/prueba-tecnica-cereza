@@ -51,6 +51,8 @@ function App() {
         onClick={handleShowForm}
         showForm={showForm}
         data={invoices}
+        setIsLoading={setIsLoading}
+        setShowInvoice={setShowInvoice}
       />
       <InvoiceList
         invoices={invoices}

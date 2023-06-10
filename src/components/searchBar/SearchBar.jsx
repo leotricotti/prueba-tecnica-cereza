@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import StoredInvoice from "../storedInvoice/StoredInvoice";
 import styles from "./searchBar.module.css";
 
-function SearchBar({ data }) {
+function SearchBar({ data, setIsLoading, setShowInvoice }) {
   const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);
-
-  console.log(data);
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -20,6 +19,15 @@ function SearchBar({ data }) {
     setMatchingOptions(matchingOptions);
     setShowMenu(true);
   };
+
+  const handleOptionClick = (option) => {
+    setInputValue(option.customer);
+    setMatchingOptions(option);
+    setShowMenu(false);
+    setIsLoading(true);
+    setShowInvoice(true);
+  };
+
   return (
     <div className={styles.searchBar}>
       <button type="submit" className={styles.button}>
@@ -37,7 +45,7 @@ function SearchBar({ data }) {
           {matchingOptions.map((option, idx) => (
             <li
               key={idx}
-              // onClick={() => handleOptionClick(option)}
+              onClick={() => handleOptionClick(option)}
               className={styles.item}
             >
               {option.customer}
@@ -45,6 +53,7 @@ function SearchBar({ data }) {
           ))}
         </ul>
       )}
+      <StoredInvoice invoiceId={matchingOptions.number} />
     </div>
   );
 }
