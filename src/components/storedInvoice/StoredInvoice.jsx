@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Button from "../button/Button";
 import styles from "./storedInvoice.module.css";
 
@@ -7,19 +8,21 @@ function StoredInvoice({
   invoiceId,
   setIsLoading,
 }) {
-  console.log(setIsLoading);
+  const [invoice, setInvoice] = useState(null);
 
-  if (!invoiceData || !invoiceId) {
-    return null;
-  }
-  const invoice = invoiceData.invoices.find(
-    (invoice) => invoice.number === invoiceId
-  );
+  useEffect(() => {
+    if (invoiceId && invoiceData)
+      setInvoice(
+        invoiceData.invoices.find((invoice) => invoice.number === invoiceId)
+      );
+  }, [invoiceData, invoiceId]);
 
   const handleCloseInvoice = () => {
     setShowInvoice(false);
     setIsLoading(true);
   };
+
+  console.log(invoiceData);
 
   if (!invoice) {
     return null;
