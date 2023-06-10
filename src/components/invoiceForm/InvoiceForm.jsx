@@ -5,78 +5,103 @@ import Button from "../button/Button";
 import FormFooter from "../formFooter/FormFooter";
 import styles from "./invoiceForm.module.css";
 
-function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
+function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
+  const invoiceNumber = parseInt(invoices.number);
   const [invoiceData, setInvoiceData] = useState({
-    clientName: "",
-    clientAddress: "",
-    invoiceDate: "",
-    invoiceNumber: "00",
-    invoiceDetail: Array(7)
+    number: invoiceNumber,
+    customer: "",
+    address: "",
+    date: new Date().toLocaleString(),
+    details: Array(7)
       .fill()
       .map(() => ({
+        product: "",
+        itemPrice: "",
         quantity: "",
-        description: "",
-        price: "",
-        total: "",
+        totalItem: "",
       })),
+    subtotal: "",
+    taxes: "",
+    total: "",
   });
 
   const {
-    clientName,
-    clientAddress,
-    invoiceDate,
-    invoiceNumber,
-    invoiceDetail,
+    number,
+    customer,
+    address,
+    date,
+    product,
+    itemPrice,
+    quantity,
+    totalItem,
+    subtotal,
+    taxes,
+    total,
   } = invoiceData;
 
   useEffect(() => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      invoiceNumber: prevData.invoiceNumber + 1,
+      number: prevData.number + 1,
     }));
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newInvoice = {
-      clientName,
-      invoiceDate,
-      invoiceNumber,
-      invoiceDetail,
+      customer,
+      address,
+      quantity,
     };
     onSaveInvoice(newInvoice);
   };
 
+  const handelInvoiceNumberChange = (e) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      number: prevData.number + 1,
+    }));
+  };
   const handleClientNameChange = (e) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      clientName: e.target.value,
+      customer: e.target.value,
     }));
   };
 
   const handleClientAddressChange = (e) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      clientAddress: e.target.value,
+      address: e.target.value,
     }));
   };
 
   const handleInvoiceDateChange = (e) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      invoiceDate: e.target.value,
+      date: e.target.value,
     }));
   };
 
-  const handleRowChange = (index, field, value) => {
-    setInvoiceData((prevData) => {
-      const updatedDetail = [...prevData.invoiceDetail];
-      updatedDetail[index][field] = value;
-      return {
-        ...prevData,
-        invoiceDetail: updatedDetail,
-      };
-    });
+  const handleProductChange = (e) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      product: e.target.value,
+    }));
+  };
+
+  const handleItemPriceChange = (e) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      itemPrice: e.target.value,
+    }));
+  };
+
+  const handleQuantityChange = (e) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      quantity: e.target.value,
+    }));
   };
 
   const handleCancelButtonClick = () => {
@@ -102,20 +127,22 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
       </div>
       <div className={styles.innerInvoice}>
         <FormHeader
+          handleInvoiceNumberChange={handelInvoiceNumberChange}
           handleClientAddressChange={handleClientAddressChange}
-          handleClientNameChange={handleClientNameChange}
           handleInvoiceDateChange={handleInvoiceDateChange}
+          handleClientNameChange={handleClientNameChange}
           handleSubmit={handleSubmit}
-          clientName={clientName}
-          clientAddress={clientAddress}
-          invoiceDate={invoiceDate}
-          invoiceNumber={invoiceNumber}
+          // customer={customer}
+          // address={address}
+          // date={date}
+          // invoiceNumber={number}
         />
         <FormBody
-          invoiceDetail={invoiceDetail}
-          handleRowChange={handleRowChange}
+          handleProductChange={handleProductChange}
+          handleItemPriceChange={handleItemPriceChange}
+          handleQuantityChange={handleQuantityChange}
         />
-        <FormFooter invoiceDetail={invoiceDetail} />
+        <FormFooter subtotal={subtotal} taxes={taxes} total={total} />
       </div>
     </section>
   );

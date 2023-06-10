@@ -14,8 +14,6 @@ function App() {
   const [invoiceId, setInvoiceId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(showInvoice);
-
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -62,6 +60,7 @@ function App() {
       />
       {showForm && (
         <InvoiceForm
+          invoices={invoices}
           onSaveInvoice={handleSaveInvoice}
           setShowForm={setShowForm}
           setIsLoading={setIsLoading}
