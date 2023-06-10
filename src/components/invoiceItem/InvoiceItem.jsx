@@ -27,12 +27,6 @@ function InvoiceItem({ invoices }) {
                   <strong>{invoice.customer}</strong>
                 </td>
               </tr>
-              <tr className={styles.item}>
-                <td>
-                  <strong>Total:</strong>
-                </td>
-                <td>$ {invoice.total}</td>
-              </tr>
             </tbody>
           </table>
           <div className={styles.options}>
