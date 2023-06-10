@@ -6,12 +6,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./invoiceItem.module.css";
 
-function InvoiceItem({ invoices, setShowInvoice, setInvoiceId }) {
+function InvoiceItem({ invoices, handleShowInvoice }) {
   const sortedInvoices = invoices.invoices.sort((a, b) => b.number - a.number);
-  const openFolder = (id) => {
-    setShowInvoice(true);
-    setInvoiceId(id);
-  };
 
   return (
     <div className={styles.invoiceContainer}>
@@ -36,7 +32,7 @@ function InvoiceItem({ invoices, setShowInvoice, setInvoiceId }) {
             </tbody>
           </table>
           <div className={styles.options}>
-            <button onClick={() => openFolder(invoice.number)}>
+            <button onClick={() => handleShowInvoice(invoice.number)}>
               <FontAwesomeIcon
                 icon={faFolderOpen}
                 className={styles.optionsIcon}

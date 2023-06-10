@@ -22,6 +22,7 @@ Variables
   --color-secondary-text: #fff;
   --color-secondary-light: rgb(255, 255, 255, 0.3);
   --color-input-bg: rgba(0, 0, 0, 0.1);
+  --color-bg-spinner: rgba(0, 0, 0, 0.5);
 }
 
 /*

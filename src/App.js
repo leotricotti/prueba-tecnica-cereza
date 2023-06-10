@@ -12,13 +12,13 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [showInvoice, setShowInvoice] = useState(false);
   const [invoiceId, setInvoiceId] = useState("");
-  const [isloading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-  }, []);
+  }, [isLoading]);
 
   useEffect(() => {
     localStorage.setItem("invoices", JSON.stringify(invoiceData));
@@ -37,7 +37,7 @@ function App() {
     setShowForm(false);
   };
 
-  return isloading ? (
+  return isLoading ? (
     <Spinner />
   ) : (
     <main
@@ -49,17 +49,18 @@ function App() {
         title={"Facturación"}
         onClick={handleShowForm}
         showForm={showForm}
+        setIsLoading={setIsLoading}
       />
       <InvoiceList
         invoices={invoices}
         setShowInvoice={setShowInvoice}
         setInvoiceId={setInvoiceId}
+        setIsLoading={setIsLoading}
       />
       {showForm && (
         <InvoiceForm
           onSaveInvoice={handleSaveInvoice}
           setShowForm={setShowForm}
-          setIsLoading={setIsLoading}
         />
       )}
       {showInvoice && (
@@ -67,7 +68,6 @@ function App() {
           setShowInvoice={setShowInvoice}
           invoiceId={invoiceId}
           invoiceData={invoices}
-          setIsLoading={setIsLoading}
         />
       )}
     </main>
