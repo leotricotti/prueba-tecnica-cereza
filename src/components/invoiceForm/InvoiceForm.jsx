@@ -5,7 +5,7 @@ import Button from "../button/Button";
 import FormFooter from "../formFooter/FormFooter";
 import styles from "./invoiceForm.module.css";
 
-function InvoiceForm({ onSaveInvoice, setShowForm }) {
+function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
   const [invoiceData, setInvoiceData] = useState({
     clientName: "",
     clientAddress: "",
@@ -79,13 +79,24 @@ function InvoiceForm({ onSaveInvoice, setShowForm }) {
     });
   };
 
+  const handleCancelButtonClick = () => {
+    setShowForm(false);
+    setIsLoading(true);
+  };
+
   return (
     <section className={styles.invoiceContainer}>
       <div className={styles.buttonsContainer}>
-        <Button text="Guardar" styles={styles.button} />
+        <Button
+          text="Guardar"
+          styles={styles.button}
+          onClick={() => {
+            setIsLoading(true);
+          }}
+        />
         <Button
           text="Cancelar"
-          onClick={() => setShowForm(false)}
+          onClick={handleCancelButtonClick}
           styles={`${styles.button} ${styles.cancel}`}
         />
       </div>

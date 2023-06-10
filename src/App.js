@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1500);
   }, [isLoading]);
 
   useEffect(() => {
@@ -30,6 +30,7 @@ function App() {
 
   const handleShowForm = () => {
     setShowForm(true);
+    setIsLoading(true);
   };
 
   const handleSaveInvoice = (invoiceData) => {
@@ -49,7 +50,6 @@ function App() {
         title={"Facturación"}
         onClick={handleShowForm}
         showForm={showForm}
-        setIsLoading={setIsLoading}
       />
       <InvoiceList
         invoices={invoices}
@@ -61,6 +61,7 @@ function App() {
         <InvoiceForm
           onSaveInvoice={handleSaveInvoice}
           setShowForm={setShowForm}
+          setIsLoading={setIsLoading}
         />
       )}
       {showInvoice && (
