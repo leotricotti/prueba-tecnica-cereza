@@ -7,6 +7,10 @@ import {
 import styles from "./invoiceItem.module.css";
 
 function InvoiceItem({ invoices }) {
+  const openFolder = (id) => {
+    console.log(`Abrir carpeta con ID: ${id}`);
+  };
+
   return (
     <div className={styles.invoiceContainer}>
       {invoices.invoices.map((invoice) => (
@@ -30,7 +34,7 @@ function InvoiceItem({ invoices }) {
             </tbody>
           </table>
           <div className={styles.options}>
-            <button>
+            <button onClick={() => openFolder(invoice.number)}>
               <FontAwesomeIcon
                 icon={faFolderOpen}
                 className={styles.optionsIcon}
