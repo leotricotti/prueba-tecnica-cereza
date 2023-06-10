@@ -20,7 +20,7 @@
 }
 
 .innerInvoice {
-  width: 22.25rem;
+  width: 100%;
   height: 32rem;
   background-image: url("../../assets/image/factura.jpg");
   background-size: contain;
