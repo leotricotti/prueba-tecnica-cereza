@@ -1,21 +1,15 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import styles from "./formRow.module.css";
 
 function FormRow({
   index,
+  product,
   itemPrice,
   quantity,
   totalItem,
   handleProductChange,
   handleQuantityChange,
 }) {
-  const [inputValue, setInputValue] = useState("");
-
-  useEffect((e) => {
-    const inputValue = e.target.value;
-    setInputValue(inputValue);
-  }, []);
-
   return (
     <div className={styles.invoiceRow}>
       <input
@@ -29,7 +23,7 @@ function FormRow({
       />
       <input
         type="text"
-        value={inputValue}
+        value={product}
         onChange={(e) => {
           handleProductChange(index, "product", e.target.value);
         }}

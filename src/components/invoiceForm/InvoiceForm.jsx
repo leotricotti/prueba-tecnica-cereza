@@ -13,8 +13,8 @@ function InvoiceForm({
   setShowForm,
   setIsLoading,
 }) {
+  const localDate = new Date().toLocaleDateString();
   const data = useContext(DataContext);
-  const invoiceNumber = parseInt(invoices.number);
   const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
@@ -34,6 +34,10 @@ function InvoiceForm({
     taxes: "",
     total: "",
   });
+
+  console.log(typeof invoiceData.number);
+
+  console.log(invoices.number);
 
   const {
     number,
@@ -74,7 +78,7 @@ function InvoiceForm({
   const handelNumberChange = (e) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      number: invoiceNumber + 1,
+      number: prevData.number,
     }));
   };
 
@@ -95,7 +99,7 @@ function InvoiceForm({
   const handleDateChange = () => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      date: new Date().toLocaleString(),
+      date: localDate,
     }));
   };
 
