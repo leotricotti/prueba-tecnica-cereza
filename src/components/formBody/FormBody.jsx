@@ -1,37 +1,82 @@
 import FormRow from "../formRow/FormRow";
 import styles from "./formBody.module.css";
 
-function FormBody({ invoiceDetail, handleRowChange }) {
+function FormBody({
+  product,
+  itemPrice,
+  quantity,
+  totalItem,
+  handleProductChange,
+  handleItemPriceChange,
+  handleQuantityChange,
+  handleTotalItemChange,
+}) {
   return (
     <section className={styles.formBodyContainer}>
       <FormRow
-        invoiceDetail={invoiceDetail}
-        handleRowChange={handleRowChange}
+        product={product}
+        itemPrice={itemPrice}
+        quantity={quantity}
+        totalItem={totalItem}
+        handleProductChange={handleProductChange}
+        handleItemPriceChange={handleItemPriceChange}
+        handleQuantityChange={handleQuantityChange}
+        handleTotalItemChange={handleTotalItemChange}
         index={"1"}
       />
       <FormRow
-        invoiceDetail={invoiceDetail}
-        handleRowChange={handleRowChange}
+        product={product}
+        itemPrice={itemPrice}
+        quantity={quantity}
+        totalItem={totalItem}
+        handleProductChange={handleProductChange}
+        handleItemPriceChange={handleItemPriceChange}
+        handleQuantityChange={handleQuantityChange}
+        handleTotalItemChange={handleTotalItemChange}
         index={"2"}
       />
       <FormRow
-        invoiceDetail={invoiceDetail}
-        handleRowChange={handleRowChange}
+        product={product}
+        itemPrice={itemPrice}
+        quantity={quantity}
+        totalItem={totalItem}
+        handleProductChange={handleProductChange}
+        handleItemPriceChange={handleItemPriceChange}
+        handleQuantityChange={handleQuantityChange}
+        handleTotalItemChange={handleTotalItemChange}
         index={"3"}
       />
       <FormRow
-        invoiceDetail={invoiceDetail}
-        handleRowChange={handleRowChange}
+        product={product}
+        itemPrice={itemPrice}
+        quantity={quantity}
+        totalItem={totalItem}
+        handleProductChange={handleProductChange}
+        handleItemPriceChange={handleItemPriceChange}
+        handleQuantityChange={handleQuantityChange}
+        handleTotalItemChange={handleTotalItemChange}
         index={"4"}
       />
       <FormRow
-        invoiceDetail={invoiceDetail}
-        handleRowChange={handleRowChange}
+        product={product}
+        itemPrice={itemPrice}
+        quantity={quantity}
+        totalItem={totalItem}
+        handleProductChange={handleProductChange}
+        handleItemPriceChange={handleItemPriceChange}
+        handleQuantityChange={handleQuantityChange}
+        handleTotalItemChange={handleTotalItemChange}
         index={"5"}
       />
       <FormRow
-        invoiceDetail={invoiceDetail}
-        handleRowChange={handleRowChange}
+        product={product}
+        itemPrice={itemPrice}
+        quantity={quantity}
+        totalItem={totalItem}
+        handleProductChange={handleProductChange}
+        handleItemPriceChange={handleItemPriceChange}
+        handleQuantityChange={handleQuantityChange}
+        handleTotalItemChange={handleTotalItemChange}
         index={"6"}
       />
     </section>

@@ -6,8 +6,6 @@ function FormRow({ invoiceDetail, handleRowChange, index }) {
   const data = useContext(DataContext);
   const row = invoiceDetail[index];
 
-  console.log(data);
-
   const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);

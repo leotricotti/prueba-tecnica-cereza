@@ -46,6 +46,12 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
     }));
   }, []);
 
+  useEffect(() => {
+    handelNumberChange();
+    handleDateChange();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newInvoice = {
@@ -77,10 +83,17 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
     }));
   };
 
-  const handleDateChange = (e) => {
+  const handleDateChange = () => {
     setInvoiceData((prevData) => ({
       ...prevData,
       date: new Date().toLocaleString(),
+    }));
+  };
+
+  const handleQuantityChange = (e) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      quantity: e.target.value,
     }));
   };
 
@@ -91,17 +104,10 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
     }));
   };
 
-  const handleItemPriceChange = (e) => {
+  const handleItemPriceChange = (price) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      itemPrice: e.target.value,
-    }));
-  };
-
-  const handleQuantityChange = (e) => {
-    setInvoiceData((prevData) => ({
-      ...prevData,
-      quantity: e.target.value,
+      itemPrice: price,
     }));
   };
 
