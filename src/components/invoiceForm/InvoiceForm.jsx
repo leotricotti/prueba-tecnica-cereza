@@ -107,6 +107,7 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
       };
     });
   };
+
   const handleItemPriceChange = (price) => {
     setInvoiceData((prevData) => ({
       ...prevData,
