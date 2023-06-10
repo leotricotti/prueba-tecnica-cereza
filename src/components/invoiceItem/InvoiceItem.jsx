@@ -29,12 +29,6 @@ function InvoiceItem({ invoices }) {
               </tr>
               <tr className={styles.item}>
                 <td>
-                  <strong>Fecha:</strong>
-                </td>
-                <td>{invoice.date}</td>
-              </tr>
-              <tr className={styles.item}>
-                <td>
                   <strong>Total:</strong>
                 </td>
                 <td>$ {invoice.total}</td>

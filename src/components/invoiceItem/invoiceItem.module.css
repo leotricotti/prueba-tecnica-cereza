@@ -48,10 +48,6 @@
   opacity: 0.7;
 }
 
-.item {
-  display: none;
-}
-
 .item:first-child {
   display: flex;
   flex-direction: column-reverse;
