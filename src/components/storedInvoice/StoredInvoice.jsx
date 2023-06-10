@@ -25,17 +25,15 @@ function StoredInvoice({ setShowForm }) {
             <div className={styles.invoiceDetail} key={index}>
               <span className={styles.detailQuantity}>{detail.quantity}</span>
               <span className={styles.detailProduct}>{detail.product}</span>
-              <span className={styles.detailPrice}>{detail.price}</span>
-              <span className={styles.detailTotal}>{detail.price}</span>
+              <span className={styles.itemlPrice}>{detail.itemPrice}</span>
+              <span className={styles.totalItem}>{detail.totalItem}</span>
             </div>
           ))}
 
           <div className={styles.invoiceTotal}>
-            <span className={styles.totalItems}>
-              Subtotal: {invoice.subtotal}
-            </span>
-            <span className={styles.taxes}>Impuestos: {invoice.taxes}</span>
-            <span className={styles.total}>Total: {invoice.total}</span>
+            <span className={styles.totalItems}>{invoice.subtotal}</span>
+            <span className={styles.taxes}>{invoice.taxes}</span>
+            <span className={styles.total}>{invoice.total}</span>
           </div>
         </div>
       </div>
