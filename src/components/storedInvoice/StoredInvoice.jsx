@@ -22,7 +22,9 @@ function StoredInvoice({ setShowInvoice, invoiceId }) {
       </div>
       <div className={styles.innerInvoice}>
         <div className={styles.invoiceHeader}>
-          <span className={styles.invoiceNumber}>{invoice.number}</span>
+          <span className={styles.invoiceNumber}>
+            Factura N° {invoice.number}
+          </span>
           <span className={styles.invoiceDate}>{invoice.date}</span>
           <span className={styles.invoiceCustomer}>{invoice.customer}</span>
           <span className={styles.invoiceAddress}>{invoice.address}</span>
@@ -32,13 +34,13 @@ function StoredInvoice({ setShowInvoice, invoiceId }) {
             <div className={styles.invoiceDetail} key={index}>
               <span className={styles.detailQuantity}>{detail.quantity}</span>
               <span className={styles.detailProduct}>{detail.product}</span>
-              <span className={styles.itemPrice}>{detail.itemPrice}</span>
-              <span className={styles.totalItem}>{detail.totalItem}</span>
+              <span className={styles.itemPrice}>{detail.itemPrice}.00</span>
+              <span className={styles.totalItem}>{detail.totalItem}.00</span>
             </div>
           ))}
 
-          <div className={styles.invoiceTotal}>
-            <span className={styles.totalItems}>{invoice.subtotal}</span>
+          <div className={styles.invoiceFooter}>
+            <span className={styles.totalItems}>{invoice.subtotal}.00</span>
             <span className={styles.taxes}>{invoice.taxes}</span>
             <span className={styles.total}>{invoice.total}</span>
           </div>
