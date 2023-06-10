@@ -59,6 +59,7 @@ function App() {
         <InvoiceForm
           onSaveInvoice={handleSaveInvoice}
           setShowForm={setShowForm}
+          setIsLoading={setIsLoading}
         />
       )}
       {showInvoice && (
@@ -66,6 +67,7 @@ function App() {
           setShowInvoice={setShowInvoice}
           invoiceId={invoiceId}
           invoiceData={invoices}
+          setIsLoading={setIsLoading}
         />
       )}
     </main>
