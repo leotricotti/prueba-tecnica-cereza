@@ -7,26 +7,23 @@ function FormRow({
   itemPrice,
   quantity,
   totalItem,
-  handleProductChange,
-  handleQuantityChange,
+  handleRowChange,
+  handleItemPriceChange,
+  handleTotalItemChange,
 }) {
   return (
     <div className={styles.invoiceRow}>
       <input
         type="text"
         value={quantity}
-        onChange={(e) =>
-          handleQuantityChange(index, "quantity", e.target.value)
-        }
+        onChange={(e) => handleRowChange(index, "quantity", e.target.value)}
         required
         className={styles.quantity}
       />
       <input
         type="text"
         value={product}
-        onChange={(e) => {
-          handleProductChange(index, "product", e.target.value);
-        }}
+        onChange={(e) => handleRowChange(index, "product", e.target.value)}
         className={styles.description}
         inputMode="numeric"
         pattern="[0-9]"

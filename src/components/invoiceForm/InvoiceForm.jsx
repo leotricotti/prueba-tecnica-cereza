@@ -6,13 +6,7 @@ import Button from "../button/Button";
 import FormFooter from "../formFooter/FormFooter";
 import styles from "./invoiceForm.module.css";
 
-function InvoiceForm({
-  invoices,
-  inputValue,
-  onSaveInvoice,
-  setShowForm,
-  setIsLoading,
-}) {
+function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
   const localDate = new Date().toLocaleDateString();
   const data = useContext(DataContext);
   const [showMenu, setShowMenu] = useState(false);
@@ -103,23 +97,16 @@ function InvoiceForm({
     }));
   };
 
-  const handleQuantityChange = (e) => {
-    setInvoiceData((prevData) => ({
-      ...prevData,
-      quantity: e.target.value,
-    }));
+  const handleRowChange = (index, field, value) => {
+    setInvoiceData((prevData) => {
+      const updatedDetail = [...prevData.details];
+      updatedDetail[index][field] = value;
+      return {
+        ...prevData,
+        details: updatedDetail,
+      };
+    });
   };
-
-  const handleProductChange = (e) => {
-    const matchingOptions = data.products.filter((item) =>
-      item.title.toLowerCase().includes(inputValue.toLowerCase())
-    );
-    setInvoiceData((prevData) => ({
-      ...prevData,
-      product: matchingOptions,
-    }));
-  };
-
   const handleItemPriceChange = (price) => {
     setInvoiceData((prevData) => ({
       ...prevData,
@@ -187,9 +174,8 @@ function InvoiceForm({
           number={number}
         />
         <FormBody
-          handleProductChange={handleProductChange}
+          handleRowChange={handleRowChange}
           handleItemPriceChange={handleItemPriceChange}
-          handleQuantityChange={handleQuantityChange}
           handleTotalItemChange={handleTotalItemChange}
           itemPrice={itemPrice}
           quantity={quantity}

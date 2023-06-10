@@ -24,15 +24,16 @@
 .invoiceDate {
   font-size: 0.625rem;
   position: absolute;
-  top: 6.7rem;
-  right: 2rem;
-  background-color: transparent;
-  border: transparent;
+  top: 5.75rem;
+  right: 7rem;
 }
 
 .invoiceNumber {
   font-size: 0.625rem;
   position: absolute;
-  top: 5.75rem;
-  right: 5.8rem;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--color-input-bg);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.1rem;
 }
