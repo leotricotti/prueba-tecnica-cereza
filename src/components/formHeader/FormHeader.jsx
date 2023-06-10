@@ -1,42 +1,34 @@
 import styles from "./formHeader.module.css";
 
 function FormHeader({
-  clientName,
-  clientAddress,
-  invoiceDate,
-  invoiceNumber,
+  handleAddressChange,
+  handleNameChange,
   handleSubmit,
-  handleClientNameChange,
-  handleClientAddressChange,
-  handleInvoiceDateChange,
+  customer,
+  address,
+  date,
+  number,
 }) {
   return (
     <form onSubmit={handleSubmit} className={styles.formHeaderContainer}>
+      <span className={styles.invoiceDate}>{date}</span>
+      <span className={styles.invoiceNumber}>Factura N° {number}</span>
       <input
         type="text"
         id="client-name"
-        value={clientName}
-        onChange={handleClientNameChange}
+        value={customer}
+        onChange={handleNameChange}
         required
         className={styles.clientName}
       />
       <input
         type="text"
         id="client-address"
-        value={clientAddress}
-        onChange={handleClientAddressChange}
+        value={address}
+        onChange={handleAddressChange}
         required
         className={styles.clientAddress}
       />
-      <input
-        type="date"
-        id="invoice-date"
-        value={invoiceDate}
-        onChange={handleInvoiceDateChange}
-        required
-        className={styles.invoiceDate}
-      />
-      <span className={styles.invoiceNumber}>Factura N° {invoiceNumber}</span>
     </form>
   );
 }

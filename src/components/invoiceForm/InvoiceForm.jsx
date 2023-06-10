@@ -156,15 +156,13 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
       </div>
       <div className={styles.innerInvoice}>
         <FormHeader
-          handleNumberChange={handelNumberChange}
           handleAddressChange={handleAddressChange}
-          handleDateChange={handleDateChange}
           handleNameChange={handleNameChange}
           handleSubmit={handleSubmit}
           customer={customer}
           address={address}
           date={date}
-          invoiceNumber={number}
+          number={number}
         />
         <FormBody
           handleProductChange={handleProductChange}
