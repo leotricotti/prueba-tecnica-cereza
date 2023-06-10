@@ -28,7 +28,7 @@ const FormFooter = ({ invoiceDetail }) => {
   };
 
   return (
-    <section className={styles.invoiceFooter}>
+    <section className={styles.invoiceFooterContainer}>
       <div className={styles.totalItems}>{getTotalItems().toFixed(2)}</div>
       <div className={styles.taxes}>{getTaxes().toFixed(2)}</div>
       <div className={styles.total}>{getTotalAmount().toFixed(2)}</div>
