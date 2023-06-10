@@ -22,7 +22,7 @@ function StoredInvoice({
     setIsLoading(true);
   };
 
-  console.log(invoiceData);
+  console.log(invoice);
 
   if (!invoice) {
     return null;

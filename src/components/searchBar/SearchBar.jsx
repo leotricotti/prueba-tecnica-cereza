@@ -27,6 +27,8 @@ function SearchBar({ data, setShowInvoice }) {
     setShowInvoice(true);
   };
 
+  console.log(matchingOptions);
+
   return (
     <div className={styles.searchBar}>
       <button type="submit" className={styles.button}>
@@ -52,7 +54,9 @@ function SearchBar({ data, setShowInvoice }) {
           ))}
         </ul>
       )}
-      <StoredInvoice invoiceId={matchingOptions.number} />
+      {matchingOptions.length > 0 && (
+        <StoredInvoice invoiceId={matchingOptions[0].number} />
+      )}
     </div>
   );
 }
