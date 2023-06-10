@@ -10,15 +10,15 @@
 .clientName {
   font-size: 0.625rem;
   position: absolute;
-  top: 7.2rem;
-  left: 4.2rem;
+  top: 7.1rem;
+  left: 4.5rem;
 }
 
 .clientAddress {
   font-size: 0.625rem;
   position: absolute;
-  top: 8.73rem;
-  left: 4.7rem;
+  top: 8.65rem;
+  left: 4.9rem;
 }
 
 .invoiceDate {
@@ -33,6 +33,6 @@
 .invoiceNumber {
   font-size: 0.625rem;
   position: absolute;
-  top: 5.917rem;
-  left: 12.7rem;
+  top: 5.75rem;
+  right: 5.8rem;
 }
