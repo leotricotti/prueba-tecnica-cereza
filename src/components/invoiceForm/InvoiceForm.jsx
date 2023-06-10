@@ -1,12 +1,22 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
+import { DataContext } from "../../context/dataContext";
 import FormHeader from "../formHeader/FormHeader";
 import FormBody from "../formBody/FormBody";
 import Button from "../button/Button";
 import FormFooter from "../formFooter/FormFooter";
 import styles from "./invoiceForm.module.css";
 
-function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
+function InvoiceForm({
+  invoices,
+  inputValue,
+  onSaveInvoice,
+  setShowForm,
+  setIsLoading,
+}) {
+  const data = useContext(DataContext);
   const invoiceNumber = parseInt(invoices.number);
+  const [showMenu, setShowMenu] = useState(false);
+  const [matchingOptions, setMatchingOptions] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
     number: "",
     customer: "",
@@ -30,7 +40,6 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
     customer,
     address,
     date,
-    product,
     itemPrice,
     quantity,
     totalItem,
@@ -98,9 +107,12 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
   };
 
   const handleProductChange = (e) => {
+    const matchingOptions = data.products.filter((item) =>
+      item.title.toLowerCase().includes(inputValue.toLowerCase())
+    );
     setInvoiceData((prevData) => ({
       ...prevData,
-      product: e.target.value,
+      product: matchingOptions,
     }));
   };
 
@@ -175,7 +187,6 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
           handleItemPriceChange={handleItemPriceChange}
           handleQuantityChange={handleQuantityChange}
           handleTotalItemChange={handleTotalItemChange}
-          product={product}
           itemPrice={itemPrice}
           quantity={quantity}
           totalItem={totalItem}
