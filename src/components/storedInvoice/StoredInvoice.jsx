@@ -1,15 +1,15 @@
 import React from "react";
 import invoicesData from "../../assets/data/invoicesData.json";
 import Button from "../button/Button";
-import styles from "./invoiceForm.module.css";
+import styles from "./storedInvoice.module.css";
 
-function StoredInvoice({ setShowForm }) {
+function StoredInvoice({ setShowInvoice }) {
   return invoicesData.invoices.map((invoice) => (
     <section className={styles.invoiceContainer} key={invoice.number}>
       <div className={styles.buttonsContainer}>
         <Button
           text="Cancelar"
-          onClick={() => setShowForm(false)}
+          onClick={() => setShowInvoice(false)}
           styles={`${styles.button} ${styles.cancel}`}
         />
       </div>
