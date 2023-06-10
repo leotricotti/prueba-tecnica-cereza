@@ -11,6 +11,7 @@ function App() {
   const [invoices, setInvoices] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [showInvoice, setShowInvoice] = useState(false);
+  const [invoiceId, setInvoiceId] = useState("");
   const [isloading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -49,14 +50,20 @@ function App() {
         onClick={handleShowForm}
         showForm={showForm}
       />
-      <InvoiceList invoices={invoices} setShowInvoice={setShowInvoice} />
+      <InvoiceList
+        invoices={invoices}
+        setShowInvoice={setShowInvoice}
+        setInvoiceId={setInvoiceId}
+      />
       {showForm && (
         <InvoiceForm
           onSaveInvoice={handleSaveInvoice}
           setShowForm={setShowForm}
         />
       )}
-      {showInvoice && <StoredInvoice setShowInvoice={setShowInvoice} />}
+      {showInvoice && (
+        <StoredInvoice setShowInvoice={setShowInvoice} invoiceId={invoiceId} />
+      )}
     </main>
   );
 }

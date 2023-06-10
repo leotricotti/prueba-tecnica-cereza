@@ -3,9 +3,17 @@ import invoicesData from "../../assets/data/invoicesData.json";
 import Button from "../button/Button";
 import styles from "./storedInvoice.module.css";
 
-function StoredInvoice({ setShowInvoice }) {
-  return invoicesData.invoices.map((invoice) => (
-    <section className={styles.invoiceContainer} key={invoice.number}>
+function StoredInvoice({ setShowInvoice, invoiceId }) {
+  const invoice = invoicesData.invoices.find(
+    (invoice) => invoice.number === invoiceId
+  );
+
+  if (!invoice) {
+    return null;
+  }
+
+  return (
+    <section className={styles.invoiceContainer}>
       <div className={styles.buttonsContainer}>
         <Button
           text="Cancelar"
@@ -25,7 +33,7 @@ function StoredInvoice({ setShowInvoice }) {
             <div className={styles.invoiceDetail} key={index}>
               <span className={styles.detailQuantity}>{detail.quantity}</span>
               <span className={styles.detailProduct}>{detail.product}</span>
-              <span className={styles.itemlPrice}>{detail.itemPrice}</span>
+              <span className={styles.itemPrice}>{detail.itemPrice}</span>
               <span className={styles.totalItem}>{detail.totalItem}</span>
             </div>
           ))}
@@ -38,7 +46,7 @@ function StoredInvoice({ setShowInvoice }) {
         </div>
       </div>
     </section>
-  ));
+  );
 }
 
 export default StoredInvoice;
