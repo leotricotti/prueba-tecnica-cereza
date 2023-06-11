@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "./productSearch.module.css";
 
 function ProductSearch({ productList }) {
@@ -21,11 +23,15 @@ function ProductSearch({ productList }) {
 
   return (
     <div className={styles.searchBarContainer}>
+      <button type="submit" className={styles.button}>
+        <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon} />
+      </button>
       <input
         type="text"
         value={inputValue}
         onChange={handleInputChange}
-        placeholder="Buscar producto"
+        placeholder="Buscar producto..."
+        className={styles.input}
       />
       {inputValue && (
         <>

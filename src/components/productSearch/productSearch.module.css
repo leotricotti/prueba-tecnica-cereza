@@ -1,8 +1,12 @@
 .searchBarContainer {
-  width: 100%;
-  height: 100vh;
+  width: 60%;
+  border-bottom: 1px solid var(--color-secondary-light);
   background-color: var(--clr-bg-overlay);
   overflow-y: scroll;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 9999;
 }
 
 .searchMenu {
@@ -27,4 +31,28 @@
 
 .searchItem:hover {
   opacity: 1;
+}
+
+.input {
+  font-size: 0.875rem;
+  color: var(--color-secondary-text);
+  background-color: transparent;
+  border: transparent;
+  opacity: 0.5;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-secondary-text);
+  font-style: italic;
+}
+
+.icon {
+  font-size: 0.875rem;
+  color: var(--color-secondary-text);
+  margin-right: 0.5rem;
+  opacity: 0.5;
 }
