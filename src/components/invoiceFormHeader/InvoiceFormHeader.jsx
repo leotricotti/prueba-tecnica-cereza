@@ -1,8 +1,12 @@
 import SearchBar from "../searchBar/SearchBar";
 import Button from "../button/Button";
-import styles from "./invoiceHeader.module.css";
+import styles from "./invoiceFormHeader.module.css";
 
-function InvoiceHeader({ productList, setIsLoading, handleCancelButtonClick }) {
+function InvoiceFormHeader({
+  productList,
+  setIsLoading,
+  handleCancelButtonClick,
+}) {
   return (
     <header className={styles.invoiceHeader}>
       <div className={styles.headerInner}>
@@ -27,4 +31,4 @@ function InvoiceHeader({ productList, setIsLoading, handleCancelButtonClick }) {
   );
 }
 
-export default InvoiceHeader;
+export default InvoiceFormHeader;
