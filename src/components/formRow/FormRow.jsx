@@ -29,19 +29,6 @@ function FormRow({
         onChange={(e) => handleProductChange(index, "product", e.target.value)}
         className={styles.description}
       />
-      {showMenu && (
-        <ul className={styles.menu}>
-          {matchingOptions.map((option, idx) => (
-            <li
-              key={idx}
-              // onClick={() => handleProductChange(option)}
-              className={styles.item}
-            >
-              {option.title}
-            </li>
-          ))}
-        </ul>
-      )}
       <span className={styles.price}>{itemPrice}</span>
       <span className={styles.total}>{totalItem}</span>
     </div>

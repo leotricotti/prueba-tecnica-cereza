@@ -30,6 +30,17 @@ function FormBody({
           index={index}
         />
       ))}
+      {showMenu && (
+        <div className={styles.menuContainer}>
+          <ul className={styles.menu}>
+            {matchingOptions.map((option, idx) => (
+              <li key={idx} className={styles.item}>
+                {option.title}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }
