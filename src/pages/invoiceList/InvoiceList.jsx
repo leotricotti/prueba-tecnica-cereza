@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Header from "../../components/header/Header";
+import InvoiceListHeader from "../../components/invoiceListHeader/invoiceListHeader";
 import StoredInvoice from "../../components/storedInvoice/StoredInvoice";
 import InvoiceList from "../../components/invoiceList/InvoiceList";
 import Spinner from "../../components/spinner/Spinner";
@@ -35,7 +35,7 @@ function App() {
         showForm || showInvoice ? styles.overflow : ""
       }`}
     >
-      <Header
+      <InvoiceListHeader
         onClick={() => setShowForm(true)}
         link={"/invoice"}
         showForm={showForm}
