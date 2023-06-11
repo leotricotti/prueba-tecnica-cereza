@@ -12,17 +12,11 @@ function InvoiceFormHeader({
       <div className={styles.headerInner}>
         <SearchBar productList={productList} />
         <div className={styles.buttonsContainer}>
-          <Button
-            text="Guardar"
-            styles={styles.button}
-            onClick={() => {
-              setIsLoading(true);
-            }}
-          />
+          <Button text="Guardar" styles={styles.button} />
           <span className={styles.separador}>/</span>
           <Button
             text="Cancelar"
-            onClick={handleCancelButtonClick}
+            link={"/"}
             styles={`${styles.button} ${styles.cancel}`}
           />
         </div>
