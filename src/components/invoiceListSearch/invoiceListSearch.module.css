@@ -1,8 +1,7 @@
 .searchBar {
   width: 70%;
-  height: auto;
+  height: fit-content;
   border-bottom: 1px solid var(--color-secondary-light);
-  display: flex;
 }
 
 .button {
