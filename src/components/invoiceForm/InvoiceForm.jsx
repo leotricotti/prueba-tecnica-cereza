@@ -94,7 +94,6 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
   };
 
   const handleQuantityChange = (index, label, value) => {
-    console.log(index, label, value);
     setInvoiceData((prevData) => {
       const updatedQuantity = [...prevData.details];
       updatedQuantity[index][label] = value;
@@ -125,8 +124,6 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
     setMatchingOptions(matchingOptions);
     setShowMenu(true);
   };
-
-  console.log(matchingOptions);
 
   const handleItemPriceChange = (price) => {
     setInvoiceData((prevData) => ({

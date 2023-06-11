@@ -22,8 +22,6 @@ function StoredInvoice({
     setIsLoading(true);
   };
 
-  console.log(invoice);
-
   if (!invoice) {
     return null;
   }

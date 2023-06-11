@@ -27,8 +27,6 @@ function SearchBar({ data, setShowInvoice }) {
     setShowInvoice(true);
   };
 
-  console.log(matchingOptions);
-
   return (
     <div className={styles.searchBar}>
       <button type="submit" className={styles.button}>

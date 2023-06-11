@@ -10,7 +10,6 @@ function FormRow({
   handleQuantityChange,
   handleProductChange,
 }) {
-  console.log(matchingOptions);
   return (
     <div className={styles.invoiceRow}>
       <input
