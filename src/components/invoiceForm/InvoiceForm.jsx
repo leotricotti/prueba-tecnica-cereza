@@ -9,7 +9,6 @@ import styles from "./invoiceForm.module.css";
 function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
   const localDate = new Date().toLocaleDateString();
   const data = useContext(DataContext);
-  const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
@@ -187,30 +186,29 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
       </div>
       <div className={styles.innerInvoice}>
         <FormHeader
-          customer={customer}
-          address={address}
           date={date}
           number={number}
+          address={address}
+          customer={customer}
           handleAddressChange={handleAddressChange}
           handleNameChange={handleNameChange}
           handleSubmit={handleSubmit}
         />
         <FormBody
-          matchingOptions={matchingOptions}
-          inputValue={inputValue}
+          product={product}
           showMenu={showMenu}
           quantity={quantity}
-          product={product}
+          matchingOptions={matchingOptions}
           handleProductChange={handleProductChange}
           handleQuantityChange={handleQuantityChange}
         />
         <FormFooter
+          taxes={taxes}
+          total={total}
+          subtotal={subtotal}
           handleSubtotalChange={handleSubtotalChange}
           handleTaxesChange={handleTaxesChange}
           handleTotalChange={handleTotalChange}
-          subtotal={subtotal}
-          taxes={taxes}
-          total={total}
         />
       </div>
     </section>
