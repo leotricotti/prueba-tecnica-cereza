@@ -2,9 +2,8 @@ import styles from "./formRow.module.css";
 
 function FormRow({
   matchingOptions,
-  inputValue,
   showMenu,
-  invoiceData,
+  product,
   index,
   itemPrice,
   quantity,
@@ -12,41 +11,37 @@ function FormRow({
   handleQuantityChange,
   handleProductChange,
 }) {
-  const rowQuantity = quantity[index];
-  const rowProduct = invoiceData[index];
-
-  console.log(rowQuantity);
-
+  console.log(matchingOptions);
   return (
     <div className={styles.invoiceRow}>
       <input
         type="text"
-        value={rowQuantity.quantity}
+        value={quantity}
         onChange={(e) => {
-          handleQuantityChange(index, e.target.value);
+          handleQuantityChange(index, "quantity", e.target.value);
         }}
         required
         className={styles.quantity}
       />
       <input
         type="text"
-        value={rowProduct.product}
-        onChange={(e) => handleProductChange(index, e.target.value)}
+        value={product}
+        onChange={(e) => handleProductChange(index, "product", e.target.value)}
         className={styles.description}
       />
-      {/* {showMenu && (
+      {showMenu && (
         <ul className={styles.menu}>
           {matchingOptions.map((option, idx) => (
             <li
               key={idx}
-              onClick={() => handleProductChange(option)}
+              // onClick={() => handleProductChange(option)}
               className={styles.item}
             >
-              {option.product}
+              {option.title}
             </li>
           ))}
         </ul>
-      )} */}
+      )}
       <span className={styles.price}>{itemPrice}</span>
       <span className={styles.total}>{totalItem}</span>
     </div>

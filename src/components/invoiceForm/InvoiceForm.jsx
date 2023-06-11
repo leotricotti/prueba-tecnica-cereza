@@ -94,34 +94,40 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
     }));
   };
 
-  const handleQuantityChange = (index, value) => {
+  const handleQuantityChange = (index, label, value) => {
+    console.log(index, label, value);
     setInvoiceData((prevData) => {
       const updatedQuantity = [...prevData.details];
-      updatedQuantity[index] = value;
+      updatedQuantity[index][label] = value;
       return {
         ...prevData,
-        details: updatedQuantity,
+        details: [...prevData.details, updatedQuantity],
       };
     });
   };
 
-  const handleProductChange = (index, value) => {
+  const handleProductChange = (index, label, value) => {
+    matchingOptionsHandler(value);
     setInvoiceData((prevData) => {
-      const updatedProduct = [...prevData.product];
-      updatedProduct[index] = value;
+      const updatedProduct = [...prevData.details];
+      updatedProduct[index][label] = value;
 
       return {
         ...prevData,
-        product: updatedProduct,
+        details: [...prevData.details, updatedProduct],
       };
     });
-
-    // const matchingOptions = data.products.filter((item) =>
-    //   item.title.toLowerCase().includes(updatedProduct.toLowerCase())
-    // );
-    // setMatchingOptions(matchingOptions);
-    // setShowMenu(true);
   };
+
+  const matchingOptionsHandler = (value) => {
+    const matchingOptions = data.products.filter((item) =>
+      item.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setMatchingOptions(matchingOptions);
+    setShowMenu(true);
+  };
+
+  console.log(matchingOptions);
 
   const handleItemPriceChange = (price) => {
     setInvoiceData((prevData) => ({
