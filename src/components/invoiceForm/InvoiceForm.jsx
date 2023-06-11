@@ -32,13 +32,11 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
 
   const {
     number,
+    product,
     customer,
     address,
     date,
-    product,
-    itemPrice,
     quantity,
-    totalItem,
     subtotal,
     taxes,
     total,
@@ -64,7 +62,6 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
     const newInvoice = {
       customer,
       address,
-      quantity,
     };
     onSaveInvoice(newInvoice);
   };
@@ -97,22 +94,33 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
     }));
   };
 
-  const handleQuantityChange = (event) => {
-    setInvoiceData((prevData) => ({
-      ...prevData,
-      quantity: event,
-    }));
+  const handleQuantityChange = (index, value) => {
+    setInvoiceData((prevData) => {
+      const updatedQuantity = [...prevData.details];
+      updatedQuantity[index] = value;
+      return {
+        ...prevData,
+        details: updatedQuantity,
+      };
+    });
   };
 
-  const handleProductChange = (event) => {
-    const inputValue = event.target.value;
-    setInputValue(inputValue);
+  const handleProductChange = (index, value) => {
+    setInvoiceData((prevData) => {
+      const updatedProduct = [...prevData.product];
+      updatedProduct[index] = value;
 
-    const matchingOptions = data.products.filter((item) =>
-      item.title.toLowerCase().includes(inputValue.toLowerCase())
-    );
-    setMatchingOptions(matchingOptions);
-    setShowMenu(true);
+      return {
+        ...prevData,
+        product: updatedProduct,
+      };
+    });
+
+    // const matchingOptions = data.products.filter((item) =>
+    //   item.title.toLowerCase().includes(updatedProduct.toLowerCase())
+    // );
+    // setMatchingOptions(matchingOptions);
+    // setShowMenu(true);
   };
 
   const handleItemPriceChange = (price) => {
@@ -155,8 +163,6 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
     setIsLoading(true);
   };
 
-  console.log(inputValue);
-
   return (
     <section className={styles.invoiceContainer}>
       <div className={styles.buttonsContainer}>
@@ -187,9 +193,7 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
           matchingOptions={matchingOptions}
           inputValue={inputValue}
           showMenu={showMenu}
-          itemPrice={itemPrice}
           quantity={quantity}
-          totalItem={totalItem}
           product={product}
           handleProductChange={handleProductChange}
           handleQuantityChange={handleQuantityChange}
