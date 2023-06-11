@@ -97,10 +97,10 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
     }));
   };
 
-  const handleQuantityChange = (e) => {
+  const handleQuantityChange = (event) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      quantity: e.target.value,
+      quantity: event,
     }));
   };
 
@@ -192,7 +192,7 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
           totalItem={totalItem}
           product={product}
           handleProductChange={handleProductChange}
-          handleChange={handleQuantityChange}
+          handleQuantityChange={handleQuantityChange}
         />
         <FormFooter
           handleSubtotalChange={handleSubtotalChange}

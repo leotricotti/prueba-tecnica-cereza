@@ -14,6 +14,8 @@ function FormBody({
 }) {
   const rowIndexes = ["1", "2", "3", "4", "5", "6"];
 
+  console.log(handleQuantityChange);
+
   return (
     <section className={styles.formBodyContainer}>
       {rowIndexes.map((index) => (
