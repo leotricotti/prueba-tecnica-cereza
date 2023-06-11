@@ -161,7 +161,7 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
   };
 
   const handleOptionsClick = (option) => {
-    setMatchingOptions(option);
+    setMatchingOptions([...matchingOptions, [option]]);
     setShowMenu(false);
   };
 
