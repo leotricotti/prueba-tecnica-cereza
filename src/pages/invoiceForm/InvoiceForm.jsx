@@ -11,8 +11,8 @@ function InvoiceForm({ onSaveInvoice }) {
   const localDate = new Date().toLocaleDateString();
   const productList = useContext(DataContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [showMenu, setShowMenu] = useState(false);
-  const [matchingOptions, setMatchingOptions] = useState([]);
+  // const [showMenu, setShowMenu] = useState(false);
+  // const [matchingOptions, setMatchingOptions] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
     number: "",
     customer: "",
@@ -61,6 +61,7 @@ function InvoiceForm({ onSaveInvoice }) {
     handleDateChange();
     handleItemPriceChange();
     handleTotalItemChange();
+    handleProductChange();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -171,9 +172,7 @@ function InvoiceForm({ onSaveInvoice }) {
         />
         <FormBody
           product={product}
-          showMenu={showMenu}
           quantity={quantity}
-          matchingOptions={matchingOptions}
           handleQuantityChange={handleQuantityChange}
         />
         <FormFooter
