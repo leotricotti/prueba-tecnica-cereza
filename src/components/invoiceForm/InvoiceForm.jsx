@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { DataContext } from "../../context/dataContext";
+import ProductSearch from "../productSearch/ProductSearch";
 import FormHeader from "../formHeader/FormHeader";
 import FormBody from "../formBody/FormBody";
 import Button from "../button/Button";
@@ -174,6 +175,7 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
 
   return (
     <section className={styles.invoiceContainer}>
+      <ProductSearch productList={data} />
       <div className={styles.buttonsContainer}>
         <Button
           text="Guardar"

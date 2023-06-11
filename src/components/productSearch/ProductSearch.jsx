@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./productSearch.module.css";
 
 function ProductSearch({ productList }) {
   const [inputValue, setInputValue] = useState("");
@@ -8,8 +9,8 @@ function ProductSearch({ productList }) {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-    const filteredOptions = productList.filter((product) =>
-      product.toLowerCase().includes(value.toLowerCase())
+    const filteredOptions = productList.products.filter((product) =>
+      product.title.toLowerCase().includes(value.toLowerCase())
     );
     setMatchingOptions(filteredOptions);
   };
@@ -19,28 +20,35 @@ function ProductSearch({ productList }) {
   };
 
   return (
-    <div>
+    <div className={styles.searchBarContainer}>
       <input
         type="text"
         value={inputValue}
         onChange={handleInputChange}
         placeholder="Buscar producto"
       />
-      <ul>
-        {matchingOptions.map((option, index) => (
-          <li key={index} onClick={() => handleProductClick(option)}>
-            {option}
-          </li>
-        ))}
-      </ul>
-      <div>
-        <h3>Productos seleccionados:</h3>
-        <ul>
-          {selectedProducts.map((product, index) => (
-            <li key={index}>{product}</li>
-          ))}
-        </ul>
-      </div>
+      {inputValue && (
+        <>
+          <ul className={styles.searchMenu}>
+            {matchingOptions.map((option, index) => (
+              <li
+                key={index}
+                onClick={() => handleProductClick(option)}
+                className={styles.searchItem}
+              >
+                {option.title}
+              </li>
+            ))}
+          </ul>
+          <div>
+            <ul>
+              {selectedProducts.map((product, index) => (
+                <li key={index}>{product}</li>
+              ))}
+            </ul>
+          </div>
+        </>
+      )}
     </div>
   );
 }
