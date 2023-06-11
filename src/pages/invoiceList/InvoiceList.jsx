@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import InvoiceListHeader from "../../components/invoiceListHeader/invoiceListHeader";
+import InvoiceListHeader from "../../components/invoiceListHeader/InvoiceListHeader";
 import StoredInvoice from "../../components/storedInvoice/StoredInvoice";
 import InvoiceList from "../../components/invoiceList/InvoiceList";
 import Spinner from "../../components/spinner/Spinner";

@@ -1,6 +1,6 @@
 import InvoiceListSearch from "../invoiceListSearch/InvoiceListSearch";
 import Button from "../button/Button";
-import styles from "./invoicelistHeader.module.css";
+import styles from "./invoiceListHeader.module.css";
 
 function InvoiceListHeader({
   data,
@@ -10,7 +10,7 @@ function InvoiceListHeader({
   onClick,
 }) {
   return (
-    <nav className={styles.navContainer}>
+    <header className={styles.headerContainer}>
       <InvoiceListSearch
         data={data}
         setShowInvoice={() => setShowInvoice(true)}
@@ -22,7 +22,7 @@ function InvoiceListHeader({
         styles={styles.button}
         link={link}
       />
-    </nav>
+    </header>
   );
 }
 
