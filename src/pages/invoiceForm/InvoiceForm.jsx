@@ -1,9 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { DataContext } from "../../context/dataContext";
-import ProductSearch from "../../components/productSearch/ProductSearch";
 import FormHeader from "../../components/formHeader/FormHeader";
 import FormBody from "../../components/formBody/FormBody";
-import Button from "../../components/button/Button";
 import FormFooter from "../../components/formFooter/FormFooter";
 import styles from "./invoiceForm.module.css";
 

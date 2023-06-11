@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import InvoiceList from "./pages/invoiceList/InvoiceList";
+import InvoiceForm from "./pages/invoiceForm/InvoiceForm";
 import Spinner from "./components/spinner/Spinner";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   ) : (
     <Routes>
       <Route path="/" element={<InvoiceList />} />
+      <Route path="/invoice" element={<InvoiceForm />} />
     </Routes>
   );
 }
