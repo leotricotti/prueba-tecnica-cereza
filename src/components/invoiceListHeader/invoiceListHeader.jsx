@@ -1,5 +1,5 @@
 import Navbar from "../navbar/Navbar";
-import styles from "./invoiceListHeader.module.css";
+import styles from "./invoicelistHeader.module.css";
 
 import React from "react";
 

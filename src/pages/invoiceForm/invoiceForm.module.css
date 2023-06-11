@@ -7,17 +7,7 @@
   left: 0;
   z-index: 100;
   padding: 0 0 3rem;
-  animation: fadeIn 0.5s ease-in-out;
   overflow-y: scroll;
-}
-
-.buttonsContainer {
-  width: 100%;
-  max-width: 15rem;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 2rem 0 2rem;
 }
 
 .innerInvoice {
@@ -27,24 +17,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.button {
-  color: var(--color-secondary-text);
-  font-size: 0.675rem;
-  font-weight: 500;
-  background-color: transparent;
-  border: 1px solid var(--color-secondary-text);
-  border-radius: 0.4rem;
-  padding: 0.4rem 0.6rem;
-}
-
-.cancel {
-  left: 65%;
-}
-
-.button:hover {
-  transform: scale(1.1);
+  position: relative;
+  top: 4rem;
 }
 
 @keyframes fadeIn {

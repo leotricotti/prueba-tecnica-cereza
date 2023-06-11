@@ -11,7 +11,6 @@ function InvoiceFormHeader({
     <header className={styles.invoiceHeader}>
       <div className={styles.headerInner}>
         <SearchBar productList={productList} />
-
         <div className={styles.buttonsContainer}>
           <Button
             text="Guardar"
@@ -20,6 +19,7 @@ function InvoiceFormHeader({
               setIsLoading(true);
             }}
           />
+          <span className={styles.separador}>/</span>
           <Button
             text="Cancelar"
             onClick={handleCancelButtonClick}
