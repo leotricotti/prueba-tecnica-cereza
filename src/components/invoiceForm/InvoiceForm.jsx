@@ -6,9 +6,10 @@ import Button from "../button/Button";
 import FormFooter from "../formFooter/FormFooter";
 import styles from "./invoiceForm.module.css";
 
-function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
+function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
   const localDate = new Date().toLocaleDateString();
   const data = useContext(DataContext);
+  const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
@@ -29,15 +30,12 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
     total: "",
   });
 
-  console.log(typeof invoiceData.number);
-
-  console.log(invoices.number);
-
   const {
     number,
     customer,
     address,
     date,
+    product,
     itemPrice,
     quantity,
     totalItem,
@@ -99,7 +97,7 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
     }));
   };
 
-  const handleRowChange = (index, field, value) => {
+  const handleQuantityChange = (index, field, value) => {
     setInvoiceData((prevData) => {
       const updatedDetail = [...prevData.details];
       updatedDetail[index][field] = value;
@@ -108,6 +106,17 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
         details: updatedDetail,
       };
     });
+  };
+
+  const handleProductChange = (event) => {
+    const inputValue = event.target.value;
+    setInputValue(inputValue);
+
+    const matchingOptions = data.products.filter((item) =>
+      item.title.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    setMatchingOptions(matchingOptions);
+    setShowMenu(true);
   };
 
   const handleItemPriceChange = (price) => {
@@ -150,6 +159,8 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
     setIsLoading(true);
   };
 
+  console.log(inputValue);
+
   return (
     <section className={styles.invoiceContainer}>
       <div className={styles.buttonsContainer}>
@@ -168,20 +179,24 @@ function InvoiceForm({ invoices, onSaveInvoice, setShowForm, setIsLoading }) {
       </div>
       <div className={styles.innerInvoice}>
         <FormHeader
-          handleAddressChange={handleAddressChange}
-          handleNameChange={handleNameChange}
-          handleSubmit={handleSubmit}
           customer={customer}
           address={address}
           date={date}
           number={number}
+          handleAddressChange={handleAddressChange}
+          handleNameChange={handleNameChange}
+          handleSubmit={handleSubmit}
         />
         <FormBody
+          matchingOptions={matchingOptions}
+          inputValue={inputValue}
+          showMenu={showMenu}
           itemPrice={itemPrice}
           quantity={quantity}
           totalItem={totalItem}
           product={product}
-          handleRowChange={handleRowChange}
+          handleProductChange={handleProductChange}
+          handleChange={handleQuantityChange}
         />
         <FormFooter
           handleSubtotalChange={handleSubtotalChange}

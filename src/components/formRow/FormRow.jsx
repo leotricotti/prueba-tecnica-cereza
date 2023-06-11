@@ -1,13 +1,15 @@
-// import { useState, useEffect } from "react";
 import styles from "./formRow.module.css";
 
 function FormRow({
+  matchingOptions,
+  inputValue,
+  showMenu,
   index,
-  product,
   itemPrice,
   quantity,
   totalItem,
   handleRowChange,
+  handleProductChange,
 }) {
   return (
     <div className={styles.invoiceRow}>
@@ -20,25 +22,25 @@ function FormRow({
       />
       <input
         type="text"
-        value={product}
+        value={inputValue}
         onChange={(e) => handleRowChange(index, "product", e.target.value)}
         className={styles.description}
         inputMode="numeric"
         pattern="[0-9]"
       />
-      {/* {showMenu && (
+      {showMenu && (
         <ul className={styles.menu}>
           {matchingOptions.map((option, idx) => (
             <li
               key={idx}
-              onClick={() => handleOptionClick(option)}
+              onClick={() => handleProductChange(option)}
               className={styles.item}
             >
-              {option.title}
+              {option.product}
             </li>
           ))}
         </ul>
-      )} */}
+      )}
       <span className={styles.price}>{itemPrice}</span>
       <span className={styles.total}>{totalItem}</span>
     </div>
