@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { DataContext } from "../../context/dataContext";
-import InvoiceFormHeader from "../../components/invoiceFormHeader/InvoiceFormHeader";
+import FormHeaderMain from "../../components/formHeaderMain/FormHeadeMain";
 import FormHeader from "../../components/formHeader/FormHeader";
 import FormBody from "../../components/formBody/FormBody";
 import FormFooter from "../../components/formFooter/FormFooter";
@@ -177,7 +177,7 @@ function InvoiceForm({ onSaveInvoice }) {
     <Spinner />
   ) : (
     <main className={styles.invoiceContainer}>
-      <InvoiceFormHeader />
+      <FormHeaderMain />
       <div className={styles.innerInvoice}>
         <FormHeader
           date={date}

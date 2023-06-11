@@ -1,6 +1,6 @@
-import SearchBar from "../searchBar/SearchBar";
+import InvoiceListSearch from "../invoiceListSearch/InvoiceListSearch";
 import Button from "../button/Button";
-import styles from "./navbar.module.css";
+import styles from "./invoicelistHeader.module.css";
 
 function InvoiceListHeader({
   data,
@@ -11,7 +11,7 @@ function InvoiceListHeader({
 }) {
   return (
     <nav className={styles.navContainer}>
-      <SearchBar
+      <InvoiceListSearch
         data={data}
         setShowInvoice={() => setShowInvoice(true)}
         setIsLoading={setIsLoading}

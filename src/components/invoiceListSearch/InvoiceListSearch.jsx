@@ -2,9 +2,9 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import StoredInvoice from "../storedInvoice/StoredInvoice";
-import styles from "./searchBar.module.css";
+import styles from "./invoiceListSearch.module.css";
 
-function SearchBar({ data, setShowInvoice, setIsLoading }) {
+function InvoiceListSeach({ data, setShowInvoice, setIsLoading }) {
   const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);
@@ -60,4 +60,4 @@ function SearchBar({ data, setShowInvoice, setIsLoading }) {
   );
 }
 
-export default SearchBar;
+export default InvoiceListSeach;

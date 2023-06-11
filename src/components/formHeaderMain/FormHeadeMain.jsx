@@ -1,8 +1,8 @@
-import ProductSearch from "../productSearch/ProductSearch";
+import FormProductSearch from "../formProductSearch/FormProductSearch";
 import Button from "../button/Button";
-import styles from "./invoiceFormHeader.module.css";
+import styles from "./formHeaderMain.module.css";
 
-function InvoiceFormHeader({
+function FormHeaderMain({
   productList,
   setIsLoading,
   handleCancelButtonClick,
@@ -11,7 +11,7 @@ function InvoiceFormHeader({
   return (
     <header className={styles.invoiceHeader}>
       <div className={styles.headerInner}>
-        <ProductSearch productList={productList} />
+        <FormProductSearch productList={productList} />
         <div className={styles.buttonsContainer}>
           <Button text="Guardar" styles={styles.button} />
           <span className={styles.separador}>/</span>
@@ -26,4 +26,4 @@ function InvoiceFormHeader({
   );
 }
 
-export default InvoiceFormHeader;
+export default FormHeaderMain;

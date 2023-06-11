@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import styles from "./productSearch.module.css";
+import styles from "./formProductSearch.module.css";
 
-function ProductSearch({ productList }) {
+function FormProductSearch({ productList }) {
   const [inputValue, setInputValue] = useState("");
   const [matchingOptions, setMatchingOptions] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -59,4 +59,4 @@ function ProductSearch({ productList }) {
   );
 }
 
-export default ProductSearch;
+export default FormProductSearch;
