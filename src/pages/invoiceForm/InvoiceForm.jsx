@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
 import { DataContext } from "../../context/dataContext";
-import ProductSearch from "../productSearch/ProductSearch";
-import FormHeader from "../formHeader/FormHeader";
-import FormBody from "../formBody/FormBody";
-import Button from "../button/Button";
-import FormFooter from "../formFooter/FormFooter";
+import ProductSearch from "../../components/productSearch/ProductSearch";
+import FormHeader from "../../components/formHeader/FormHeader";
+import FormBody from "../../components/formBody/FormBody";
+import Button from "../../components/button/Button";
+import FormFooter from "../../components/formFooter/FormFooter";
 import styles from "./invoiceForm.module.css";
 
 function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
