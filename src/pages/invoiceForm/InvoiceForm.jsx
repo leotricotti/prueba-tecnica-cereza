@@ -4,10 +4,12 @@ import FormHeader from "../../components/formHeader/FormHeader";
 import FormBody from "../../components/formBody/FormBody";
 import FormFooter from "../../components/formFooter/FormFooter";
 import styles from "./invoiceForm.module.css";
+import Spinner from "../../components/spinner/Spinner";
 
-function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
+function InvoiceForm({ onSaveInvoice }) {
   const localDate = new Date().toLocaleDateString();
   const data = useContext(DataContext);
+  const [isLoading, setIsLoading] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
@@ -39,6 +41,12 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
     taxes,
     total,
   } = invoiceData;
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     setInvoiceData((prevData) => ({
@@ -164,14 +172,9 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
     setShowMenu(false);
   };
 
-  const handleCancelButtonClick = () => {
-    setShowForm(false);
-    setIsLoading(true);
-  };
-
-  console.log(matchingOptions);
-
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <section className={styles.invoiceContainer}>
       <div className={styles.innerInvoice}>
         <FormHeader
