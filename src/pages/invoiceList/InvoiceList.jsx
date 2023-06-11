@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Header from "../../components/header/Header";
 import StoredInvoice from "../../components/storedInvoice/StoredInvoice";
 import InvoiceList from "../../components/invoiceList/InvoiceList";
@@ -28,11 +27,6 @@ function App() {
     }
   }, []);
 
-  const handleShowForm = () => {
-    setIsLoading(true);
-    return <Link to="/invoice" />;
-  };
-
   return isLoading ? (
     <Spinner />
   ) : (
@@ -42,7 +36,8 @@ function App() {
       }`}
     >
       <Header
-        onClick={handleShowForm}
+        onClick={() => setShowForm(true)}
+        link={"/invoice"}
         showForm={showForm}
         data={invoices}
         setShowInvoice={setShowInvoice}
