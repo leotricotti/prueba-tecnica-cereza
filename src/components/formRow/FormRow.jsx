@@ -4,6 +4,7 @@ function FormRow({
   matchingOptions,
   inputValue,
   showMenu,
+  invoiceData,
   index,
   itemPrice,
   quantity,
@@ -11,24 +12,29 @@ function FormRow({
   handleQuantityChange,
   handleProductChange,
 }) {
+  const rowQuantity = quantity[index];
+  const rowProduct = invoiceData[index];
+
+  console.log(rowQuantity);
+
   return (
     <div className={styles.invoiceRow}>
       <input
         type="text"
-        value={quantity}
+        value={rowQuantity.quantity}
         onChange={(e) => {
-          handleQuantityChange(e.target.value);
+          handleQuantityChange(index, e.target.value);
         }}
         required
         className={styles.quantity}
       />
       <input
         type="text"
-        value={inputValue}
-        onChange={(e) => handleProductChange(index, "product", e.target.value)}
+        value={rowProduct.product}
+        onChange={(e) => handleProductChange(index, e.target.value)}
         className={styles.description}
       />
-      {showMenu && (
+      {/* {showMenu && (
         <ul className={styles.menu}>
           {matchingOptions.map((option, idx) => (
             <li
@@ -40,7 +46,7 @@ function FormRow({
             </li>
           ))}
         </ul>
-      )}
+      )} */}
       <span className={styles.price}>{itemPrice}</span>
       <span className={styles.total}>{totalItem}</span>
     </div>
