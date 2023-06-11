@@ -11,8 +11,6 @@ function InvoiceForm({ onSaveInvoice }) {
   const localDate = new Date().toLocaleDateString();
   const productList = useContext(DataContext);
   const [isLoading, setIsLoading] = useState(true);
-  // const [showMenu, setShowMenu] = useState(false);
-  // const [matchingOptions, setMatchingOptions] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
     number: "",
     customer: "",
