@@ -175,21 +175,6 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
 
   return (
     <section className={styles.invoiceContainer}>
-      <ProductSearch productList={data} />
-      <div className={styles.buttonsContainer}>
-        <Button
-          text="Guardar"
-          styles={styles.button}
-          onClick={() => {
-            setIsLoading(true);
-          }}
-        />
-        <Button
-          text="Cancelar"
-          onClick={handleCancelButtonClick}
-          styles={`${styles.button} ${styles.cancel}`}
-        />
-      </div>
       <div className={styles.innerInvoice}>
         <FormHeader
           date={date}
