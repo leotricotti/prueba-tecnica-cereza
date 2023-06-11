@@ -4,7 +4,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import StoredInvoice from "../storedInvoice/StoredInvoice";
 import styles from "./searchBar.module.css";
 
-function SearchBar({ data, setShowInvoice }) {
+function SearchBar({ data, setShowInvoice, setIsLoading }) {
   const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);
@@ -25,6 +25,7 @@ function SearchBar({ data, setShowInvoice }) {
     setMatchingOptions(option);
     setShowMenu(false);
     setShowInvoice(true);
+    setIsLoading(true);
   };
 
   return (

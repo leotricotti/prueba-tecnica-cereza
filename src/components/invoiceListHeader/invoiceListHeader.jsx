@@ -3,7 +3,7 @@ import styles from "./invoicelistHeader.module.css";
 
 import React from "react";
 
-function Header({ data, link, setShowInvoice, onClick }) {
+function Header({ data, link, setShowInvoice, onClick, setIsLoading }) {
   return (
     <header className={styles.headerContainer}>
       <Navbar
@@ -11,6 +11,7 @@ function Header({ data, link, setShowInvoice, onClick }) {
         setShowInvoice={setShowInvoice}
         onClick={onClick}
         link={link}
+        setIsLoading={setIsLoading}
       />
     </header>
   );

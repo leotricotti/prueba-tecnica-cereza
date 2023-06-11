@@ -41,6 +41,7 @@ function App() {
         showForm={showForm}
         data={invoices}
         setShowInvoice={setShowInvoice}
+        setIsLoading={setIsLoading}
       />
       <InvoiceList
         invoices={invoices}

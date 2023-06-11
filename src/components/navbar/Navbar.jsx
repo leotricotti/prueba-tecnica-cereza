@@ -2,10 +2,14 @@ import SearchBar from "../searchBar/SearchBar";
 import Button from "../button/Button";
 import styles from "./navbar.module.css";
 
-function Navbar({ data, setShowInvoice, link, onClick }) {
+function Navbar({ data, setShowInvoice, link, setIsLoading, onClick }) {
   return (
     <nav className={styles.navContainer}>
-      <SearchBar data={data} setShowInvoice={setShowInvoice} />
+      <SearchBar
+        data={data}
+        setShowInvoice={setShowInvoice}
+        setIsLoading={setIsLoading}
+      />
       <Button
         text="Crear factura"
         onClick={onClick}

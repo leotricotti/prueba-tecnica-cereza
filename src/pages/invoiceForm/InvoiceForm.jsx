@@ -176,7 +176,7 @@ function InvoiceForm({ onSaveInvoice }) {
   return isLoading ? (
     <Spinner />
   ) : (
-    <section className={styles.invoiceContainer}>
+    <main className={styles.invoiceContainer}>
       <InvoiceFormHeader />
       <div className={styles.innerInvoice}>
         <FormHeader
@@ -206,7 +206,7 @@ function InvoiceForm({ onSaveInvoice }) {
           handleTotalChange={handleTotalChange}
         />
       </div>
-    </section>
+    </main>
   );
 }
 
