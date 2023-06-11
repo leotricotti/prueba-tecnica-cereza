@@ -7,6 +7,7 @@
   left: 0;
   z-index: 100;
   padding: 0 0 3rem;
+  animation: fadeIn 0.5s ease-in-out;
   overflow-y: scroll;
 }
 
@@ -44,4 +45,13 @@
 
 .button:hover {
   transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
