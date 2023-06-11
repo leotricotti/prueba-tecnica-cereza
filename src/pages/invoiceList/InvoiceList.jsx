@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Header from "../../components/header/Header";
 import StoredInvoice from "../../components/storedInvoice/StoredInvoice";
 import InvoiceList from "../../components/invoiceList/InvoiceList";
-import InvoiceForm from "../invoiceForm/InvoiceForm";
 import Spinner from "../../components/spinner/Spinner";
 import invoiceData from "../../assets/data/invoiceData.json";
 import styles from "./invoiceList.module.css";
@@ -29,19 +29,14 @@ function App() {
   }, []);
 
   const handleShowForm = () => {
-    setShowForm(true);
     setIsLoading(true);
-  };
-
-  const handleSaveInvoice = (invoiceData) => {
-    setInvoices([...invoices, invoiceData]);
-    setShowForm(false);
+    return <Link to="/invoice" />;
   };
 
   return isLoading ? (
     <Spinner />
   ) : (
-    <main
+    <div
       className={`${styles.appWrapper} ${
         showForm || showInvoice ? styles.overflow : ""
       }`}
@@ -58,14 +53,6 @@ function App() {
         setInvoiceId={setInvoiceId}
         setIsLoading={setIsLoading}
       />
-      {showForm && (
-        <InvoiceForm
-          invoices={invoices}
-          onSaveInvoice={handleSaveInvoice}
-          setShowForm={setShowForm}
-          setIsLoading={setIsLoading}
-        />
-      )}
       {showInvoice && (
         <StoredInvoice
           setShowInvoice={setShowInvoice}
@@ -74,7 +61,7 @@ function App() {
           setIsLoading={setIsLoading}
         />
       )}
-    </main>
+    </div>
   );
 }
 
