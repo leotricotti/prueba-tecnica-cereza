@@ -9,7 +9,7 @@ import Spinner from "../../components/spinner/Spinner";
 
 function InvoiceForm({ onSaveInvoice }) {
   const localDate = new Date().toLocaleDateString();
-  const data = useContext(DataContext);
+  const productList = useContext(DataContext);
   const [isLoading, setIsLoading] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);
@@ -112,25 +112,11 @@ function InvoiceForm({ onSaveInvoice }) {
     });
   };
 
-  const handleProductChange = (index, label, value) => {
-    matchingOptionsHandler(value);
-    setInvoiceData((prevData) => {
-      const updatedProduct = [...prevData.details];
-      updatedProduct[index][label] = value;
-
-      return {
-        ...prevData,
-        details: [...prevData.details, updatedProduct],
-      };
-    });
-  };
-
-  const matchingOptionsHandler = (value) => {
-    const matchingOptions = data.products.filter((item) =>
-      item.title.toLowerCase().includes(value.toLowerCase())
-    );
-    setMatchingOptions(matchingOptions);
-    setShowMenu(true);
+  const handleProductChange = (price) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      itemPrice: price,
+    }));
   };
 
   const handleItemPriceChange = (price) => {
@@ -168,16 +154,11 @@ function InvoiceForm({ onSaveInvoice }) {
     }));
   };
 
-  const handleOptionsClick = (option) => {
-    setMatchingOptions([...matchingOptions, [option]]);
-    setShowMenu(false);
-  };
-
   return isLoading ? (
     <Spinner />
   ) : (
     <main className={styles.invoiceContainer}>
-      <FormHeaderMain />
+      <FormHeaderMain productList={productList} />
       <div className={styles.innerInvoice}>
         <FormHeader
           date={date}
@@ -193,9 +174,7 @@ function InvoiceForm({ onSaveInvoice }) {
           showMenu={showMenu}
           quantity={quantity}
           matchingOptions={matchingOptions}
-          handleProductChange={handleProductChange}
           handleQuantityChange={handleQuantityChange}
-          handleOptionsClick={handleOptionsClick}
         />
         <FormFooter
           taxes={taxes}

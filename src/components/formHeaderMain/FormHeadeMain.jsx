@@ -2,11 +2,7 @@ import FormProductSearch from "../formProductSearch/FormProductSearch";
 import Button from "../button/Button";
 import styles from "./formHeaderMain.module.css";
 
-function FormHeaderMain({
-  productList,
-  setIsLoading,
-  handleCancelButtonClick,
-}) {
+function FormHeaderMain({ productList }) {
   console.log(productList);
   return (
     <header className={styles.invoiceHeader}>

@@ -6,9 +6,7 @@ function FormRow({
   quantity,
   itemPrice,
   totalItem,
-  matchingOptions,
   handleQuantityChange,
-  handleProductChange,
 }) {
   return (
     <div className={styles.invoiceRow}>
@@ -21,12 +19,7 @@ function FormRow({
         required
         className={styles.quantity}
       />
-      <input
-        type="text"
-        value={product}
-        onChange={(e) => handleProductChange(index, "product", e.target.value)}
-        className={styles.description}
-      />
+      <span className={styles.product}>{product}</span>
       <span className={styles.price}>{itemPrice}</span>
       <span className={styles.total}>{totalItem}</span>
     </div>
