@@ -8,7 +8,7 @@ function FormRow({
   itemPrice,
   quantity,
   totalItem,
-  handleRowChange,
+  handleQuantityChange,
   handleProductChange,
 }) {
   return (
@@ -16,17 +16,17 @@ function FormRow({
       <input
         type="text"
         value={quantity}
-        onChange={(e) => handleRowChange(index, "quantity", e.target.value)}
+        onChange={(e) => {
+          handleQuantityChange(e.target.value);
+        }}
         required
         className={styles.quantity}
       />
       <input
         type="text"
         value={inputValue}
-        onChange={(e) => handleRowChange(index, "product", e.target.value)}
+        onChange={(e) => handleProductChange(index, "product", e.target.value)}
         className={styles.description}
-        inputMode="numeric"
-        pattern="[0-9]"
       />
       {showMenu && (
         <ul className={styles.menu}>

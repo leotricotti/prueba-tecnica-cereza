@@ -97,15 +97,11 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
     }));
   };
 
-  const handleQuantityChange = (index, field, value) => {
-    setInvoiceData((prevData) => {
-      const updatedDetail = [...prevData.details];
-      updatedDetail[index][field] = value;
-      return {
-        ...prevData,
-        details: updatedDetail,
-      };
-    });
+  const handleQuantityChange = (e) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      quantity: e.target.value,
+    }));
   };
 
   const handleProductChange = (event) => {
