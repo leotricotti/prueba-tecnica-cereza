@@ -2,13 +2,12 @@ import FormRow from "../formRow/FormRow";
 import styles from "./formBody.module.css";
 
 function FormBody({
-  matchingOptions,
-  inputValue,
-  showMenu,
-  itemPrice,
-  totalItem,
   product,
   quantity,
+  showMenu,
+  totalItem,
+  itemPrice,
+  matchingOptions,
   handleQuantityChange,
   handleProductChange,
 }) {
@@ -19,7 +18,6 @@ function FormBody({
         <FormRow
           key={index}
           matchingOptions={matchingOptions}
-          inputValue={inputValue}
           showMenu={showMenu}
           itemPrice={itemPrice}
           totalItem={totalItem}

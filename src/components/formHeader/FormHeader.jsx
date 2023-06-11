@@ -1,13 +1,13 @@
 import styles from "./formHeader.module.css";
 
 function FormHeader({
-  handleAddressChange,
-  handleNameChange,
-  handleSubmit,
-  customer,
-  address,
   date,
   number,
+  address,
+  customer,
+  handleSubmit,
+  handleNameChange,
+  handleAddressChange,
 }) {
   return (
     <form onSubmit={handleSubmit} className={styles.formHeaderContainer}>

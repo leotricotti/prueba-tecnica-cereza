@@ -1,13 +1,12 @@
 import styles from "./formRow.module.css";
 
 function FormRow({
-  matchingOptions,
-  showMenu,
-  product,
   index,
-  itemPrice,
+  product,
   quantity,
+  itemPrice,
   totalItem,
+  matchingOptions,
   handleQuantityChange,
   handleProductChange,
 }) {
