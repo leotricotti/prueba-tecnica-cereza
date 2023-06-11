@@ -160,10 +160,17 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
     }));
   };
 
+  const handleOptionsClick = (option) => {
+    setMatchingOptions(option);
+    setShowMenu(false);
+  };
+
   const handleCancelButtonClick = () => {
     setShowForm(false);
     setIsLoading(true);
   };
+
+  console.log(matchingOptions);
 
   return (
     <section className={styles.invoiceContainer}>
@@ -198,6 +205,7 @@ function InvoiceForm({ onSaveInvoice, setShowForm, setIsLoading }) {
           matchingOptions={matchingOptions}
           handleProductChange={handleProductChange}
           handleQuantityChange={handleQuantityChange}
+          handleOptionsClick={handleOptionsClick}
         />
         <FormFooter
           taxes={taxes}

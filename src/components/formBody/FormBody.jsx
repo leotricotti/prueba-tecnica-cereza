@@ -10,6 +10,7 @@ function FormBody({
   matchingOptions,
   handleQuantityChange,
   handleProductChange,
+  handleOptionsClick,
 }) {
   const rowIndexes = ["1", "2", "3", "4", "5", "6"];
   return (
@@ -32,7 +33,11 @@ function FormBody({
         <div className={styles.menuContainer}>
           <ul className={styles.menu}>
             {matchingOptions.map((option, idx) => (
-              <li key={idx} className={styles.item}>
+              <li
+                key={idx}
+                className={styles.item}
+                onClick={() => handleOptionsClick(option)}
+              >
                 {option.title}
               </li>
             ))}
