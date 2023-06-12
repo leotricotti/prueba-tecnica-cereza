@@ -12,7 +12,7 @@ function FormRow({
     <div className={styles.invoiceRow}>
       <input
         type="text"
-        value={quantity}
+        value={quantity || ""}
         onChange={(e) => {
           handleQuantityChange(index, "quantity", e.target.value);
         }}

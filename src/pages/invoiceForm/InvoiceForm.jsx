@@ -72,7 +72,7 @@ function InvoiceForm({ onSaveInvoice }) {
       priceItem[selectedProducts.length - 1]
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedProducts]);
+  }, [selectedProducts, quantity]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
