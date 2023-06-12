@@ -16,8 +16,6 @@ function InvoiceForm({ onSaveInvoice }) {
   const productSelected = selectedProducts.map((product) => product.title);
   const label = "product";
 
-  console.log(indexSelected, productSelected, label);
-
   const [isLoading, setIsLoading] = useState(true);
   const [invoiceData, setInvoiceData] = useState({
     number: "",
@@ -109,6 +107,7 @@ function InvoiceForm({ onSaveInvoice }) {
   };
 
   const handleQuantityChange = (index, label, value) => {
+    console.log(index, label, value);
     setInvoiceData((prevData) => {
       const updatedQuantity = [...prevData.details];
       updatedQuantity[index][label] = value;
@@ -120,12 +119,16 @@ function InvoiceForm({ onSaveInvoice }) {
   };
 
   const handleProductChange = (index, label, value) => {
+    console.log(index, label, value);
     setInvoiceData((prevData) => {
       const updatedProduct = [...prevData.details];
-      updatedProduct[index][label] = value;
+      updatedProduct[index] = {
+        ...updatedProduct[index],
+        [label]: value,
+      };
       return {
         ...prevData,
-        details: [...prevData.details, updatedProduct],
+        details: updatedProduct,
       };
     });
   };

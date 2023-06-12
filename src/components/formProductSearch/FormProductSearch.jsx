@@ -9,8 +9,8 @@ function FormProductSearch() {
     productList,
     matchingOptions,
     selectedProducts,
-    setSelectedProducts,
     setMatchingOptions,
+    setSelectedProducts,
   } = useContext(DataContext);
   const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
