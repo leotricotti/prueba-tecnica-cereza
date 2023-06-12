@@ -150,9 +150,9 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
         <FormHeader
           date={invoiceData.date}
           number={invoiceData.number}
+          handleSubmit={handleSubmit}
           address={invoiceData.address}
           customer={invoiceData.customer}
-          handleSubmit={handleSubmit}
           handleNameChange={handleNameChange}
           handleAddressChange={handleAddressChange}
         />
