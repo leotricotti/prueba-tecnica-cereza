@@ -40,6 +40,8 @@ function InvoiceForm({ onSaveInvoice }) {
   const detail = invoiceData.details[selectedProducts.length - 1];
   const { product, quantity, itemPrice, totalItem } = detail || {};
 
+  console.log(totalItem);
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -60,7 +62,7 @@ function InvoiceForm({ onSaveInvoice }) {
       label,
       productSelected[selectedProducts.length - 1]
     );
-    handleTotalItemChange(selectedProducts, quantity);
+    handleTotalItemChange(itemPrice, 3);
     handleItemPriceChange(
       indexSelected,
       "itemPrice",
@@ -138,7 +140,7 @@ function InvoiceForm({ onSaveInvoice }) {
       const updatedPrice = [...prevData.details];
       updatedPrice[index] = {
         ...updatedPrice[index],
-        [label]: value,
+        [label]: parseInt(value).toFixed(2),
       };
       return {
         ...prevData,
@@ -148,6 +150,7 @@ function InvoiceForm({ onSaveInvoice }) {
   };
 
   const handleTotalItemChange = (price, quantity) => {
+    console.log(price, quantity);
     setInvoiceData((prevData) => ({
       ...prevData,
       totalItem: price * quantity,
