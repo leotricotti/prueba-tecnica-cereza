@@ -38,7 +38,7 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
   const detail = invoiceData.details[selectedProducts.length - 1];
   const { product, quantity, itemPrice, totalItem } = detail || {};
 
-  console.log(totalItem);
+  console.log(invoiceData);
 
   useEffect(() => {
     setTimeout(() => {
