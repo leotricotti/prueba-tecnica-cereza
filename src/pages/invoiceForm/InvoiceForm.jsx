@@ -13,8 +13,6 @@ function InvoiceForm({ onSaveInvoice }) {
   const indexSelected = parseInt(selectedProducts.length - 1);
   const productSelected = selectedProducts.map((product) => product.title);
   const priceItem = selectedProducts.map((product) => product.price);
-
-  const label = "product";
   const [isLoading, setIsLoading] = useState(true);
   const [invoiceData, setInvoiceData] = useState({
     number: "",
@@ -40,7 +38,7 @@ function InvoiceForm({ onSaveInvoice }) {
   const detail = invoiceData.details[selectedProducts.length - 1];
   const { product, quantity, itemPrice, totalItem } = detail || {};
 
-  console.log(totalItem);
+  console.log(quantity);
 
   useEffect(() => {
     setTimeout(() => {
@@ -59,10 +57,15 @@ function InvoiceForm({ onSaveInvoice }) {
     handleTotalChange(subtotal, taxes);
     handleProductChange(
       indexSelected,
-      label,
+      "product",
       productSelected[selectedProducts.length - 1]
     );
-    handleTotalItemChange(itemPrice, 3);
+    handleTotalItemChange(
+      indexSelected,
+      "totalItem",
+      priceItem[selectedProducts.length - 1],
+      quantity || 1
+    );
     handleItemPriceChange(
       indexSelected,
       "itemPrice",
@@ -80,6 +83,8 @@ function InvoiceForm({ onSaveInvoice }) {
     };
     onSaveInvoice(newInvoice);
   };
+
+  console.log(invoiceData);
 
   const handelNumberChange = (number) => {
     setInvoiceData((prevData) => ({
@@ -110,7 +115,6 @@ function InvoiceForm({ onSaveInvoice }) {
   };
 
   const handleQuantityChange = (index, label, value) => {
-    console.log(index, label, value);
     setInvoiceData((prevData) => {
       const updatedQuantity = [...prevData.details];
       updatedQuantity[index][label] = value;
@@ -149,12 +153,18 @@ function InvoiceForm({ onSaveInvoice }) {
     });
   };
 
-  const handleTotalItemChange = (price, quantity) => {
-    console.log(price, quantity);
-    setInvoiceData((prevData) => ({
-      ...prevData,
-      totalItem: price * quantity,
-    }));
+  const handleTotalItemChange = (index, label, value, quantity) => {
+    setInvoiceData((prevData) => {
+      const updatedTotalItem = [...prevData.details];
+      updatedTotalItem[index] = {
+        ...updatedTotalItem[index],
+        [label]: parseInt(value * quantity).toFixed(2),
+      };
+      return {
+        ...prevData,
+        details: updatedTotalItem,
+      };
+    });
   };
 
   const handleSubtotalChange = (totalItem) => {
