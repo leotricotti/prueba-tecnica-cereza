@@ -41,6 +41,7 @@ function FormProductSearch() {
         value={inputValue}
         onChange={handleInputChange}
         placeholder="Buscar producto..."
+        onClick={() => setInputValue("")}
         className={styles.input}
       />
       {showMenu && (
