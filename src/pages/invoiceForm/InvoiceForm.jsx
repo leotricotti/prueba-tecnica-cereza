@@ -48,19 +48,22 @@ function InvoiceForm({ onSaveInvoice }) {
   }, []);
 
   useEffect(() => {
-    handelNumberChange();
     handleDateChange();
-    handleItemPriceChange();
-    handleTotalItemChange();
-    handleProductChange();
+    handelNumberChange();
+    handleTaxesChange(subtotal);
+    handleSubtotalChange(subtotal);
+    handleTotalChange(subtotal, taxes);
+    handleProductChange(selectedProducts.title);
+    handleItemPriceChange(selectedProducts.price);
+    handleTotalItemChange(selectedProducts, quantity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedProducts, quantity, subtotal]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newInvoice = {
-      customer,
       address,
+      customer,
       quantity,
     };
     onSaveInvoice(newInvoice);
@@ -151,30 +154,23 @@ function InvoiceForm({ onSaveInvoice }) {
     <Spinner />
   ) : (
     <main className={styles.invoiceContainer}>
-      <FormHeaderMain productList={productList} />
+      <FormHeaderMain />
       <div className={styles.innerInvoice}>
         <FormHeader
           date={date}
           number={number}
           address={address}
           customer={customer}
-          handleAddressChange={handleAddressChange}
-          handleNameChange={handleNameChange}
           handleSubmit={handleSubmit}
+          handleNameChange={handleNameChange}
+          handleAddressChange={handleAddressChange}
         />
         <FormBody
           product={product}
           quantity={quantity}
           handleQuantityChange={handleQuantityChange}
         />
-        <FormFooter
-          taxes={taxes}
-          total={total}
-          subtotal={subtotal}
-          handleSubtotalChange={handleSubtotalChange}
-          handleTaxesChange={handleTaxesChange}
-          handleTotalChange={handleTotalChange}
-        />
+        <FormFooter taxes={taxes} total={total} subtotal={subtotal} />
       </div>
     </main>
   );
