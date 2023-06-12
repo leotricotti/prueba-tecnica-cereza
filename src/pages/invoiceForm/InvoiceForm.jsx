@@ -10,12 +10,10 @@ import Spinner from "../../components/spinner/Spinner";
 function InvoiceForm({ onSaveInvoice }) {
   const localDate = new Date().toLocaleDateString();
   const { selectedProducts } = useContext(DataContext);
-  const indexSelected = selectedProducts.map((product) =>
-    selectedProducts.indexOf(product)
-  );
+  const indexSelected = parseInt(selectedProducts.length - 1);
   const productSelected = selectedProducts.map((product) => product.title);
-  const label = "product";
 
+  const label = "product";
   const [isLoading, setIsLoading] = useState(true);
   const [invoiceData, setInvoiceData] = useState({
     number: "",
@@ -62,8 +60,12 @@ function InvoiceForm({ onSaveInvoice }) {
     handleDateChange(localDate);
     handleSubtotalChange(subtotal);
     handleTotalChange(subtotal, taxes);
+    handleProductChange(
+      indexSelected,
+      label,
+      productSelected[selectedProducts.length - 1]
+    );
     handleTotalItemChange(selectedProducts, quantity);
-    handleProductChange(indexSelected, label, productSelected);
     handleItemPriceChange(selectedProducts.map((product) => product.price));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProducts]);
