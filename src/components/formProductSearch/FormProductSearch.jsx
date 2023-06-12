@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { DataContext } from "../../context/dataContext";
 import styles from "./formProductSearch.module.css";
 
-function FormProductSearch({ productList }) {
+function FormProductSearch() {
+  const {
+    productList,
+    matchingOptions,
+    selectedProducts,
+    setSelectedProducts,
+    setMatchingOptions,
+  } = useContext(DataContext);
   const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
-  const [matchingOptions, setMatchingOptions] = useState([]);
-  const [selectedProducts, setSelectedProducts] = useState([]);
 
   const handleInputChange = (e) => {
     const value = e.target.value;

@@ -9,7 +9,7 @@ import Spinner from "../../components/spinner/Spinner";
 
 function InvoiceForm({ onSaveInvoice }) {
   const localDate = new Date().toLocaleDateString();
-  const productList = useContext(DataContext);
+  const { selectedProducts } = useContext(DataContext);
   const [isLoading, setIsLoading] = useState(true);
   const [invoiceData, setInvoiceData] = useState({
     number: "",
@@ -30,15 +30,15 @@ function InvoiceForm({ onSaveInvoice }) {
   });
 
   const {
-    number,
-    product,
-    customer,
-    address,
     date,
-    quantity,
-    subtotal,
     taxes,
     total,
+    number,
+    address,
+    product,
+    customer,
+    quantity,
+    subtotal,
   } = invoiceData;
 
   useEffect(() => {
