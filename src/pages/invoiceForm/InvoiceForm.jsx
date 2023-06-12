@@ -41,6 +41,8 @@ function InvoiceForm({ onSaveInvoice }) {
     subtotal,
   } = invoiceData;
 
+  console.log(invoiceData);
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
