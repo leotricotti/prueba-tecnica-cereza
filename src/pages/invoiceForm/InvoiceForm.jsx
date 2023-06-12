@@ -38,7 +38,7 @@ function InvoiceForm({ onSaveInvoice }) {
   const detail = invoiceData.details[selectedProducts.length - 1];
   const { product, quantity, itemPrice, totalItem } = detail || {};
 
-  console.log(quantity);
+  console.log(quantity, product, itemPrice, totalItem);
 
   useEffect(() => {
     setTimeout(() => {
@@ -64,7 +64,7 @@ function InvoiceForm({ onSaveInvoice }) {
       indexSelected,
       "totalItem",
       priceItem[selectedProducts.length - 1],
-      quantity || 1
+      quantity
     );
     handleProductChange(
       indexSelected,
@@ -83,8 +83,6 @@ function InvoiceForm({ onSaveInvoice }) {
     };
     onSaveInvoice(newInvoice);
   };
-
-  console.log(invoiceData);
 
   const handelNumberChange = (number) => {
     setInvoiceData((prevData) => ({
@@ -117,10 +115,13 @@ function InvoiceForm({ onSaveInvoice }) {
   const handleQuantityChange = (index, label, value) => {
     setInvoiceData((prevData) => {
       const updatedQuantity = [...prevData.details];
-      updatedQuantity[index][label] = value;
+      updatedQuantity[index] = {
+        ...updatedQuantity[index],
+        [label]: value,
+      };
       return {
         ...prevData,
-        details: [...prevData.details, updatedQuantity],
+        details: updatedQuantity,
       };
     });
   };
