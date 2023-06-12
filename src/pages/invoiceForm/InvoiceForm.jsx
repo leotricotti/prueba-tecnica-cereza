@@ -54,7 +54,7 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
       return;
     }
     handleTaxesChange(subtotal);
-    handleSubtotalChange(subtotal);
+    handleSubtotalChange(itemPrice);
     handleTotalChange(subtotal, taxes);
     handleItemPriceChange(
       indexSelected,
@@ -171,24 +171,26 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
   };
 
   const handleSubtotalChange = (value) => {
-    console.log(totalItem);
+    console.log(value);
     setInvoiceData((prevData) => ({
       ...prevData,
-      subtotal: value + value,
+      subtotal: parseInt(value + value).toFixed(2),
     }));
   };
 
   const handleTaxesChange = (subtotal) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      taxes: subtotal * 0.21,
+      taxes: (subtotal * 0.21).toFixed(2),
     }));
   };
 
   const handleTotalChange = (subtotal, taxes) => {
+    subtotal = parseInt(subtotal);
+    taxes = parseInt(taxes);
     setInvoiceData((prevData) => ({
       ...prevData,
-      total: subtotal + taxes,
+      total: (subtotal + taxes).toFixed(2),
     }));
   };
 
