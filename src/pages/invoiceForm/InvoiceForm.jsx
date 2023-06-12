@@ -11,10 +11,10 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
   const [isLoading, setIsLoading] = useState(true);
   const localDate = new Date().toLocaleDateString();
   const invoiceNumber = invoices.invoices.length + 1;
-  const { selectedProducts } = useContext(DataContext);
+  const { selectedProducts, setSelectedProducts } = useContext(DataContext);
   const indexSelected = parseInt(selectedProducts.length - 1);
-  const productSelected = selectedProducts.map((product) => product.title);
-  const priceItem = selectedProducts.map((product) => product.price);
+  const productSelected = selectedProducts?.map((product) => product.title);
+  const priceItem = selectedProducts?.map((product) => product.price);
   const [invoiceData, setInvoiceData] = useState({
     number: "",
     customer: "",
@@ -33,10 +33,12 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
     total: "",
   });
 
+  console.log(selectedProducts);
+
   const { date, taxes, total, number, address, customer, subtotal } =
     invoiceData;
   const detail = invoiceData.details[selectedProducts.length - 1];
-  const { product, quantity, itemPrice, totalItem } = detail || {};
+  const { quantity, itemPrice, totalItem } = detail || {};
 
   useEffect(() => {
     setTimeout(() => {
@@ -191,6 +193,25 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
     }));
   };
 
+  const handleRowDelete = (index) => {
+    setSelectedProducts((prevSelectedProducts) => {
+      const updatedSelectedProducts = [
+        ...prevSelectedProducts.slice(0, index),
+        ...prevSelectedProducts.slice(index + 1),
+      ];
+      return updatedSelectedProducts;
+    });
+
+    setInvoiceData((prevInvoiceData) => {
+      const updatedInvoiceDetails = [...prevInvoiceData.details];
+      updatedInvoiceDetails[index] = {};
+      return {
+        ...prevInvoiceData,
+        details: updatedInvoiceDetails,
+      };
+    });
+  };
+
   return isLoading ? (
     <Spinner />
   ) : (
@@ -207,11 +228,8 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
           handleAddressChange={handleAddressChange}
         />
         <FormBody
-          product={product}
-          quantity={quantity}
-          itemPrice={itemPrice}
-          totalItem={totalItem}
           invoiceData={invoiceData}
+          handleRowDelete={handleRowDelete}
           handleQuantityChange={handleQuantityChange}
         />
         <FormFooter taxes={taxes} total={total} subtotal={subtotal} />
