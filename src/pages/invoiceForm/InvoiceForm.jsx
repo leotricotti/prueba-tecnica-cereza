@@ -55,10 +55,10 @@ function InvoiceForm({ onSaveInvoice }) {
     handleDateChange(localDate);
     handleSubtotalChange(subtotal);
     handleTotalChange(subtotal, taxes);
-    handleProductChange(
+    handleItemPriceChange(
       indexSelected,
-      "product",
-      productSelected[selectedProducts.length - 1]
+      "itemPrice",
+      priceItem[selectedProducts.length - 1]
     );
     handleTotalItemChange(
       indexSelected,
@@ -66,10 +66,10 @@ function InvoiceForm({ onSaveInvoice }) {
       priceItem[selectedProducts.length - 1],
       quantity || 1
     );
-    handleItemPriceChange(
+    handleProductChange(
       indexSelected,
-      "itemPrice",
-      priceItem[selectedProducts.length - 1]
+      "product",
+      productSelected[selectedProducts.length - 1]
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProducts, quantity]);
