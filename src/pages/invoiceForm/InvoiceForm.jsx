@@ -41,7 +41,7 @@ function InvoiceForm({ onSaveInvoice }) {
     subtotal,
   } = invoiceData;
 
-  console.log(invoiceData);
+  console.log(selectedProducts.map((product) => product.title));
 
   useEffect(() => {
     setTimeout(() => {
@@ -55,8 +55,8 @@ function InvoiceForm({ onSaveInvoice }) {
     handleTaxesChange(subtotal);
     handleSubtotalChange(subtotal);
     handleTotalChange(subtotal, taxes);
-    handleProductChange(selectedProducts.title);
-    handleItemPriceChange(selectedProducts.price);
+    handleProductChange(selectedProducts.map((product) => product.title));
+    handleItemPriceChange(selectedProducts.map((product) => product.price));
     handleTotalItemChange(selectedProducts, quantity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProducts, quantity, subtotal]);
