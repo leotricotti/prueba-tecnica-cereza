@@ -4,7 +4,6 @@ import styles from "./formBody.module.css";
 function FormBody({
   product,
   quantity,
-  showMenu,
   totalItem,
   itemPrice,
   handleQuantityChange,
@@ -17,7 +16,6 @@ function FormBody({
           key={index}
           index={index}
           product={product}
-          showMenu={showMenu}
           quantity={quantity}
           itemPrice={itemPrice}
           totalItem={totalItem}

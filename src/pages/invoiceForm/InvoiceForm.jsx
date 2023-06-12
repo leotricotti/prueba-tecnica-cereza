@@ -49,7 +49,6 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
   useEffect(() => {
     handleDateChange(localDate);
     handelNumberChange(invoiceNumber);
-    handleQuantityChange(indexSelected, "quantity", quantity);
     if (selectedProducts.length === 0) {
       return;
     }

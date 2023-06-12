@@ -1,13 +1,6 @@
 import styles from "./formFooter.module.css";
 
-const FormFooter = ({
-  handleSubtotalChange,
-  handleTaxesChange,
-  handleTotalChange,
-  subtotal,
-  taxes,
-  total,
-}) => {
+const FormFooter = ({ taxes, total, subtotal }) => {
   return (
     <section className={styles.invoiceFooterContainer}>
       <div className={styles.totalItems}>{subtotal}</div>
