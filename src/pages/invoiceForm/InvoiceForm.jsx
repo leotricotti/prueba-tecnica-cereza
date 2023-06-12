@@ -10,6 +10,14 @@ import Spinner from "../../components/spinner/Spinner";
 function InvoiceForm({ onSaveInvoice }) {
   const localDate = new Date().toLocaleDateString();
   const { selectedProducts } = useContext(DataContext);
+  const indexSelected = selectedProducts.map((product) =>
+    selectedProducts.indexOf(product)
+  );
+  const productSelected = selectedProducts.map((product) => product.title);
+  const label = "product";
+
+  console.log(indexSelected, productSelected, label);
+
   const [isLoading, setIsLoading] = useState(true);
   const [invoiceData, setInvoiceData] = useState({
     number: "",
@@ -48,18 +56,19 @@ function InvoiceForm({ onSaveInvoice }) {
   }, []);
 
   useEffect(() => {
-    handleDateChange();
+    if (selectedProducts.length === 0) {
+      return;
+    }
     handelNumberChange();
     handleTaxesChange(subtotal);
+    handleDateChange(localDate);
     handleSubtotalChange(subtotal);
     handleTotalChange(subtotal, taxes);
     handleTotalItemChange(selectedProducts, quantity);
-    // handleProductChange(
-    //   selectedProducts.map((product) => (product.title, product.index))
-    // );
+    handleProductChange(indexSelected, label, productSelected);
     handleItemPriceChange(selectedProducts.map((product) => product.price));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedProducts, quantity, subtotal]);
+  }, [selectedProducts]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,8 +79,6 @@ function InvoiceForm({ onSaveInvoice }) {
     };
     onSaveInvoice(newInvoice);
   };
-
-  console.log(selectedProducts);
 
   const handelNumberChange = (number) => {
     setInvoiceData((prevData) => ({
@@ -94,10 +101,10 @@ function InvoiceForm({ onSaveInvoice }) {
     }));
   };
 
-  const handleDateChange = () => {
+  const handleDateChange = (date) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      date: localDate,
+      date: date,
     }));
   };
 
@@ -112,16 +119,16 @@ function InvoiceForm({ onSaveInvoice }) {
     });
   };
 
-  // const handleProductChange = (value, index) => {
-  //   setInvoiceData((prevData) => {
-  //     const updatedProduct = [...prevData.details];
-  //     updatedProduct[index][product] = value;
-  //     return {
-  //       ...prevData,
-  //       details: [...prevData.details, updatedProduct],
-  //     };
-  //   });
-  // };
+  const handleProductChange = (index, label, value) => {
+    setInvoiceData((prevData) => {
+      const updatedProduct = [...prevData.details];
+      updatedProduct[index][label] = value;
+      return {
+        ...prevData,
+        details: [...prevData.details, updatedProduct],
+      };
+    });
+  };
 
   const handleItemPriceChange = (price) => {
     setInvoiceData((prevData) => ({
