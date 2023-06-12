@@ -12,23 +12,23 @@ function FormProductSearch() {
     setMatchingOptions,
     setSelectedProducts,
   } = useContext(DataContext);
-  const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e) => {
     const value = e.target.value;
-    setInputValue(value);
     const filteredOptions = productList.products.filter((product) =>
       product.title.toLowerCase().includes(value.toLowerCase())
     );
-    setMatchingOptions(filteredOptions);
     setShowMenu(true);
+    setInputValue(value);
+    setMatchingOptions(filteredOptions);
   };
 
   const handleProductClick = (product) => {
-    setSelectedProducts([...selectedProducts, product]);
-    setInputValue(product.title);
     setShowMenu(false);
+    setInputValue(product.title);
+    setSelectedProducts([...selectedProducts, product]);
   };
 
   return (
