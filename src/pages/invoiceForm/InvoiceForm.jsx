@@ -12,6 +12,7 @@ function InvoiceForm({ onSaveInvoice }) {
   const { selectedProducts } = useContext(DataContext);
   const indexSelected = parseInt(selectedProducts.length - 1);
   const productSelected = selectedProducts.map((product) => product.title);
+  const priceItem = selectedProducts.map((product) => product.price);
 
   const label = "product";
   const [isLoading, setIsLoading] = useState(true);
@@ -33,17 +34,11 @@ function InvoiceForm({ onSaveInvoice }) {
     total: "",
   });
 
-  const {
-    date,
-    taxes,
-    total,
-    number,
-    address,
-    product,
-    customer,
-    quantity,
-    subtotal,
-  } = invoiceData;
+  const { date, taxes, total, number, address, customer, subtotal } =
+    invoiceData;
+
+  const detail = invoiceData.details[selectedProducts.length - 1];
+  const { product, quantity, itemPrice, totalItem } = detail || {};
 
   useEffect(() => {
     setTimeout(() => {
@@ -66,7 +61,11 @@ function InvoiceForm({ onSaveInvoice }) {
       productSelected[selectedProducts.length - 1]
     );
     handleTotalItemChange(selectedProducts, quantity);
-    handleItemPriceChange(selectedProducts.map((product) => product.price));
+    handleItemPriceChange(
+      indexSelected,
+      "itemPrice",
+      priceItem[selectedProducts.length - 1]
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProducts]);
 
@@ -121,7 +120,6 @@ function InvoiceForm({ onSaveInvoice }) {
   };
 
   const handleProductChange = (index, label, value) => {
-    console.log(index, label, value);
     setInvoiceData((prevData) => {
       const updatedProduct = [...prevData.details];
       updatedProduct[index] = {
@@ -135,11 +133,18 @@ function InvoiceForm({ onSaveInvoice }) {
     });
   };
 
-  const handleItemPriceChange = (price) => {
-    setInvoiceData((prevData) => ({
-      ...prevData,
-      itemPrice: price,
-    }));
+  const handleItemPriceChange = (index, label, value) => {
+    setInvoiceData((prevData) => {
+      const updatedPrice = [...prevData.details];
+      updatedPrice[index] = {
+        ...updatedPrice[index],
+        [label]: value,
+      };
+      return {
+        ...prevData,
+        details: updatedPrice,
+      };
+    });
   };
 
   const handleTotalItemChange = (price, quantity) => {
@@ -188,6 +193,8 @@ function InvoiceForm({ onSaveInvoice }) {
         <FormBody
           product={product}
           quantity={quantity}
+          itemPrice={itemPrice}
+          totalItem={totalItem}
           handleQuantityChange={handleQuantityChange}
         />
         <FormFooter taxes={taxes} total={total} subtotal={subtotal} />
