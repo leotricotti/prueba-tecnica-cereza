@@ -15,12 +15,15 @@
   text-align: center;
 }
 
-.description {
-  width: 10rem;
+.product {
+  width: 9rem;
+  height: 0.95rem;
   font-size: 0.625rem;
   position: absolute;
-  left: 5rem;
-  text-align: left;
+  left: 5.6rem;
+  background-color: var(--color-input-bg);
+  padding: 0.1rem 0.1rem;
+  border-radius: 0.1rem;
 }
 
 .price {
