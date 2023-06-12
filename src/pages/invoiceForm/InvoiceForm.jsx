@@ -38,8 +38,6 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
   const detail = invoiceData.details[selectedProducts.length - 1];
   const { product, quantity, itemPrice, totalItem } = detail || {};
 
-  console.log(invoiceData);
-
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -213,6 +211,7 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
           quantity={quantity}
           itemPrice={itemPrice}
           totalItem={totalItem}
+          invoiceData={invoiceData}
           handleQuantityChange={handleQuantityChange}
         />
         <FormFooter taxes={taxes} total={total} subtotal={subtotal} />

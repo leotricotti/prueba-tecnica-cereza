@@ -1,13 +1,7 @@
 import FormRow from "../formRow/FormRow";
 import styles from "./formBody.module.css";
 
-function FormBody({
-  product,
-  quantity,
-  totalItem,
-  itemPrice,
-  handleQuantityChange,
-}) {
+function FormBody({ handleQuantityChange, invoiceData }) {
   const rowIndexes = ["0", "1", "2", "3", "4", "5", "6"];
   return (
     <section className={styles.formBodyContainer}>
@@ -15,10 +9,7 @@ function FormBody({
         <FormRow
           key={index}
           index={index}
-          product={product}
-          quantity={quantity}
-          itemPrice={itemPrice}
-          totalItem={totalItem}
+          invoiceData={invoiceData}
           handleQuantityChange={handleQuantityChange}
         />
       ))}
