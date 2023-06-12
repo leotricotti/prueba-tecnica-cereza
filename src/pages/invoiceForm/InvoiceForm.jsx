@@ -7,8 +7,9 @@ import FormFooter from "../../components/formFooter/FormFooter";
 import styles from "./invoiceForm.module.css";
 import Spinner from "../../components/spinner/Spinner";
 
-function InvoiceForm({ onSaveInvoice }) {
+function InvoiceForm({ onSaveInvoice, invoices }) {
   const localDate = new Date().toLocaleDateString();
+  const invoiceNumber = invoices.invoices.length + 1;
   const { selectedProducts } = useContext(DataContext);
   const indexSelected = parseInt(selectedProducts.length - 1);
   const productSelected = selectedProducts.map((product) => product.title);
@@ -34,11 +35,8 @@ function InvoiceForm({ onSaveInvoice }) {
 
   const { date, taxes, total, number, address, customer, subtotal } =
     invoiceData;
-
   const detail = invoiceData.details[selectedProducts.length - 1];
   const { product, quantity, itemPrice, totalItem } = detail || {};
-
-  console.log(quantity, product, itemPrice, totalItem);
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,12 +45,12 @@ function InvoiceForm({ onSaveInvoice }) {
   }, []);
 
   useEffect(() => {
+    handleDateChange(localDate);
+    handelNumberChange(invoiceNumber);
     if (selectedProducts.length === 0) {
       return;
     }
-    handelNumberChange();
     handleTaxesChange(subtotal);
-    handleDateChange(localDate);
     handleSubtotalChange(subtotal);
     handleTotalChange(subtotal, taxes);
     handleItemPriceChange(
@@ -72,7 +70,7 @@ function InvoiceForm({ onSaveInvoice }) {
       productSelected[selectedProducts.length - 1]
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedProducts, quantity]);
+  }, [selectedProducts, quantity, number]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -85,9 +83,10 @@ function InvoiceForm({ onSaveInvoice }) {
   };
 
   const handelNumberChange = (number) => {
+    console.log(number);
     setInvoiceData((prevData) => ({
       ...prevData,
-      number: parseInt(number + 1),
+      number: number,
     }));
   };
 

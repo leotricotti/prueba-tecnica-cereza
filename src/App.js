@@ -28,7 +28,7 @@ function App() {
   ) : (
     <Routes>
       <Route path="/" element={<InvoiceList invoices={invoices} />} />
-      <Route path="/invoice" element={<InvoiceForm />} />
+      <Route path="/invoice" element={<InvoiceForm invoices={invoices} />} />
     </Routes>
   );
 }
