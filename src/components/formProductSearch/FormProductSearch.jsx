@@ -5,6 +5,7 @@ import styles from "./formProductSearch.module.css";
 
 function FormProductSearch({ productList }) {
   const [inputValue, setInputValue] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
 
@@ -15,11 +16,16 @@ function FormProductSearch({ productList }) {
       product.title.toLowerCase().includes(value.toLowerCase())
     );
     setMatchingOptions(filteredOptions);
+    setShowMenu(true);
   };
 
   const handleProductClick = (product) => {
     setSelectedProducts([...selectedProducts, product]);
+    setInputValue(product.title);
+    setShowMenu(false);
   };
+
+  console.log(selectedProducts);
 
   return (
     <div className={styles.searchBarContainer}>
@@ -33,27 +39,18 @@ function FormProductSearch({ productList }) {
         placeholder="Buscar producto..."
         className={styles.input}
       />
-      {inputValue && (
-        <>
-          <ul className={styles.searchMenu}>
-            {matchingOptions.map((option, index) => (
-              <li
-                key={index}
-                onClick={() => handleProductClick(option)}
-                className={styles.searchItem}
-              >
-                {option.title}
-              </li>
-            ))}
-          </ul>
-          <div>
-            <ul>
-              {selectedProducts.map((product, index) => (
-                <li key={index}>{product}</li>
-              ))}
-            </ul>
-          </div>
-        </>
+      {showMenu && (
+        <ul className={styles.searchMenu}>
+          {matchingOptions.map((option, index) => (
+            <li
+              key={index}
+              onClick={() => handleProductClick(option)}
+              className={styles.searchItem}
+            >
+              {option.title}
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
