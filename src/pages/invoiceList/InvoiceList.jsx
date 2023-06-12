@@ -3,11 +3,9 @@ import InvoiceListHeader from "../../components/invoiceListHeader/InvoiceListHea
 import StoredInvoice from "../../components/storedInvoice/StoredInvoice";
 import InvoiceList from "../../components/invoiceList/InvoiceList";
 import Spinner from "../../components/spinner/Spinner";
-import invoiceData from "../../assets/data/invoiceData.json";
 import styles from "./invoiceList.module.css";
 
-function App() {
-  const [invoices, setInvoices] = useState([]);
+function InvoicesList({ invoices }) {
   const [showForm, setShowForm] = useState(false);
   const [showInvoice, setShowInvoice] = useState(false);
   const [invoiceId, setInvoiceId] = useState("");
@@ -18,14 +16,6 @@ function App() {
       setIsLoading(false);
     }, 1500);
   }, [isLoading]);
-
-  useEffect(() => {
-    localStorage.setItem("invoices", JSON.stringify(invoiceData));
-    const storedInvoices = JSON.parse(localStorage.getItem("invoices"));
-    if (storedInvoices) {
-      setInvoices(storedInvoices);
-    }
-  }, []);
 
   return isLoading ? (
     <Spinner />
@@ -61,4 +51,4 @@ function App() {
   );
 }
 
-export default App;
+export default InvoicesList;

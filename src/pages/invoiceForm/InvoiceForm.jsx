@@ -48,13 +48,6 @@ function InvoiceForm({ onSaveInvoice }) {
   }, []);
 
   useEffect(() => {
-    setInvoiceData((prevData) => ({
-      ...prevData,
-      number: prevData.number + 1,
-    }));
-  }, []);
-
-  useEffect(() => {
     handelNumberChange();
     handleDateChange();
     handleItemPriceChange();
@@ -68,14 +61,15 @@ function InvoiceForm({ onSaveInvoice }) {
     const newInvoice = {
       customer,
       address,
+      quantity,
     };
     onSaveInvoice(newInvoice);
   };
 
-  const handelNumberChange = (e) => {
+  const handelNumberChange = (number) => {
     setInvoiceData((prevData) => ({
       ...prevData,
-      number: prevData.number,
+      number: parseInt(number + 1),
     }));
   };
 
