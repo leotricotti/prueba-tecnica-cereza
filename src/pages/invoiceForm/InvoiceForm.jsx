@@ -38,6 +38,8 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
   const detail = invoiceData.details[selectedProducts.length - 1];
   const { product, quantity, itemPrice, totalItem } = detail || {};
 
+  console.log(totalItem);
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -47,6 +49,7 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
   useEffect(() => {
     handleDateChange(localDate);
     handelNumberChange(invoiceNumber);
+    handleQuantityChange(indexSelected, "quantity", quantity);
     if (selectedProducts.length === 0) {
       return;
     }
@@ -70,7 +73,7 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
       productSelected[selectedProducts.length - 1]
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedProducts, quantity, number]);
+  }, [selectedProducts, quantity, number, totalItem, subtotal, taxes]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -86,7 +89,7 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
     console.log(number);
     setInvoiceData((prevData) => ({
       ...prevData,
-      number: number,
+      number: "0000" + number,
     }));
   };
 
@@ -167,10 +170,11 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
     });
   };
 
-  const handleSubtotalChange = (totalItem) => {
+  const handleSubtotalChange = (value) => {
+    console.log(totalItem);
     setInvoiceData((prevData) => ({
       ...prevData,
-      subtotal: totalItem + totalItem,
+      subtotal: value + value,
     }));
   };
 
