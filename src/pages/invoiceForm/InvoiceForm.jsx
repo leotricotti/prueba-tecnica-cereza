@@ -41,8 +41,6 @@ function InvoiceForm({ onSaveInvoice }) {
     subtotal,
   } = invoiceData;
 
-  console.log(invoiceData);
-
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -55,9 +53,11 @@ function InvoiceForm({ onSaveInvoice }) {
     handleTaxesChange(subtotal);
     handleSubtotalChange(subtotal);
     handleTotalChange(subtotal, taxes);
-    handleProductChange(selectedProducts.map((product) => product.title));
-    handleItemPriceChange(selectedProducts.map((product) => product.price));
     handleTotalItemChange(selectedProducts, quantity);
+    // handleProductChange(
+    //   selectedProducts.map((product) => (product.title, product.index))
+    // );
+    handleItemPriceChange(selectedProducts.map((product) => product.price));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProducts, quantity, subtotal]);
 
@@ -70,6 +70,8 @@ function InvoiceForm({ onSaveInvoice }) {
     };
     onSaveInvoice(newInvoice);
   };
+
+  console.log(selectedProducts);
 
   const handelNumberChange = (number) => {
     setInvoiceData((prevData) => ({
@@ -110,12 +112,16 @@ function InvoiceForm({ onSaveInvoice }) {
     });
   };
 
-  const handleProductChange = (price) => {
-    setInvoiceData((prevData) => ({
-      ...prevData,
-      itemPrice: price,
-    }));
-  };
+  // const handleProductChange = (value, index) => {
+  //   setInvoiceData((prevData) => {
+  //     const updatedProduct = [...prevData.details];
+  //     updatedProduct[index][product] = value;
+  //     return {
+  //       ...prevData,
+  //       details: [...prevData.details, updatedProduct],
+  //     };
+  //   });
+  // };
 
   const handleItemPriceChange = (price) => {
     setInvoiceData((prevData) => ({
