@@ -8,13 +8,13 @@ import FormHeader from "../../components/formHeader/FormHeader";
 import FormHeaderMain from "../../components/formHeaderMain/FormHeadeMain";
 
 function InvoiceForm({ onSaveInvoice, invoices }) {
+  const [isLoading, setIsLoading] = useState(true);
   const localDate = new Date().toLocaleDateString();
   const invoiceNumber = invoices.invoices.length + 1;
   const { selectedProducts } = useContext(DataContext);
   const indexSelected = parseInt(selectedProducts.length - 1);
   const productSelected = selectedProducts.map((product) => product.title);
   const priceItem = selectedProducts.map((product) => product.price);
-  const [isLoading, setIsLoading] = useState(true);
   const [invoiceData, setInvoiceData] = useState({
     number: "",
     customer: "",
