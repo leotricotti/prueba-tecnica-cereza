@@ -31,8 +31,6 @@ function FormProductSearch() {
     setShowMenu(false);
   };
 
-  console.log(selectedProducts);
-
   return (
     <div className={styles.searchBarContainer}>
       <button type="submit" className={styles.button}>
