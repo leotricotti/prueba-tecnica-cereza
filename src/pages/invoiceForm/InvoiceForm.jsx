@@ -41,7 +41,7 @@ function InvoiceForm({ onSaveInvoice }) {
     subtotal,
   } = invoiceData;
 
-  console.log(selectedProducts.map((product) => product.title));
+  console.log(invoiceData);
 
   useEffect(() => {
     setTimeout(() => {

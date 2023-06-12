@@ -9,18 +9,18 @@ function FormBody({
   itemPrice,
   handleQuantityChange,
 }) {
-  const rowIndexes = ["1", "2", "3", "4", "5", "6"];
+  const rowIndexes = ["0", "1", "2", "3", "4", "5", "6"];
   return (
     <section className={styles.formBodyContainer}>
       {rowIndexes.map((index) => (
         <FormRow
           key={index}
+          index={index}
+          product={product}
           showMenu={showMenu}
+          quantity={quantity}
           itemPrice={itemPrice}
           totalItem={totalItem}
-          product={product}
-          quantity={quantity}
-          index={index}
           handleQuantityChange={handleQuantityChange}
         />
       ))}
