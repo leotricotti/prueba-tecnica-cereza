@@ -31,6 +31,11 @@ function FormProductSearch() {
     setSelectedProducts([...selectedProducts, product]);
   };
 
+  const handleClick = () => {
+    setShowMenu(true);
+    setInputValue("");
+  };
+
   return (
     <div className={styles.searchBarContainer}>
       <button type="submit" className={styles.button}>
@@ -41,7 +46,7 @@ function FormProductSearch() {
         value={inputValue}
         onChange={handleInputChange}
         placeholder="Buscar producto..."
-        onClick={() => setInputValue("")}
+        onClick={handleClick}
         className={styles.input}
       />
       {showMenu && (

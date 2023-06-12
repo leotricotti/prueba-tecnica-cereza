@@ -72,7 +72,17 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
       productSelected[selectedProducts.length - 1]
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedProducts, quantity, number, totalItem, subtotal, taxes]);
+  }, [
+    selectedProducts,
+    quantity,
+    number,
+    totalItem,
+    subtotal,
+    taxes,
+    itemPrice,
+  ]);
+
+  console.log(invoiceData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
