@@ -6,8 +6,11 @@
   top: 0;
   left: 0;
   z-index: 100;
-  padding: 0 0 3rem;
   overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.2rem 0 0;
 }
 
 .innerInvoice {
@@ -17,8 +20,6 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  position: relative;
-  top: 4rem;
 }
 
 @keyframes fadeIn {
