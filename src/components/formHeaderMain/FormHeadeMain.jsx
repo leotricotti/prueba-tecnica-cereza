@@ -1,11 +1,8 @@
-import { useContext } from "react";
-import { DataContext } from "../../context/dataContext";
 import Button from "../button/Button";
 import styles from "./formHeaderMain.module.css";
 import FormProductSearch from "../formProductSearch/FormProductSearch";
 
-function FormHeaderMain({ invoiceData }) {
-  const { onSaveInvoice } = useContext(DataContext);
+function FormHeaderMain({ handleSubmit }) {
   return (
     <header className={styles.invoiceHeader}>
       <div className={styles.headerInner}>
@@ -14,7 +11,7 @@ function FormHeaderMain({ invoiceData }) {
           <Button
             text="Guardar"
             styles={styles.button}
-            onClick={onSaveInvoice(invoiceData)}
+            onClick={handleSubmit}
           />
           <span className={styles.separador}>/</span>
           <Button

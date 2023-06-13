@@ -12,7 +12,6 @@ function InvoiceForm() {
   const localDate = new Date().toLocaleDateString();
   const { selectedProducts, setSelectedProducts, invoices, onSaveInvoice } =
     useContext(DataContext);
-  const invoiceNumber = invoices.invoices.length + 1;
   const indexSelected = parseInt(selectedProducts.length - 1);
   const productSelected = selectedProducts?.map((product) => product.title);
   const priceItem = selectedProducts?.map((product) => product.price);
@@ -33,11 +32,12 @@ function InvoiceForm() {
     taxes: "",
     total: "",
   });
-
+  console.log(invoices.invoices.length);
   const { date, taxes, total, number, address, customer, subtotal } =
     invoiceData;
   const detail = invoiceData.details[selectedProducts.length - 1];
   const { quantity, itemPrice, totalItem } = detail || {};
+  const invoiceNumber = invoices.invoices.length + 1;
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,7 +47,7 @@ function InvoiceForm() {
 
   useEffect(() => {
     handleDateChange(localDate);
-    handelNumberChange(invoiceNumber);
+    handelNumberChange(invoiceNumber || 0);
     if (selectedProducts.length === 0) {
       return;
     }
@@ -75,12 +75,7 @@ function InvoiceForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newInvoice = {
-      address,
-      customer,
-      quantity,
-    };
-    onSaveInvoice(newInvoice);
+    onSaveInvoice(invoiceData);
   };
 
   const handelNumberChange = (number) => {
@@ -215,14 +210,13 @@ function InvoiceForm() {
     <Spinner />
   ) : (
     <main className={styles.invoiceContainer}>
-      <FormHeaderMain invoiceData={invoiceData} />
+      <FormHeaderMain handleSubmit={handleSubmit} />
       <div className={styles.innerInvoice}>
         <FormHeader
           date={date}
           number={number}
           address={address}
           customer={customer}
-          handleSubmit={handleSubmit}
           handleNameChange={handleNameChange}
           handleAddressChange={handleAddressChange}
         />
