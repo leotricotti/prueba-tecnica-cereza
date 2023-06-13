@@ -9,7 +9,7 @@ function StoredInvoice({ setShowInvoice, invoiceId, setIsLoading }) {
   const [invoice, setInvoice] = useState(null);
   const invoiceData = invoices;
 
-  console.log(invoiceData);
+  console.log(invoiceId);
 
   useEffect(() => {
     if (invoiceId && invoiceData)

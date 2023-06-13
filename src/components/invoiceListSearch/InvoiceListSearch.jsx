@@ -9,10 +9,9 @@ function InvoiceListSeach({ setShowInvoice, setIsLoading }) {
   const { invoices } = useContext(DataContext);
   const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const [invoiceId, setInvoiceId] = useState(null);
   const [matchingOptions, setMatchingOptions] = useState([]);
   const data = invoices;
-
-  console.log(matchingOptions);
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -31,13 +30,16 @@ function InvoiceListSeach({ setShowInvoice, setIsLoading }) {
     setShowMenu(false);
     setShowInvoice(true);
     setIsLoading(true);
+    setInvoiceId(option.number);
+    console.log(option.number);
   };
+
+  console.log(matchingOptions);
 
   return (
     <div className={styles.searchBar}>
-      <button type="submit" className={styles.button}>
-        <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon} />
-      </button>
+      <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon} />
+
       <input
         type="text"
         placeholder="Buscar factura..."
@@ -60,7 +62,7 @@ function InvoiceListSeach({ setShowInvoice, setIsLoading }) {
       )}
       {matchingOptions.length > 0 && (
         <StoredInvoice
-          invoiceId={matchingOptions[0].number}
+          invoiceId={invoiceId}
           setShowInvoice={setShowInvoice}
           setIsLoading={setIsLoading}
         />
