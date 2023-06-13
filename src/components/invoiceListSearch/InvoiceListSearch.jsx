@@ -12,6 +12,8 @@ function InvoiceListSeach({ setShowInvoice, setIsLoading }) {
   const [matchingOptions, setMatchingOptions] = useState([]);
   const data = invoices;
 
+  console.log(matchingOptions);
+
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setInputValue(inputValue);
@@ -57,7 +59,11 @@ function InvoiceListSeach({ setShowInvoice, setIsLoading }) {
         </ul>
       )}
       {matchingOptions.length > 0 && (
-        <StoredInvoice invoiceId={matchingOptions[0].number} />
+        <StoredInvoice
+          invoiceId={matchingOptions[0].number}
+          setShowInvoice={setShowInvoice}
+          setIsLoading={setIsLoading}
+        />
       )}
     </div>
   );

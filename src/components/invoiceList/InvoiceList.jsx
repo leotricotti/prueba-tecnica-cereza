@@ -1,7 +1,7 @@
 import InvoiceItem from "../invoiceItem/InvoiceItem";
 import styles from "./invoiceList.module.css";
 
-function InvoiceList({ invoices, setShowInvoice, setInvoiceId, setIsLoading }) {
+function InvoiceList({ setShowInvoice, setInvoiceId, setIsLoading }) {
   const handleShowInvoice = (id) => {
     setShowInvoice(true);
     setInvoiceId(id);
@@ -9,7 +9,7 @@ function InvoiceList({ invoices, setShowInvoice, setInvoiceId, setIsLoading }) {
   };
   return (
     <section className={styles.invoiceList}>
-      <InvoiceItem invoices={invoices} handleShowInvoice={handleShowInvoice} />
+      <InvoiceItem handleShowInvoice={handleShowInvoice} />
     </section>
   );
 }

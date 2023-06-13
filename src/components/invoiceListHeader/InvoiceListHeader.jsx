@@ -4,10 +4,10 @@ import styles from "./invoiceListHeader.module.css";
 
 function InvoiceListHeader({
   data,
-  setShowInvoice,
   link,
-  setIsLoading,
   onClick,
+  setIsLoading,
+  setShowInvoice,
 }) {
   return (
     <header className={styles.headerContainer}>

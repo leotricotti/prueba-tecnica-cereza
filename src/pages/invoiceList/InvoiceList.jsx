@@ -6,10 +6,10 @@ import Spinner from "../../components/spinner/Spinner";
 import styles from "./invoiceList.module.css";
 
 function InvoicesList({ invoices }) {
-  const [showForm, setShowForm] = useState(false);
-  const [showInvoice, setShowInvoice] = useState(false);
   const [invoiceId, setInvoiceId] = useState("");
+  const [showForm, setShowForm] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [showInvoice, setShowInvoice] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
