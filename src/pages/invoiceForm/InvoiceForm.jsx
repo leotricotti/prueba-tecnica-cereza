@@ -7,66 +7,88 @@ import FormFooter from "../../components/formFooter/FormFooter";
 import FormHeader from "../../components/formHeader/FormHeader";
 import FormHeaderMain from "../../components/formHeaderMain/FormHeadeMain";
 
-function InvoiceForm({ onSaveInvoice, invoices }) {
+function InvoiceForm() {
   const [isLoading, setIsLoading] = useState(true);
   const localDate = new Date().toLocaleDateString();
+  const { selectedProducts, setSelectedProducts, invoices, onSaveInvoice } =
+    useContext(DataContext);
   const invoiceNumber = invoices.invoices.length + 1;
-  const { selectedProducts, setSelectedProducts } = useContext(DataContext);
-
+  const indexSelected = parseInt(selectedProducts.length - 1);
+  const productSelected = selectedProducts?.map((product) => product.title);
+  const priceItem = selectedProducts?.map((product) => product.price);
   const [invoiceData, setInvoiceData] = useState({
-    number: `0000${invoiceNumber}`,
+    number: "",
     customer: "",
     address: "",
-    date: localDate,
-    details: [],
+    date: "",
+    details: Array(7)
+      .fill()
+      .map(() => ({
+        product: "",
+        itemPrice: "",
+        quantity: "",
+        totalItem: "",
+      })),
     subtotal: "",
     taxes: "",
     total: "",
   });
 
+  const { date, taxes, total, number, address, customer, subtotal } =
+    invoiceData;
+  const detail = invoiceData.details[selectedProducts.length - 1];
+  const { quantity, itemPrice, totalItem } = detail || {};
+
   useEffect(() => {
-    setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }, []);
 
   useEffect(() => {
-    const subtotal = selectedProducts
-      .reduce((acc, product) => {
-        const itemPrice = parseFloat(product.price) || 0;
-        const quantity = parseFloat(product.quantity) || 0;
-        const totalItem = itemPrice * quantity;
-        return acc + totalItem;
-      }, 0)
-      .toFixed(2);
-
-    const taxes = (subtotal * 0.21).toFixed(2);
-    const total = (parseFloat(subtotal) + parseFloat(taxes)).toFixed(2);
-
-    setInvoiceData((prevData) => ({
-      ...prevData,
-      details: selectedProducts.map((product) => ({
-        product: product.title,
-        itemPrice: parseFloat(product.price).toFixed(2),
-        quantity: parseFloat(product.quantity).toFixed(2),
-        totalItem: (
-          parseFloat(product.price) * parseFloat(product.quantity)
-        ).toFixed(2),
-      })),
-      subtotal,
-      taxes,
-      total,
-    }));
-  }, [selectedProducts]);
+    handleDateChange(localDate);
+    handelNumberChange(invoiceNumber);
+    if (selectedProducts.length === 0) {
+      return;
+    }
+    handleTaxesChange(subtotal);
+    handleSubtotalChange(itemPrice);
+    handleTotalChange(subtotal, taxes);
+    handleItemPriceChange(
+      indexSelected,
+      "itemPrice",
+      priceItem[selectedProducts.length - 1]
+    );
+    handleTotalItemChange(
+      indexSelected,
+      "totalItem",
+      priceItem[selectedProducts.length - 1],
+      quantity
+    );
+    handleProductChange(
+      indexSelected,
+      "product",
+      productSelected[selectedProducts.length - 1]
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedProducts, quantity, number, totalItem, subtotal, taxes]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSaveInvoice({
-      address: invoiceData.address,
-      customer: invoiceData.customer,
-      quantity: invoiceData.details.reduce(
-        (acc, detail) => acc + parseFloat(detail.quantity),
-        0
-      ),
-    });
+    const newInvoice = {
+      address,
+      customer,
+      quantity,
+    };
+    onSaveInvoice(newInvoice);
+  };
+
+  const handelNumberChange = (number) => {
+    console.log(number);
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      number: "0000" + number,
+    }));
   };
 
   const handleNameChange = (e) => {
@@ -83,32 +105,91 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
     }));
   };
 
+  const handleDateChange = (date) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      date: date,
+    }));
+  };
+
   const handleQuantityChange = (index, label, value) => {
     setInvoiceData((prevData) => {
-      const updatedDetails = [...prevData.details];
-      updatedDetails[index] = {
-        ...updatedDetails[index],
+      const updatedQuantity = [...prevData.details];
+      updatedQuantity[index] = {
+        ...updatedQuantity[index],
         [label]: value,
-        totalItem: (
-          parseFloat(updatedDetails[index].itemPrice) * parseFloat(value)
-        ).toFixed(2),
       };
       return {
         ...prevData,
-        details: updatedDetails,
-        subtotal: updatedDetails
-          .reduce((acc, detail) => acc + parseFloat(detail.totalItem), 0)
-          .toFixed(2),
-        total: (
-          parseFloat(
-            updatedDetails.reduce(
-              (acc, detail) => acc + parseFloat(detail.totalItem),
-              0
-            )
-          ) + parseFloat(prevData.taxes)
-        ).toFixed(2),
+        details: updatedQuantity,
       };
     });
+  };
+
+  const handleProductChange = (index, label, value) => {
+    setInvoiceData((prevData) => {
+      const updatedProduct = [...prevData.details];
+      updatedProduct[index] = {
+        ...updatedProduct[index],
+        [label]: value,
+      };
+      return {
+        ...prevData,
+        details: updatedProduct,
+      };
+    });
+  };
+
+  const handleItemPriceChange = (index, label, value) => {
+    setInvoiceData((prevData) => {
+      const updatedPrice = [...prevData.details];
+      updatedPrice[index] = {
+        ...updatedPrice[index],
+        [label]: parseInt(value).toFixed(2),
+      };
+      return {
+        ...prevData,
+        details: updatedPrice,
+      };
+    });
+  };
+
+  const handleTotalItemChange = (index, label, value, quantity) => {
+    setInvoiceData((prevData) => {
+      const updatedTotalItem = [...prevData.details];
+      updatedTotalItem[index] = {
+        ...updatedTotalItem[index],
+        [label]: parseInt(value * quantity).toFixed(2),
+      };
+      return {
+        ...prevData,
+        details: updatedTotalItem,
+      };
+    });
+  };
+
+  const handleSubtotalChange = (value) => {
+    console.log(value);
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      subtotal: parseInt(value + value).toFixed(2),
+    }));
+  };
+
+  const handleTaxesChange = (subtotal) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      taxes: (subtotal * 0.21).toFixed(2),
+    }));
+  };
+
+  const handleTotalChange = (subtotal, taxes) => {
+    subtotal = parseInt(subtotal);
+    taxes = parseInt(taxes);
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      total: (subtotal + taxes).toFixed(2),
+    }));
   };
 
   const handleRowDelete = (index) => {
@@ -120,39 +201,28 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
       return updatedSelectedProducts;
     });
 
-    setInvoiceData((prevInvoiceData) => ({
-      ...prevInvoiceData,
-      details: [
-        ...prevInvoiceData.details.slice(0, index),
-        ...prevInvoiceData.details.slice(index + 1),
-      ],
-      subtotal: prevInvoiceData.details
-        .slice(0, index)
-        .concat(prevInvoiceData.details.slice(index + 1))
-        .reduce((acc, detail) => acc + parseFloat(detail.totalItem), 0)
-        .toFixed(2),
-      total: (
-        prevInvoiceData.details
-          .slice(0, index)
-          .concat(prevInvoiceData.details.slice(index + 1))
-          .reduce((acc, detail) => acc + parseFloat(detail.totalItem), 0) +
-        parseFloat(prevInvoiceData.taxes)
-      ).toFixed(2),
-    }));
+    setInvoiceData((prevInvoiceData) => {
+      const updatedInvoiceDetails = [...prevInvoiceData.details];
+      updatedInvoiceDetails[index] = {};
+      return {
+        ...prevInvoiceData,
+        details: updatedInvoiceDetails,
+      };
+    });
   };
 
   return isLoading ? (
     <Spinner />
   ) : (
     <main className={styles.invoiceContainer}>
-      <FormHeaderMain />
+      <FormHeaderMain invoiceData={invoiceData} />
       <div className={styles.innerInvoice}>
         <FormHeader
-          date={invoiceData.date}
-          number={invoiceData.number}
+          date={date}
+          number={number}
+          address={address}
+          customer={customer}
           handleSubmit={handleSubmit}
-          address={invoiceData.address}
-          customer={invoiceData.customer}
           handleNameChange={handleNameChange}
           handleAddressChange={handleAddressChange}
         />
@@ -161,11 +231,7 @@ function InvoiceForm({ onSaveInvoice, invoices }) {
           handleRowDelete={handleRowDelete}
           handleQuantityChange={handleQuantityChange}
         />
-        <FormFooter
-          taxes={invoiceData.taxes}
-          total={invoiceData.total}
-          subtotal={invoiceData.subtotal}
-        />
+        <FormFooter taxes={taxes} total={total} subtotal={subtotal} />
       </div>
     </main>
   );

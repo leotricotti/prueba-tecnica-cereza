@@ -2,13 +2,17 @@ import FormProductSearch from "../formProductSearch/FormProductSearch";
 import Button from "../button/Button";
 import styles from "./formHeaderMain.module.css";
 
-function FormHeaderMain() {
+function FormHeaderMain({ onSaveInvoice, invoiceData }) {
   return (
     <header className={styles.invoiceHeader}>
       <div className={styles.headerInner}>
         <FormProductSearch />
         <div className={styles.buttonsContainer}>
-          <Button text="Guardar" styles={styles.button} />
+          <Button
+            text="Guardar"
+            styles={styles.button}
+            onClick={onSaveInvoice(invoiceData)}
+          />
           <span className={styles.separador}>/</span>
           <Button
             text="Cancelar"
