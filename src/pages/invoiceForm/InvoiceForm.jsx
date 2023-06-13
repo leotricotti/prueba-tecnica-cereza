@@ -32,12 +32,21 @@ function InvoiceForm() {
     taxes: "",
     total: "",
   });
-  console.log(invoices.invoices.length);
   const { date, taxes, total, number, address, customer, subtotal } =
     invoiceData;
   const detail = invoiceData.details[selectedProducts.length - 1];
-  const { quantity, itemPrice, totalItem } = detail || {};
+  const { quantity, totalItem } = detail || {};
   const invoiceNumber = invoices.invoices.length + 1;
+
+  const calculateItemTotal = () => {
+    const totalItems = invoiceData.details.reduce((accumulator, detail) => {
+      const detailTotal = parseFloat(detail.totalItem);
+      return accumulator + (isNaN(detailTotal) ? 0 : detailTotal);
+    }, 0);
+    return totalItems.toFixed(2);
+  };
+
+  const itemTotal = calculateItemTotal();
 
   useEffect(() => {
     setTimeout(() => {
@@ -52,23 +61,23 @@ function InvoiceForm() {
       return;
     }
     handleTaxesChange(subtotal);
-    handleSubtotalChange(itemPrice);
+    handleSubtotalChange(itemTotal);
     handleTotalChange(subtotal, taxes);
     handleItemPriceChange(
       indexSelected,
       "itemPrice",
       priceItem[selectedProducts.length - 1]
     );
+    handleProductChange(
+      indexSelected,
+      "product",
+      productSelected[selectedProducts.length - 1]
+    );
     handleTotalItemChange(
       indexSelected,
       "totalItem",
       priceItem[selectedProducts.length - 1],
       quantity
-    );
-    handleProductChange(
-      indexSelected,
-      "product",
-      productSelected[selectedProducts.length - 1]
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProducts, quantity, number, totalItem, subtotal, taxes]);
@@ -78,8 +87,9 @@ function InvoiceForm() {
     onSaveInvoice(invoiceData);
   };
 
+  console.log(invoiceData);
+
   const handelNumberChange = (number) => {
-    console.log(number);
     setInvoiceData((prevData) => ({
       ...prevData,
       number: "0000" + number,
@@ -154,7 +164,7 @@ function InvoiceForm() {
       const updatedTotalItem = [...prevData.details];
       updatedTotalItem[index] = {
         ...updatedTotalItem[index],
-        [label]: parseInt(value * quantity).toFixed(2),
+        [label]: parseFloat(value * quantity).toFixed(2),
       };
       return {
         ...prevData,
@@ -164,10 +174,9 @@ function InvoiceForm() {
   };
 
   const handleSubtotalChange = (value) => {
-    console.log(value);
     setInvoiceData((prevData) => ({
       ...prevData,
-      subtotal: parseInt(value + value).toFixed(2),
+      subtotal: parseFloat(value + value).toFixed(2),
     }));
   };
 
