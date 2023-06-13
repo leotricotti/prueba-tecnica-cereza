@@ -29,7 +29,6 @@ function InvoiceListSeach({ setShowInvoice, setIsLoading }) {
     setShowInvoice(true);
     setMatchingOptions(option);
     setInputValue(option.customer);
-    invoiceId = option.number;
   };
 
   console.log(inputValue);
@@ -60,7 +59,6 @@ function InvoiceListSeach({ setShowInvoice, setIsLoading }) {
       )}
       {matchingOptions.length > 0 && (
         <StoredInvoice
-          invoiceId={invoiceId}
           setShowInvoice={setShowInvoice}
           setIsLoading={setIsLoading}
         />
