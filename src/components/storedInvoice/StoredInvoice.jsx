@@ -1,14 +1,15 @@
+import { useContext } from "react";
+import { DataContext } from "../../context/dataContext";
 import { useEffect, useState } from "react";
 import Button from "../button/Button";
 import styles from "./storedInvoice.module.css";
 
-function StoredInvoice({
-  invoiceData,
-  setShowInvoice,
-  invoiceId,
-  setIsLoading,
-}) {
+function StoredInvoice({ setShowInvoice, invoiceId, setIsLoading }) {
+  const { invoices } = useContext(DataContext);
   const [invoice, setInvoice] = useState(null);
+  const invoiceData = invoices;
+
+  console.log(invoiceData);
 
   useEffect(() => {
     if (invoiceId && invoiceData)

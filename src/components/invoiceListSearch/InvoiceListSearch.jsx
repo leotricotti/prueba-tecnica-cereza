@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../../context/dataContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import StoredInvoice from "../storedInvoice/StoredInvoice";
 import styles from "./invoiceListSearch.module.css";
 
-function InvoiceListSeach({ data, setShowInvoice, setIsLoading }) {
+function InvoiceListSeach({ setShowInvoice, setIsLoading }) {
+  const { invoices } = useContext(DataContext);
   const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [matchingOptions, setMatchingOptions] = useState([]);
+  const data = invoices;
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;

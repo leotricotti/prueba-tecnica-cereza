@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { DataContext } from "../../context/dataContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFileLines,
@@ -6,7 +8,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./invoiceItem.module.css";
 
-function InvoiceItem({ invoices, handleShowInvoice }) {
+function InvoiceItem({ handleShowInvoice }) {
+  const { invoices } = useContext(DataContext);
   const sortedInvoices = invoices.invoices.sort((a, b) => b.number - a.number);
 
   return (
