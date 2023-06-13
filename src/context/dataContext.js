@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import invoiceData from "./assets/data/invoiceData.json";
+import invoiceData from "../assets/data/invoiceData.json";
 
 const DataContext = createContext();
 

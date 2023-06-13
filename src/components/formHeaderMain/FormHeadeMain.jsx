@@ -1,8 +1,11 @@
-import FormProductSearch from "../formProductSearch/FormProductSearch";
+import { useContext } from "react";
+import { DataContext } from "../../context/dataContext";
 import Button from "../button/Button";
 import styles from "./formHeaderMain.module.css";
+import FormProductSearch from "../formProductSearch/FormProductSearch";
 
-function FormHeaderMain({ onSaveInvoice, invoiceData }) {
+function FormHeaderMain({ invoiceData }) {
+  const { onSaveInvoice } = useContext(DataContext);
   return (
     <header className={styles.invoiceHeader}>
       <div className={styles.headerInner}>
