@@ -9,7 +9,6 @@ function InvoiceListSeach({ setShowInvoice, setIsLoading }) {
   const { invoices } = useContext(DataContext);
   const [inputValue, setInputValue] = useState("");
   const [showMenu, setShowMenu] = useState(false);
-  const [invoiceId, setInvoiceId] = useState(null);
   const [matchingOptions, setMatchingOptions] = useState([]);
   const data = invoices;
 
@@ -25,16 +24,15 @@ function InvoiceListSeach({ setShowInvoice, setIsLoading }) {
   };
 
   const handleOptionClick = (option) => {
-    setInputValue(option.customer);
-    setMatchingOptions(option);
     setShowMenu(false);
-    setShowInvoice(true);
     setIsLoading(true);
-    setInvoiceId(option.number);
-    console.log(option.number);
+    setShowInvoice(true);
+    setMatchingOptions(option);
+    setInputValue(option.customer);
+    invoiceId = option.number;
   };
 
-  console.log(matchingOptions);
+  console.log(inputValue);
 
   return (
     <div className={styles.searchBar}>
